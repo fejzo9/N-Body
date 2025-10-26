@@ -5,6 +5,7 @@
 #include <chrono>
 #include <vector>
 #include "Simulation.h"
+#include <iostream>
 
 // Globalne varijable za sinhronizaciju između simulacionog i render thread-a
 std::atomic<bool> paused(false);        // Da li je simulacija pauzirana
@@ -162,13 +163,27 @@ int main() {
         {
             std::lock_guard<std::mutex> lock(bodies_mutex);
             
+            // DEBUG: Ispiši broj tijela i njihove pozicije
+            static int frame_count = 0;
+            if (frame_count % 60 == 0) { // Svake sekunde (60 FPS)
+                std::cout << "Broj tijela: " << shared_bodies.size() << std::endl;
+                for (size_t i = 0; i < shared_bodies.size(); i++) {
+                    std::cout << "  Tijelo " << i << ": pos(" 
+                              << shared_bodies[i].pos.x << ", " 
+                              << shared_bodies[i].pos.y << ")" << std::endl;
+                }
+            }
+            frame_count++;
+            
             for (const auto& body : shared_bodies) {
-                // Konvertuj poziciju u ekranske koordinate
-                float radius = 0.05f; // Radijus kruga
+                // POVEĆAN RADIJUS da bude vidljiv!
+                float radius = 20.0f; // Mnogo veći radijus
                 sf::CircleShape circle(radius);
                 circle.setOrigin(radius, radius);
                 circle.setPosition(body.pos.x, body.pos.y);
                 circle.setFillColor(sf::Color::White);
+                circle.setOutlineColor(sf::Color::Red); // Crveni obrub za debug
+                circle.setOutlineThickness(2.0f);
                 
                 window.draw(circle);
             }
