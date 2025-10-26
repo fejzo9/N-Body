@@ -1,0 +1,28 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build N-Body Simulation",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-std=c++17",
+                "-O3",
+                "-march=native",
+                "${workspaceFolder}/N-Body Simulation/main.cpp",
+                "-o",
+                "${workspaceFolder}/bin/main",
+                "-lsfml-graphics",
+                "-lsfml-window",
+                "-lsfml-system",
+                "-lpthread"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"],
+            "detail": "Kompajlira N-Body simulaciju sa SFML"
+        }
+    ]
+}
