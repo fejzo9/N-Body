@@ -2,10 +2,14 @@
 #include <vector>
 #include <cmath>
 #include <iostream>
-#include <cstdlib>
+#include <random>
 
-const double G = 6.67430e-3; // gravitational constant (scaled for stability)
+const double G = 6.67430e-3; // gravitational constant (reduced for stability)
 const int WINDOW_SIZE = 1000;
+
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
 
 struct Vec
 {
@@ -22,12 +26,11 @@ struct Vec
         return *this;
     }
     double len() const { return std::sqrt(x * x + y * y); }
-    Vec normalized() const
+    Vec norm() const
     {
         double l = len();
         return l == 0 ? Vec(0, 0) : *this / l;
     }
-
     Vec &operator-=(const Vec &o)
     {
         x -= o.x;
@@ -40,8 +43,8 @@ struct Body
 {
     double m;
     Vec pos, vel, acc;
-    float radius;
     sf::Color color;
+    float radius;
 };
 
 int main()
@@ -49,38 +52,60 @@ int main()
     sf::RenderWindow window(sf::VideoMode(WINDOW_SIZE, WINDOW_SIZE), "Chaotic N-Body Simulation");
     window.setFramerateLimit(60);
 
-    // Create bodies
     std::vector<Body> bodies;
-    int n = 100;
-    float spread = 400.f;
+    float G_local = 1.f;
+    int n = 100;          // number of bodies
+    float spread = 400.f; // initial position spread
     float mass = 1000.f;
-    float G_local = 1.f; // for velocity initialization
 
+    // Initialize bodies
     for (int i = 0; i < n; i++)
     {
-        float angle = static_cast<float>(rand()) / RAND_MAX * 2 * 3.14159265f;
+        float angle = static_cast<float>(rand()) / RAND_MAX * 2 * M_PI;
         float r = static_cast<float>(rand()) / RAND_MAX * spread;
         Vec pos(r * cos(angle), r * sin(angle));
 
-        float v = sqrt(G_local * mass * n / (r + 50));
+        float v = sqrt(G_local * mass * n / (r + 50)); // circular velocity approximation
         Vec vel(-pos.y, pos.x);
-        vel = vel.normalized() * v * 0.5f;
+        vel = vel.norm() * v * 0.5f; // reduce speed to prevent escape
 
-        // small randomness
+        // Add randomness to velocities
         vel.x += ((float)rand() / RAND_MAX - 0.5f) * v * 0.1f;
         vel.y += ((float)rand() / RAND_MAX - 0.5f) * v * 0.1f;
 
-        bodies.push_back({mass, pos, vel, Vec(), 8.f, sf::Color::White});
+        bodies.push_back({mass, pos, vel, Vec(), sf::Color(rand() % 255, rand() % 255, rand() % 255), 8.f});
     }
+
+    // Compute accelerations with minimum distance to avoid collisions
+    auto compute_accelerations = [&](std::vector<Body> &B)
+    {
+        for (auto &b : B)
+            b.acc = Vec();
+
+        for (size_t i = 0; i < B.size(); ++i)
+        {
+            for (size_t j = i + 1; j < B.size(); ++j)
+            {
+                Vec delta = B[j].pos - B[i].pos;
+                double dist = delta.len();
+
+                // Clamp minimum distance to avoid infinite force
+                double minDist = B[i].radius + B[j].radius;
+                double safeDist = std::max(dist, minDist);
+
+                double F = (G_local * B[j].m) / (safeDist * safeDist);
+                Vec acc = delta.norm() * F;
+                B[i].acc += acc;
+                B[j].acc -= acc; // Newton's 3rd law
+            }
+        }
+    };
 
     sf::View view(sf::Vector2f(0, 0), sf::Vector2f(WINDOW_SIZE, WINDOW_SIZE));
     double zoomLevel = 1.0;
 
-    sf::Clock clock; // for frame timing
-
     while (window.isOpen())
     {
-        // --- Event handling ---
         sf::Event event;
         while (window.pollEvent(event))
         {
@@ -96,45 +121,19 @@ int main()
             }
         }
 
-        // --- Time step ---
-        sf::Time elapsed = clock.restart();
-        double dt = elapsed.asSeconds();
+        compute_accelerations(bodies);
 
-        // --- Compute accelerations ---
-        for (size_t i = 0; i < bodies.size(); ++i)
-        {
-            bodies[i].acc = Vec();
-        }
-
-        for (size_t i = 0; i < bodies.size(); ++i)
-        {
-            for (size_t j = i + 1; j < bodies.size(); ++j)
-            {
-                Vec delta = bodies[j].pos - bodies[i].pos;
-                double dist = delta.len();
-
-                double minDist = bodies[i].radius + bodies[j].radius;
-                double safeDist = std::max(dist, minDist);
-
-                double F = (G * bodies[j].m) / (safeDist * safeDist);
-                Vec acc = delta.normalized() * F;
-
-                bodies[i].acc += acc;
-                bodies[j].acc -= acc; // Newton's 3rd law
-            }
-        }
-
-        // --- Update positions & velocities ---
+        double dt = 0.1;
         for (auto &b : bodies)
         {
             b.vel += b.acc * dt;
             b.pos += b.vel * dt;
         }
 
-        // --- Rendering ---
         window.clear(sf::Color::Black);
         window.setView(view);
 
+        // Draw bodies
         for (auto &b : bodies)
         {
             sf::CircleShape circle(b.radius);
@@ -145,9 +144,6 @@ int main()
         }
 
         window.display();
-
-        // --- Performance logging ---
-        std::cout << "Frame time: " << elapsed.asMilliseconds() << " ms, FPS: " << 1.0 / dt << std::endl;
     }
 
     return 0;
