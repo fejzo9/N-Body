@@ -4,7 +4,6 @@
 #include <iostream>
 #include <random>
 #include <chrono>
-#include <memory> // for std::unique_ptr
 
 const double G = 6.67430e-3;
 const int WINDOW_SIZE = 1000;
@@ -22,9 +21,9 @@ struct Vec
     Vec operator*(double k) const { return Vec(x * k, y * k); }
     Vec operator/(double k) const { return Vec(x / k, y / k); }
     Vec &operator+=(const Vec &o) { x += o.x; y += o.y; return *this; }
+    Vec &operator-=(const Vec &o) { x -= o.x; y -= o.y; return *this; }
     double len() const { return std::sqrt(x * x + y * y); }
     Vec norm() const { double l = len(); return l == 0 ? Vec(0, 0) : *this / l; }
-    Vec &operator-=(const Vec &o) { x -= o.x; y -= o.y; return *this; }
 };
 
 struct Body
@@ -35,15 +34,16 @@ struct Body
     float radius;
 };
 
-// -------------------- Barnes-Hut Quadtree --------------------
+// -------------------- Barnes-Hut Quadtree (Pool) --------------------
 struct QuadNode
 {
     double mass = 0;
     Vec centerOfMass;
     Vec topLeft, bottomRight;
-    std::vector<std::unique_ptr<QuadNode>> children; // 4 quadrants
-    Body* body = nullptr; // pointer to body if leaf node
+    Body* body = nullptr; // pointer to body if leaf
+    QuadNode* children[4] = { nullptr, nullptr, nullptr, nullptr }; // contiguous children
 
+    QuadNode() {}
     QuadNode(const Vec& tl, const Vec& br) : topLeft(tl), bottomRight(br) {}
 
     bool contains(const Vec& p) const
@@ -52,22 +52,20 @@ struct QuadNode
                p.y >= topLeft.y && p.y <= bottomRight.y;
     }
 
-    // Check if node is leaf
-    bool isLeaf() const { return children.empty(); }
+    bool isLeaf() const { return children[0] == nullptr; }
 
-    // Subdivide node
-    void subdivide()
+    void subdivide(QuadNode* pool, int& poolIndex)
     {
         Vec mid((topLeft.x + bottomRight.x)/2, (topLeft.y + bottomRight.y)/2);
-        children.push_back(std::make_unique<QuadNode>(topLeft, mid)); // TL
-        children.push_back(std::make_unique<QuadNode>(Vec(mid.x, topLeft.y), Vec(bottomRight.x, mid.y))); // TR
-        children.push_back(std::make_unique<QuadNode>(Vec(topLeft.x, mid.y), Vec(mid.x, bottomRight.y))); // BL
-        children.push_back(std::make_unique<QuadNode>(mid, bottomRight)); // BR
+        children[0] = &pool[poolIndex++]; children[0]->topLeft = topLeft; children[0]->bottomRight = mid; // TL
+        children[1] = &pool[poolIndex++]; children[1]->topLeft = Vec(mid.x, topLeft.y); children[1]->bottomRight = Vec(bottomRight.x, mid.y); // TR
+        children[2] = &pool[poolIndex++]; children[2]->topLeft = Vec(topLeft.x, mid.y); children[2]->bottomRight = Vec(mid.x, bottomRight.y); // BL
+        children[3] = &pool[poolIndex++]; children[3]->topLeft = mid; children[3]->bottomRight = bottomRight; // BR
     }
 
-    void insert(Body* b)
+    void insert(Body* b, QuadNode* pool, int& poolIndex)
     {
-        if (!contains(b->pos)) return; // if body not is out of bounds don't insert
+        if (!contains(b->pos)) return;
 
         if (!body && isLeaf()) 
         {
@@ -79,39 +77,38 @@ struct QuadNode
 
         if (isLeaf()) 
         {
-            subdivide();
+            subdivide(pool, poolIndex);
             if (body) 
             {
-                for (auto& child : children)
-                    child->insert(body);
+                for (int i = 0; i < 4; ++i)
+                    children[i]->insert(body, pool, poolIndex);
                 body = nullptr;
             }
         }
 
-        for (auto& child : children)
-            child->insert(b);
+        for (int i = 0; i < 4; ++i)
+            children[i]->insert(b, pool, poolIndex);
 
         // Update center of mass
         mass = 0;
         centerOfMass = Vec(0,0);
-        for (auto& child : children)
+        for (int i = 0; i < 4; ++i)
         {
-            mass += child->mass;
-            centerOfMass += child->centerOfMass * child->mass;
+            mass += children[i]->mass;
+            centerOfMass += children[i]->centerOfMass * children[i]->mass;
         }
         if (mass > 0) centerOfMass = centerOfMass / mass;
     }
 
-    // Compute force on body using BH approximation
     void computeForce(Body* b, double theta, Vec& acc_out, double G_local)
     {
-        if (body == b || mass == 0) return; // Skip self or empty node
+        if (body == b || mass == 0) return;
 
         Vec delta = centerOfMass - b->pos;
         double dist = delta.len();
         double width = bottomRight.x - topLeft.x;
 
-        if (isLeaf() || width / dist < theta) // If sufficiently far or leaf
+        if (isLeaf() || width / dist < theta)
         {
             double minDist = b->radius;
             double safeDist = std::max(dist, minDist);
@@ -120,8 +117,8 @@ struct QuadNode
         }
         else
         {
-            for (auto& child : children)
-                child->computeForce(b, theta, acc_out, G_local);
+            for (int i = 0; i < 4; ++i)
+                children[i]->computeForce(b, theta, acc_out, G_local);
         }
     }
 };
@@ -131,26 +128,29 @@ int main()
     sf::RenderWindow window(sf::VideoMode(WINDOW_SIZE, WINDOW_SIZE), "Chaotic N-Body Simulation");
     window.setFramerateLimit(60);
 
-    bool useBarnesHut = true; // <---- switch between naive and BH
+    bool useBarnesHut = true;
 
     std::vector<Body> bodies;
     float G_local = 1.f;
-    int n = 1000;         
+    int n = 800;         
     float spread = 400.f; 
     float mass = 1000.f;
 
+    std::mt19937 rng(std::random_device{}());
+    std::uniform_real_distribution<float> dist01(0.f, 1.f);
+
     for (int i = 0; i < n; i++)
     {
-        float angle = static_cast<float>(rand()) / RAND_MAX * 2 * M_PI;
-        float r = static_cast<float>(rand()) / RAND_MAX * spread;
+        float angle = dist01(rng) * 2 * M_PI;
+        float r = dist01(rng) * spread;
         Vec pos(r * cos(angle), r * sin(angle));
 
-        float v = sqrt(G_local * mass * n / (r + 50));
+        float v = std::sqrt(G_local * mass * n / (r + 50));
         Vec vel(-pos.y, pos.x);
         vel = vel.norm() * v * 0.5f;
 
-        vel.x += ((float)rand() / RAND_MAX - 0.5f) * v * 0.1f;
-        vel.y += ((float)rand() / RAND_MAX - 0.5f) * v * 0.1f;
+        vel.x += (dist01(rng)-0.5f) * v * 0.1f;
+        vel.y += (dist01(rng)-0.5f) * v * 0.1f;
 
         bodies.push_back({mass, pos, vel, Vec(), sf::Color(rand() % 255, rand() % 255, rand() % 255), 8.f});
     }
@@ -183,7 +183,6 @@ int main()
 
         if (!useBarnesHut)
         {
-            // Naive O(n^2)
             for (auto &b : bodies) b.acc = Vec();
             for (size_t i = 0; i < bodies.size(); ++i)
             {
@@ -191,11 +190,8 @@ int main()
                 {
                     Vec delta = bodies[j].pos - bodies[i].pos;
                     double dist = delta.len();
-
-                    // Clamp minimum distance to avoid infinite force
                     double minDist = bodies[i].radius + bodies[j].radius;
                     double safeDist = std::max(dist, minDist);
-
                     double F = (G_local * bodies[j].m) / (safeDist * safeDist);
                     Vec acc = delta.norm() * F;
                     bodies[i].acc += acc;
@@ -205,12 +201,18 @@ int main()
         }
         else
         {
-            // Barnes-Hut
+            // Pool allocation
+            std::vector<QuadNode> pool(n * 4); // enough nodes
+            int poolIndex = 1; // root is at 0
             Vec topLeft(-spread, -spread);
             Vec bottomRight(spread, spread);
-            QuadNode root(topLeft, bottomRight);
-            for (auto& b : bodies) root.insert(&b);
-            double theta = 0.5; // BH opening angle
+            QuadNode& root = pool[0];
+            root.topLeft = topLeft;
+            root.bottomRight = bottomRight;
+
+            for (auto& b : bodies) root.insert(&b, pool.data(), poolIndex);
+
+            double theta = 0.5;
             for (auto &b : bodies)
             {
                 b.acc = Vec();
