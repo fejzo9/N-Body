@@ -132,7 +132,7 @@ int main()
 
     std::vector<Body> bodies;
     float G_local = 1.f;
-    int n = 800;         
+    int n = 1000;         
     float spread = 400.f; 
     float mass = 1000.f;
 
