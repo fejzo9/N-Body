@@ -1,0 +1,115 @@
+=== Simulation started: 2025-11-08 23:28:48 ===
+FPS: 110.17 | Physics: 5.40 ms | Total frame: 9.41 ms
+FPS: 143.63 | Physics: 3.78 ms | Total frame: 6.74 ms
+FPS: 144.14 | Physics: 3.63 ms | Total frame: 6.66 ms
+FPS: 130.73 | Physics: 3.30 ms | Total frame: 6.13 ms
+FPS: 137.31 | Physics: 3.40 ms | Total frame: 6.42 ms
+=== Simulation started: 2025-11-08 23:42:05 ===
+FPS: 120.98 | Physics: 4.94 ms | Total frame: 7.44 ms
+FPS: 136.91 | Physics: 4.38 ms | Total frame: 8.01 ms
+FPS: 139.87 | Physics: 3.92 ms | Total frame: 7.14 ms
+FPS: 144.93 | Physics: 3.62 ms | Total frame: 6.31 ms
+=== Simulation ended: 2025-11-08 23:42:16 ===
+
+=== Simulation started: 2025-11-08 23:51:01 ===
+FPS: 132.76 | Physics: 4.27 ms | Total frame: 7.30 ms
+FPS: 133.91 | Physics: 4.47 ms | Total frame: 7.64 ms
+FPS: 143.87 | Physics: 3.90 ms | Total frame: 6.83 ms
+FPS: 144.86 | Physics: 3.31 ms | Total frame: 6.48 ms
+FPS: 146.50 | Physics: 3.38 ms | Total frame: 6.60 ms
+FPS: 144.25 | Physics: 3.30 ms | Total frame: 6.15 ms
+FPS: 157.28 | Physics: 2.95 ms | Total frame: 6.23 ms
+FPS: 154.09 | Physics: 3.27 ms | Total frame: 6.24 ms
+FPS: 153.41 | Physics: 2.92 ms | Total frame: 5.97 ms
+FPS: 155.98 | Physics: 2.74 ms | Total frame: 5.55 ms
+FPS: 153.24 | Physics: 3.25 ms | Total frame: 9.86 ms
+FPS: 158.83 | Physics: 2.54 ms | Total frame: 5.61 ms
+FPS: 159.47 | Physics: 2.49 ms | Total frame: 5.63 ms
+FPS: 171.05 | Physics: 2.78 ms | Total frame: 5.77 ms
+FPS: 172.29 | Physics: 2.45 ms | Total frame: 5.87 ms
+FPS: 177.54 | Physics: 2.47 ms | Total frame: 5.80 ms
+FPS: 178.96 | Physics: 2.44 ms | Total frame: 5.53 ms
+FPS: 180.67 | Physics: 2.19 ms | Total frame: 5.59 ms
+FPS: 178.52 | Physics: 3.26 ms | Total frame: 8.87 ms
+FPS: 179.66 | Physics: 2.05 ms | Total frame: 5.47 ms
+FPS: 185.61 | Physics: 1.95 ms | Total frame: 4.79 ms
+FPS: 183.13 | Physics: 2.12 ms | Total frame: 5.44 ms
+FPS: 177.95 | Physics: 1.87 ms | Total frame: 4.86 ms
+FPS: 186.29 | Physics: 1.80 ms | Total frame: 5.26 ms
+FPS: 186.18 | Physics: 1.85 ms | Total frame: 4.98 ms
+FPS: 186.54 | Physics: 1.73 ms | Total frame: 5.03 ms
+FPS: 189.78 | Physics: 1.59 ms | Total frame: 4.62 ms
+FPS: 188.58 | Physics: 1.67 ms | Total frame: 5.17 ms
+FPS: 192.95 | Physics: 1.48 ms | Total frame: 4.68 ms
+FPS: 196.10 | Physics: 1.56 ms | Total frame: 4.66 ms
+FPS: 196.70 | Physics: 1.57 ms | Total frame: 4.88 ms
+FPS: 201.08 | Physics: 1.57 ms | Total frame: 4.69 ms
+FPS: 201.26 | Physics: 1.29 ms | Total frame: 4.66 ms
+FPS: 212.58 | Physics: 1.27 ms | Total frame: 4.35 ms
+FPS: 207.38 | Physics: 1.27 ms | Total frame: 4.38 ms
+FPS: 204.94 | Physics: 1.24 ms | Total frame: 4.78 ms
+FPS: 205.45 | Physics: 1.19 ms | Total frame: 4.59 ms
+FPS: 210.34 | Physics: 1.18 ms | Total frame: 4.64 ms
+FPS: 217.53 | Physics: 1.25 ms | Total frame: 4.66 ms
+FPS: 223.19 | Physics: 1.13 ms | Total frame: 4.32 ms
+FPS: 215.14 | Physics: 1.04 ms | Total frame: 4.34 ms
+=== Simulation ended: 2025-11-08 23:53:06 ===
+
+=== Simulation started: 2025-11-08 23:58:56 ===
+FPS: 133.04 | Physics: 4.48 ms | Total frame: 7.45 ms
+FPS: 143.90 | Physics: 3.82 ms | Total frame: 7.06 ms
+FPS: 146.09 | Physics: 5.50 ms | Total frame: 10.70 ms
+FPS: 135.42 | Physics: 3.57 ms | Total frame: 6.57 ms
+FPS: 143.60 | Physics: 3.46 ms | Total frame: 6.47 ms
+=== Simulation ended: 2025-11-08 23:59:09 ===
+
+=== Simulation started: 2025-11-09 00:00:16 ===
+FPS: 129.62 | Physics: 4.76 ms | Total frame: 7.85 ms
+FPS: 148.52 | Physics: 3.73 ms | Total frame: 6.88 ms
+FPS: 142.44 | Physics: 3.47 ms | Total frame: 6.17 ms
+FPS: 150.91 | Physics: 3.68 ms | Total frame: 6.58 ms
+FPS: 153.88 | Physics: 3.26 ms | Total frame: 5.92 ms
+=== Simulation ended: 2025-11-09 00:00:28 ===
+
+=== Simulation started: 2025-11-09 00:04:36 ===
+FPS: 126.12 | Physics: 4.96 ms | Total frame: 7.83 ms
+=== Simulation ended: 2025-11-09 00:04:39 ===
+
+=== Simulation started: 2025-11-09 00:04:55 ===
+FPS: 128.76 | Physics: 4.85 ms | Total frame: 7.98 ms
+FPS: 146.20 | Physics: 4.12 ms | Total frame: 6.99 ms
+FPS: 131.71 | Physics: 3.69 ms | Total frame: 6.72 ms
+FPS: 149.75 | Physics: 3.85 ms | Total frame: 6.70 ms
+FPS: 154.35 | Physics: 3.18 ms | Total frame: 6.32 ms
+FPS: 155.72 | Physics: 2.95 ms | Total frame: 5.73 ms
+=== Simulation ended: 2025-11-09 00:05:12 ===
+
+=== Simulation started: 2025-11-09 00:05:31 ===
+FPS: 123.34 | Physics: 4.30 ms | Total frame: 7.14 ms
+FPS: 147.48 | Physics: 3.96 ms | Total frame: 6.82 ms
+FPS: 146.88 | Physics: 3.55 ms | Total frame: 6.26 ms
+FPS: 149.88 | Physics: 3.40 ms | Total frame: 6.14 ms
+FPS: 151.58 | Physics: 3.42 ms | Total frame: 6.74 ms
+FPS: 155.76 | Physics: 3.22 ms | Total frame: 6.44 ms
+FPS: 157.47 | Physics: 3.67 ms | Total frame: 7.08 ms
+=== Simulation ended: 2025-11-09 00:05:50 ===
+
+=== Simulation started: 2025-11-09 00:05:59 ===
+FPS: 126.60 | Physics: 4.30 ms | Total frame: 7.37 ms
+FPS: 146.94 | Physics: 3.41 ms | Total frame: 6.48 ms
+=== Simulation ended: 2025-11-09 00:06:06 ===
+
+=== Simulation started: 2025-11-09 00:06:16 ===
+FPS: 135.53 | Physics: 2.61 ms | Total frame: 4.26 ms
+FPS: 142.98 | Physics: 4.00 ms | Total frame: 7.27 ms
+FPS: 147.63 | Physics: 3.58 ms | Total frame: 6.91 ms
+FPS: 153.83 | Physics: 3.23 ms | Total frame: 6.46 ms
+=== Simulation ended: 2025-11-09 00:06:27 ===
+
+=== Simulation started: 2025-11-09 00:06:33 ===
+FPS: 137.70 | Physics: 4.06 ms | Total frame: 6.83 ms
+FPS: 143.26 | Physics: 3.87 ms | Total frame: 6.59 ms
+FPS: 146.92 | Physics: 3.81 ms | Total frame: 6.89 ms
+FPS: 155.98 | Physics: 3.44 ms | Total frame: 6.49 ms
+=== Simulation ended: 2025-11-09 00:06:44 ===
+
