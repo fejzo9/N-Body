@@ -155,17 +155,6 @@ int main()
     sf::RenderWindow window(sf::VideoMode(WINDOW_SIZE, WINDOW_SIZE), "Chaotic N-Body Simulation");
     window.setFramerateLimit(60);
 
-      // --- LOG fajl (append) ---
-    std::ofstream logFile("log.txt", std::ios::app);
-    if (logFile.is_open())
-    {
-        logFile << "=== Simulation started: " << currentDateTimeString() << " ===" << std::endl;
-    }
-    else
-    {
-        std::cerr << "Ne mogu otvoriti log.txt za pisanje!" << std::endl;
-    }
-
     bool useBarnesHut = true;
 
     std::vector<Body> bodies;
@@ -176,6 +165,18 @@ int main()
 
     std::mt19937 rng(std::random_device{}());
     std::uniform_real_distribution<double> dist01(0.0, 1.0);
+
+      // --- LOG fajl (append) ---
+    std::ofstream logFile("log.txt", std::ios::app);
+    if (logFile.is_open())
+    {
+        logFile << "=== Simulation started: " << currentDateTimeString() << " ===" << std::endl;
+        logFile << "=== Number of bodies: " << n << " ===" << std::endl;
+    }
+    else
+    {
+        std::cerr << "Ne mogu otvoriti log.txt za pisanje!" << std::endl;
+    }
 
     for (int i = 0; i < n; i++)
     {
