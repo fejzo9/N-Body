@@ -9,8 +9,8 @@
 
 // Konstante za simulaciju
 const double TAU = 2.0 * M_PI;  // 2π
-const double DT = 0.000001;     // Vremenski korak simulacije (jako mali za preciznost)
-const double MIN = 0.0001;      // Minimalna udaljenost da izbjegnemo singularitet
+const double DT = 0.000001;     // Vremenski korak simulacije (jako mali za preciznost) - 1 mikrosekunda
+const double MIN = 0.0001;      // Minimalna udaljenost da izbjegnemo singularitet (dijeljenje sa nulom) - skoro kolizija
 
 class Simulation {
 private:
@@ -36,7 +36,7 @@ public:
 
     // Konstruktor - inicijalizuje simulaciju sa zadatim seed-om
     Simulation(uint64_t seed) : rng(seed) {
-        const int n = 3; // Broj tijela u simulaciji
+        const int n = 300; // Broj tijela u simulaciji
         
         // Generiši n nasumičnih tijela
         for (int i = 0; i < n; i++) {

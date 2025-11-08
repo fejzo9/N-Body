@@ -177,7 +177,7 @@ int main() {
             
             for (const auto& body : shared_bodies) {
                 // POVEĆAN RADIJUS da bude vidljiv!
-                float radius = 20.0f; // Mnogo veći radijus
+                float radius = 22.0f; // Mnogo veći radijus
                 sf::CircleShape circle(radius);
                 circle.setOrigin(radius, radius);
                 circle.setPosition(body.pos.x, body.pos.y);
