@@ -26,17 +26,30 @@ struct Vec
     Vec operator-(const Vec &o) const { return Vec(x - o.x, y - o.y); }
     Vec operator*(double k) const { return Vec(x * k, y * k); }
     Vec operator/(double k) const { return Vec(x / k, y / k); }
-    Vec &operator+=(const Vec &o) { x += o.x; y += o.y; return *this; }
-    Vec &operator-=(const Vec &o) { x -= o.x; y -= o.y; return *this; }
+    Vec &operator+=(const Vec &o)
+    {
+        x += o.x;
+        y += o.y;
+        return *this;
+    }
+    Vec &operator-=(const Vec &o)
+    {
+        x -= o.x;
+        y -= o.y;
+        return *this;
+    }
     double len() const { return std::sqrt(x * x + y * y); }
-    Vec norm() const { double l = len(); return l == 0 ? Vec(0, 0) : *this / l; }
+    Vec norm() const
+    {
+        double l = len();
+        return l == 0 ? Vec(0, 0) : *this / l;
+    }
 };
 
 struct Body
 {
     double m;
     Vec pos, vel, acc;
-    sf::Color color;
     float radius;
 };
 
@@ -46,13 +59,13 @@ struct QuadNode
     double mass = 0;
     Vec centerOfMass;
     Vec topLeft, bottomRight;
-    Body* body = nullptr; // pointer to body if leaf
-    QuadNode* children[4] = { nullptr, nullptr, nullptr, nullptr }; // contiguous children
+    Body *body = nullptr;                                         // pointer to body if leaf
+    QuadNode *children[4] = {nullptr, nullptr, nullptr, nullptr}; // contiguous children
 
     QuadNode() {}
-    QuadNode(const Vec& tl, const Vec& br) : topLeft(tl), bottomRight(br) {}
+    QuadNode(const Vec &tl, const Vec &br) : topLeft(tl), bottomRight(br) {}
 
-    bool contains(const Vec& p) const
+    bool contains(const Vec &p) const
     {
         return p.x >= topLeft.x && p.x <= bottomRight.x &&
                p.y >= topLeft.y && p.y <= bottomRight.y;
@@ -60,22 +73,32 @@ struct QuadNode
 
     bool isLeaf() const { return children[0] == nullptr; }
 
-    void subdivide(QuadNode* pool, int& poolIndex, int poolSize)
+    void subdivide(QuadNode *pool, int &poolIndex, int poolSize)
     {
         // zaštita od overflow-a pool-a
-        if (poolIndex + 4 >= poolSize) return;
-        Vec mid((topLeft.x + bottomRight.x)/2, (topLeft.y + bottomRight.y)/2);
-        children[0] = &pool[poolIndex++]; children[0]->topLeft = topLeft; children[0]->bottomRight = mid; // TL
-        children[1] = &pool[poolIndex++]; children[1]->topLeft = Vec(mid.x, topLeft.y); children[1]->bottomRight = Vec(bottomRight.x, mid.y); // TR
-        children[2] = &pool[poolIndex++]; children[2]->topLeft = Vec(topLeft.x, mid.y); children[2]->bottomRight = Vec(mid.x, bottomRight.y); // BL
-        children[3] = &pool[poolIndex++]; children[3]->topLeft = mid; children[3]->bottomRight = bottomRight; // BR
+        if (poolIndex + 4 >= poolSize)
+            return;
+        Vec mid((topLeft.x + bottomRight.x) / 2, (topLeft.y + bottomRight.y) / 2);
+        children[0] = &pool[poolIndex++];
+        children[0]->topLeft = topLeft;
+        children[0]->bottomRight = mid; // TL
+        children[1] = &pool[poolIndex++];
+        children[1]->topLeft = Vec(mid.x, topLeft.y);
+        children[1]->bottomRight = Vec(bottomRight.x, mid.y); // TR
+        children[2] = &pool[poolIndex++];
+        children[2]->topLeft = Vec(topLeft.x, mid.y);
+        children[2]->bottomRight = Vec(mid.x, bottomRight.y); // BL
+        children[3] = &pool[poolIndex++];
+        children[3]->topLeft = mid;
+        children[3]->bottomRight = bottomRight; // BR
     }
 
-    void insert(Body* b, QuadNode* pool, int& poolIndex, int poolSize)
+    void insert(Body *b, QuadNode *pool, int &poolIndex, int poolSize)
     {
-        if (!contains(b->pos)) return;
+        if (!contains(b->pos))
+            return;
 
-        if (!body && isLeaf()) 
+        if (!body && isLeaf())
         {
             body = b;
             mass = b->m;
@@ -83,10 +106,10 @@ struct QuadNode
             return;
         }
 
-        if (isLeaf()) 
+        if (isLeaf())
         {
             subdivide(pool, poolIndex, poolSize);
-            if (body) 
+            if (body)
             {
                 for (int i = 0; i < 4; ++i)
                     children[i]->insert(body, pool, poolIndex, poolSize);
@@ -99,18 +122,20 @@ struct QuadNode
 
         // Update center of mass
         mass = 0;
-        centerOfMass = Vec(0,0);
+        centerOfMass = Vec(0, 0);
         for (int i = 0; i < 4; ++i)
         {
             mass += children[i]->mass;
             centerOfMass += children[i]->centerOfMass * children[i]->mass;
         }
-        if (mass > 0) centerOfMass = centerOfMass / mass;
+        if (mass > 0)
+            centerOfMass = centerOfMass / mass;
     }
 
-    void computeForce(Body* b, double theta, Vec& acc_out, double G_local)
+    void computeForce(Body *b, double theta, Vec &acc_out, double G_local)
     {
-        if (body == b || mass == 0) return;
+        if (body == b || mass == 0)
+            return;
 
         Vec delta = centerOfMass - b->pos;
         double dist = delta.len();
@@ -124,13 +149,15 @@ struct QuadNode
             double safeDist = std::max(dist, minDist);
             // softening: dodamo malu vrijednost u nazivnik da spriječimo ekstremne akceleracije
             double soft = 0.001;
-            double F = (G_local * mass) / (safeDist * safeDist + soft*soft);
-            if (dist > eps) acc_out += delta.norm() * F;
+            double F = (G_local * mass) / (safeDist * safeDist + soft * soft);
+            if (dist > eps)
+                acc_out += delta.norm() * F;
         }
         else
         {
             for (int i = 0; i < 4; ++i)
-                if (children[i]) children[i]->computeForce(b, theta, acc_out, G_local);
+                if (children[i])
+                    children[i]->computeForce(b, theta, acc_out, G_local);
         }
     }
 };
@@ -152,7 +179,7 @@ std::string currentDateTimeString()
 
 int main()
 {
-     // --- Otvaranje prozora ---
+    // --- Otvaranje prozora ---
     sf::RenderWindow window(sf::VideoMode(WINDOW_SIZE, WINDOW_SIZE), "Chaotic N-Body Simulation");
     window.setFramerateLimit(60);
 
@@ -160,14 +187,14 @@ int main()
 
     std::vector<Body> bodies;
     double G_local = 1.0;
-    int n = 10000;         
-    double spread = 400.0; 
+    int n = 1000;
+    double spread = 400.0;
     double mass = 1000.0;
 
     std::mt19937 rng(std::random_device{}());
     std::uniform_real_distribution<double> dist01(0.0, 1.0);
 
-      // --- LOG fajl (append) ---
+    // --- LOG fajl (append) ---
     std::ofstream logFile("log.txt", std::ios::app);
     if (logFile.is_open())
     {
@@ -190,64 +217,67 @@ int main()
         Vec vel(-pos.y, pos.x);
         vel = vel.norm() * v * 0.5;
 
-        vel.x += (dist01(rng)-0.5) * v * 0.1;
-        vel.y += (dist01(rng)-0.5) * v * 0.1;
+        vel.x += (dist01(rng) - 0.5) * v * 0.1;
+        vel.y += (dist01(rng) - 0.5) * v * 0.1;
 
-        bodies.push_back({mass, pos, vel, Vec(), sf::Color(rand() % 255, rand() % 255, rand() % 255), 8.0});
-        
+        bodies.push_back({mass, pos, vel, Vec(), 8.0});
+
         // Pre-create circle (only once)
         sf::CircleShape circle(8.0);
         circle.setOrigin(8.0, 8.0);
-        circle.setFillColor(bodies[i].color);
         circles.push_back(circle);
     }
 
-    sf::View view(sf::Vector2f(0,0), sf::Vector2f(WINDOW_SIZE, WINDOW_SIZE));
+    sf::View view(sf::Vector2f(0, 0), sf::Vector2f(WINDOW_SIZE, WINDOW_SIZE));
     double zoomLevel = 1.0;
 
     // --- SFML tekst (overlay) ---
 
     // pokušava nekoliko uobičajenih lokacija/imena fontova
     // const char* fontCandidates[] = {
-        //     "dejavu-sans/DejaVuSans-Bold.ttf",
-        //     "./DejaVuSans.ttf",
-        //     "arial/ARIALBD.TTF",
-        //     "./arial.ttf"
-        // };
-        const std::vector<std::string> candidates = {
-            "/home/fejzullah/Desktop/ETF-master-SA/3_PRS/kod/N-Body Simulation/dejavu-sans/DejaVuSans-Bold.ttf",
-            "dejavu-sans/DejaVuSans.ttf",
-            "./DejaVuSans.ttf",
-            "DejaVuSans.ttf",
-            "arial/ARIALBD.TTF",
-            "arial/arialbd.ttf",
-            "arial.ttf",
-            "./arial.ttf"
-        };
-        
+    //     "dejavu-sans/DejaVuSans-Bold.ttf",
+    //     "./DejaVuSans.ttf",
+    //     "arial/ARIALBD.TTF",
+    //     "./arial.ttf"
+    // };
+    const std::vector<std::string> candidates = {
+        "/home/fejzullah/Desktop/ETF-master-SA/3_PRS/kod/N-Body Simulation/dejavu-sans/DejaVuSans-Bold.ttf",
+        "dejavu-sans/DejaVuSans.ttf",
+        "./DejaVuSans.ttf",
+        "DejaVuSans.ttf",
+        "arial/ARIALBD.TTF",
+        "arial/arialbd.ttf",
+        "arial.ttf",
+        "./arial.ttf"};
+
     sf::Font font;
     bool fontLoaded = false;
     for (auto &p : candidates)
     {
-         std::cout << "Trying: " << p;
+        std::cout << "Trying: " << p;
         std::ifstream fchk(p, std::ios::binary);
-    if (!fchk.is_open()) {
-        std::cout << " -> EXISTS but cannot open (permission?)" << std::endl;
-        continue;
-    }
-    fchk.close();
+        if (!fchk.is_open())
+        {
+            std::cout << " -> EXISTS but cannot open (permission?)" << std::endl;
+            continue;
+        }
+        fchk.close();
 
-    // pokuša učitati SFML font
-    if (font.loadFromFile(p)) {
-        std::cout << " -> LOADED OK" << std::endl;
-        fontLoaded = true;
-        break;
-    } else {
-        std::cout << " -> loadFromFile FAILED (SFML couldn't create font face)" << std::endl;
+        // pokuša učitati SFML font
+        if (font.loadFromFile(p))
+        {
+            std::cout << " -> LOADED OK" << std::endl;
+            fontLoaded = true;
+            break;
+        }
+        else
+        {
+            std::cout << " -> loadFromFile FAILED (SFML couldn't create font face)" << std::endl;
         }
     }
 
-    if (!fontLoaded) {
+    if (!fontLoaded)
+    {
         std::cerr << "Font nije učitan. Pokušaj koristeći apsolutnu putanju (/full/path/to/DejaVuSans.ttf) ili provjeri perms i tip fajla." << std::endl;
     }
 
@@ -266,11 +296,11 @@ int main()
     {
         std::cerr << "Font nije učitan. Stavi DejaVuSans.ttf ili arial.ttf pored exe-a ili u resources/." << std::endl;
     }
-    
+
     // --- Pre-allocate pool ONCE (before loop) ---
     int poolSize = n * 8;
     std::vector<QuadNode> pool(poolSize);
-    
+
     using Clock = std::chrono::high_resolution_clock;
     int frameCount = 0;
     double elapsedTime = 0.0;
@@ -282,11 +312,14 @@ int main()
         sf::Event event;
         while (window.pollEvent(event))
         {
-            if (event.type == sf::Event::Closed) window.close();
+            if (event.type == sf::Event::Closed)
+                window.close();
             if (event.type == sf::Event::MouseWheelScrolled)
             {
-                if (event.mouseWheelScroll.delta > 0) zoomLevel *= 0.9;
-                else zoomLevel *= 1.1;
+                if (event.mouseWheelScroll.delta > 0)
+                    zoomLevel *= 0.9;
+                else
+                    zoomLevel *= 1.1;
                 view.setSize(WINDOW_SIZE * zoomLevel, WINDOW_SIZE * zoomLevel);
             }
         }
@@ -296,7 +329,8 @@ int main()
 
         if (!useBarnesHut)
         {
-            for (auto &b : bodies) b.acc = Vec();
+            for (auto &b : bodies)
+                b.acc = Vec();
             for (size_t i = 0; i < bodies.size(); ++i)
             {
                 for (size_t j = i + 1; j < bodies.size(); ++j)
@@ -317,14 +351,15 @@ int main()
             // Reset pool state and reuse (memset clears all node memory to zero)
             std::memset(pool.data(), 0, poolSize * sizeof(QuadNode));
             int poolIndex = 1;
-            
+
             Vec topLeft(-spread, -spread);
             Vec bottomRight(spread, spread);
-            QuadNode& root = pool[0];
+            QuadNode &root = pool[0];
             root.topLeft = topLeft;
             root.bottomRight = bottomRight;
 
-            for (auto& b : bodies) root.insert(&b, pool.data(), poolIndex, poolSize);
+            for (auto &b : bodies)
+                root.insert(&b, pool.data(), poolIndex, poolSize);
 
             double theta = 0.5;
             for (auto &b : bodies)
@@ -372,23 +407,24 @@ int main()
         double physicsMs = physicsDuration.count() * 1000.0;
         double frameMs = frameDuration.count() * 1000.0;
         double fpsValue = 0.0;
-        if (elapsedTime > 0.0) fpsValue = frameCount / elapsedTime;
+        if (elapsedTime > 0.0)
+            fpsValue = frameCount / elapsedTime;
 
         // format line robustly:
         char buf[256];
 
         // interval u sekundama za update overlaya i loga
         static const double logInterval = 1.0; // možemo promjeniti na 0.5 ili 2.0, itd.
-        static std::string lastLine;            // zadržava posljednju "full" liniju
+        static std::string lastLine;           // zadržava posljednju "full" liniju
 
         if (elapsedTime >= logInterval)
         {
             // formiraj liniju jednom, deterministički
             int written = std::snprintf(buf, sizeof(buf),
-                "FPS: %.2f | Physics: %.2f ms | Total frame: %.2f ms",
-                std::isfinite(fpsValue) ? fpsValue : 0.0,
-                std::isfinite(physicsMs) ? physicsMs : 0.0,
-                std::isfinite(frameMs) ? frameMs : 0.0);
+                                        "FPS: %.2f | Physics: %.2f ms | Total frame: %.2f ms",
+                                        std::isfinite(fpsValue) ? fpsValue : 0.0,
+                                        std::isfinite(physicsMs) ? physicsMs : 0.0,
+                                        std::isfinite(frameMs) ? frameMs : 0.0);
 
             std::string line = (written > 0) ? std::string(buf) : std::string("FPS: N/A |Physics: N/A | Total frame: N/A");
 
@@ -430,7 +466,8 @@ int main()
     // pri kraju sesije zabilježimo kraj simulacije
     if (logFile.is_open())
     {
-        logFile << "=== Simulation ended: " << currentDateTimeString() << " ===" << std::endl << std::endl;
+        logFile << "=== Simulation ended: " << currentDateTimeString() << " ===" << std::endl
+                << std::endl;
         logFile.close();
     }
 
