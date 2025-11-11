@@ -9,6 +9,7 @@
 #include <sstream>
 #include <ctime>
 #include <filesystem>
+#include <cstring>
 
 const double G = 6.67430e-3;
 const int WINDOW_SIZE = 1000;
@@ -159,7 +160,7 @@ int main()
 
     std::vector<Body> bodies;
     double G_local = 1.0;
-    int n = 1000;         
+    int n = 10000;         
     double spread = 400.0; 
     double mass = 1000.0;
 
@@ -178,6 +179,7 @@ int main()
         std::cerr << "Ne mogu otvoriti log.txt za pisanje!" << std::endl;
     }
 
+    std::vector<sf::CircleShape> circles; // Pre-allocate circles
     for (int i = 0; i < n; i++)
     {
         double angle = dist01(rng) * 2 * M_PI;
@@ -192,6 +194,12 @@ int main()
         vel.y += (dist01(rng)-0.5) * v * 0.1;
 
         bodies.push_back({mass, pos, vel, Vec(), sf::Color(rand() % 255, rand() % 255, rand() % 255), 8.0});
+        
+        // Pre-create circle (only once)
+        sf::CircleShape circle(8.0);
+        circle.setOrigin(8.0, 8.0);
+        circle.setFillColor(bodies[i].color);
+        circles.push_back(circle);
     }
 
     sf::View view(sf::Vector2f(0,0), sf::Vector2f(WINDOW_SIZE, WINDOW_SIZE));
@@ -259,6 +267,10 @@ int main()
         std::cerr << "Font nije učitan. Stavi DejaVuSans.ttf ili arial.ttf pored exe-a ili u resources/." << std::endl;
     }
     
+    // --- Pre-allocate pool ONCE (before loop) ---
+    int poolSize = n * 8;
+    std::vector<QuadNode> pool(poolSize);
+    
     using Clock = std::chrono::high_resolution_clock;
     int frameCount = 0;
     double elapsedTime = 0.0;
@@ -302,10 +314,10 @@ int main()
         }
         else
         {
-            // Pool allocation
-            int poolSize = n * 8;
-            std::vector<QuadNode> pool(poolSize); // dovoljno nodova
-            int poolIndex = 1; // root je na 0
+            // Reset pool state and reuse (memset clears all node memory to zero)
+            std::memset(pool.data(), 0, poolSize * sizeof(QuadNode));
+            int poolIndex = 1;
+            
             Vec topLeft(-spread, -spread);
             Vec bottomRight(spread, spread);
             QuadNode& root = pool[0];
@@ -335,13 +347,11 @@ int main()
         window.clear(sf::Color::Black);
         window.setView(view);
 
-        for (auto &b : bodies)
+        for (size_t i = 0; i < bodies.size(); ++i)
         {
-            sf::CircleShape circle(b.radius);
-            circle.setOrigin(b.radius, b.radius);
-            circle.setFillColor(b.color);
-            circle.setPosition(b.pos.x, b.pos.y);
-            window.draw(circle);
+            // Just update position, don't recreate
+            circles[i].setPosition(bodies[i].pos.x, bodies[i].pos.y);
+            window.draw(circles[i]);
         }
 
         // Prikažemo overlay u default view (UI), da ne zumira sa scenom:
@@ -413,6 +423,7 @@ int main()
             window.draw(overlay);
             window.setView(view); // vrati world view (ako će se nakon toga crtati još nešto u world koordinatama)
         }
+        // TODO: optimize windows display calls
         window.display();
     }
 
