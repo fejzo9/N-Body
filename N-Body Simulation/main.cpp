@@ -10,9 +10,10 @@
 #include <ctime>
 #include <filesystem>
 #include <cstring>
+#include <omp.h>
 
 const double G = 6.67430e-3;
-const int WINDOW_SIZE = 1000;
+const int WINDOW_SIZE = 10000;
 
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
@@ -184,10 +185,11 @@ int main()
     window.setFramerateLimit(60);
 
     bool useBarnesHut = true;
+    bool useParallel = true;
 
     std::vector<Body> bodies;
     double G_local = 1.0;
-    int n = 1000;
+    int n = 50000;
     double spread = 400.0;
     double mass = 1000.0;
 
@@ -200,6 +202,7 @@ int main()
     {
         logFile << "=== Simulation started: " << currentDateTimeString() << " ===" << std::endl;
         logFile << "=== Number of bodies: " << n << " ===" << std::endl;
+        logFile << "=== Using parallelizations: " << (useParallel ? "Yes" : "No") << " ===" << std::endl;
     }
     else
     {
@@ -362,18 +365,42 @@ int main()
                 root.insert(&b, pool.data(), poolIndex, poolSize);
 
             double theta = 0.5;
-            for (auto &b : bodies)
+
+            if(useParallel){
+                #pragma omp parallel for schedule(static)
+                for (int i = 0; i < (int)bodies.size(); ++i)
+                {
+                    bodies[i].acc = Vec();
+                    root.computeForce(&bodies[i], theta, bodies[i].acc, G_local);
+                }
+            }
+            else
             {
-                b.acc = Vec();
-                root.computeForce(&b, theta, b.acc, G_local);
+                for (auto &b : bodies)
+                {
+                    b.acc = Vec();
+                    root.computeForce(&b, theta, b.acc, G_local);
+                }
             }
         }
 
         double dt = 0.1;
-        for (auto &b : bodies)
+        if (useParallel)
         {
-            b.vel += b.acc * dt;
-            b.pos += b.vel * dt;
+            #pragma omp parallel for schedule(static)
+            for (int i = 0; i < (int)bodies.size(); ++i)
+            {
+                bodies[i].vel += bodies[i].acc * dt;
+                bodies[i].pos += bodies[i].vel * dt;
+            }
+        }
+        else
+        {
+            for (auto &b : bodies)
+            {
+                b.vel += b.acc * dt;
+                b.pos += b.vel * dt;
+            }
         }
 
         auto physicsEnd = Clock::now();
