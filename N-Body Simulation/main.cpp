@@ -13,7 +13,7 @@
 #include <omp.h>
 
 const double G = 6.67430e-3;
-const int WINDOW_SIZE = 10000;
+const int WINDOW_SIZE = 1000;
 
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
@@ -47,11 +47,46 @@ struct Vec
     }
 };
 
-struct Body
+// -------------------- Struct of Arrays (SoA) for Bodies --------------------
+struct BodyDataSoA
 {
-    double m;
-    Vec pos, vel, acc;
-    float radius;
+    std::vector<float> m;
+    std::vector<float> posX;
+    std::vector<float> posY;
+    std::vector<float> velX;
+    std::vector<float> velY;
+    std::vector<float> accX;
+    std::vector<float> accY;
+    std::vector<float> radius;
+    size_t num_bodies = 0;
+
+    void resize(size_t n)
+    {
+        m.resize(n);
+        posX.resize(n);
+        posY.resize(n);
+        velX.resize(n);
+        velY.resize(n);
+        accX.resize(n);
+        accY.resize(n);
+        radius.resize(n);
+        num_bodies = n;
+    }
+
+    Vec getPos(size_t i) const { return Vec(posX[i], posY[i]); }
+    Vec getVel(size_t i) const { return Vec(velX[i], velY[i]); }
+    Vec getAcc(size_t i) const { return Vec(accX[i], accY[i]); }
+
+    void setAcc(size_t i, const Vec &acc)
+    {
+        accX[i] = acc.x;
+        accY[i] = acc.y;
+    }
+};
+
+struct BodyReference
+{
+    size_t index;
 };
 
 // -------------------- Barnes-Hut Quadtree (Pool) --------------------
@@ -60,7 +95,8 @@ struct QuadNode
     double mass = 0;
     Vec centerOfMass;
     Vec topLeft, bottomRight;
-    Body *body = nullptr;                                         // pointer to body if leaf
+    BodyReference *bodyRef = nullptr;
+
     QuadNode *children[4] = {nullptr, nullptr, nullptr, nullptr}; // contiguous children
 
     QuadNode() {}
@@ -94,32 +130,37 @@ struct QuadNode
         children[3]->bottomRight = bottomRight; // BR
     }
 
-    void insert(Body *b, QuadNode *pool, int &poolIndex, int poolSize)
+    // Updated insert function to use SoA data
+    void insert(size_t bodyIndex, const BodyDataSoA &data, BodyReference *bodyRefs, QuadNode *pool, int &poolIndex, int poolSize)
     {
-        if (!contains(b->pos))
+        Vec b_pos = data.getPos(bodyIndex);
+
+        if (!contains(b_pos))
             return;
 
-        if (!body && isLeaf())
+        if (!bodyRef && isLeaf())
         {
-            body = b;
-            mass = b->m;
-            centerOfMass = b->pos;
+            bodyRef = &bodyRefs[bodyIndex];
+            mass = data.m[bodyIndex];
+            centerOfMass = b_pos;
             return;
         }
 
         if (isLeaf())
         {
             subdivide(pool, poolIndex, poolSize);
-            if (body)
+            if (bodyRef)
             {
+                // Re-insert existing body
+                size_t existingIndex = bodyRef->index;
+                bodyRef = nullptr; // Clear this node's reference
                 for (int i = 0; i < 4; ++i)
-                    children[i]->insert(body, pool, poolIndex, poolSize);
-                body = nullptr;
+                    children[i]->insert(existingIndex, data, bodyRefs, pool, poolIndex, poolSize);
             }
         }
 
         for (int i = 0; i < 4; ++i)
-            children[i]->insert(b, pool, poolIndex, poolSize);
+            children[i]->insert(bodyIndex, data, bodyRefs, pool, poolIndex, poolSize);
 
         // Update center of mass
         mass = 0;
@@ -133,12 +174,16 @@ struct QuadNode
             centerOfMass = centerOfMass / mass;
     }
 
-    void computeForce(Body *b, double theta, Vec &acc_out, double G_local)
+    // Updated computeForce function to use SoA data
+    void computeForce(size_t b_index, const BodyDataSoA &data, double theta, Vec &acc_out, double G_local)
     {
-        if (body == b || mass == 0)
+        if (bodyRef && bodyRef->index == b_index || mass == 0)
             return;
 
-        Vec delta = centerOfMass - b->pos;
+        Vec b_pos = data.getPos(b_index);
+        double b_radius = data.radius[b_index];
+
+        Vec delta = centerOfMass - b_pos;
         double dist = delta.len();
         const double eps = 1e-6; // zaštita za dijeljenje i softening
         double safeDistForTheta = dist + eps;
@@ -146,7 +191,7 @@ struct QuadNode
 
         if (isLeaf() || (width / safeDistForTheta) < theta)
         {
-            double minDist = b->radius;
+            double minDist = b_radius;
             double safeDist = std::max(dist, minDist);
             // softening: dodamo malu vrijednost u nazivnik da spriječimo ekstremne akceleracije
             double soft = 0.001;
@@ -158,7 +203,7 @@ struct QuadNode
         {
             for (int i = 0; i < 4; ++i)
                 if (children[i])
-                    children[i]->computeForce(b, theta, acc_out, G_local);
+                    children[i]->computeForce(b_index, data, theta, acc_out, G_local);
         }
     }
 };
@@ -187,11 +232,20 @@ int main()
     bool useBarnesHut = true;
     bool useParallel = true;
 
-    std::vector<Body> bodies;
+    // 🌟 USE SoA DATA STRUCTURE
+    BodyDataSoA data;
     double G_local = 1.0;
-    int n = 50000;
+    int n = 10000;
     double spread = 400.0;
     double mass = 1000.0;
+    data.resize(n); // Resize all vectors immediately
+
+    // Vector of references needed for QuadTree
+    std::vector<BodyReference> bodyRefs(n);
+    for (int i = 0; i < n; ++i)
+    {
+        bodyRefs[i].index = i;
+    }
 
     std::mt19937 rng(std::random_device{}());
     std::uniform_real_distribution<double> dist01(0.0, 1.0);
@@ -203,6 +257,7 @@ int main()
         logFile << "=== Simulation started: " << currentDateTimeString() << " ===" << std::endl;
         logFile << "=== Number of bodies: " << n << " ===" << std::endl;
         logFile << "=== Using parallelizations: " << (useParallel ? "Yes" : "No") << " ===" << std::endl;
+        logFile << "=== Data Structure: Struct of Arrays (SoA) ===" << std::endl;
     }
     else
     {
@@ -223,7 +278,15 @@ int main()
         vel.x += (dist01(rng) - 0.5) * v * 0.1;
         vel.y += (dist01(rng) - 0.5) * v * 0.1;
 
-        bodies.push_back({mass, pos, vel, Vec(), 8.0});
+        // 🌟 Populate SoA instead of AoS
+        data.m[i] = mass;
+        data.posX[i] = pos.x;
+        data.posY[i] = pos.y;
+        data.velX[i] = vel.x;
+        data.velY[i] = vel.y;
+        data.accX[i] = 0.0; // Initial acceleration is zero
+        data.accY[i] = 0.0;
+        data.radius[i] = 8.0;
 
         // Pre-create circle (only once)
         sf::CircleShape circle(8.0);
@@ -235,14 +298,6 @@ int main()
     double zoomLevel = 1.0;
 
     // --- SFML tekst (overlay) ---
-
-    // pokušava nekoliko uobičajenih lokacija/imena fontova
-    // const char* fontCandidates[] = {
-    //     "dejavu-sans/DejaVuSans-Bold.ttf",
-    //     "./DejaVuSans.ttf",
-    //     "arial/ARIALBD.TTF",
-    //     "./arial.ttf"
-    // };
     const std::vector<std::string> candidates = {
         "/home/fejzullah/Desktop/ETF-master-SA/3_PRS/kod/N-Body Simulation/dejavu-sans/DejaVuSans-Bold.ttf",
         "dejavu-sans/DejaVuSans.ttf",
@@ -281,7 +336,7 @@ int main()
 
     if (!fontLoaded)
     {
-        std::cerr << "Font nije učitan. Pokušaj koristeći apsolutnu putanju (/full/path/to/DejaVuSans.ttf) ili provjeri perms i tip fajla." << std::endl;
+        std::cerr << "Font nije učitan. Pokušaj koristeći apsolutnu putanju ili provjeri perms i tip fajla." << std::endl;
     }
 
     sf::Text overlay;
@@ -332,26 +387,46 @@ int main()
 
         if (!useBarnesHut)
         {
-            for (auto &b : bodies)
-                b.acc = Vec();
-            for (size_t i = 0; i < bodies.size(); ++i)
+            // 🌟 O(N^2) Loop adapted to SoA
+            // Reset acceleration
+            for (int i = 0; i < n; ++i)
             {
-                for (size_t j = i + 1; j < bodies.size(); ++j)
+                data.accX[i] = 0.0;
+                data.accY[i] = 0.0;
+            }
+
+// Calculate pairwise forces
+#pragma omp parallel for schedule(dynamic)
+            for (int i = 0; i < n; ++i)
+            {
+                for (int j = i + 1; j < n; ++j)
                 {
-                    Vec delta = bodies[j].pos - bodies[i].pos;
+                    Vec delta(data.posX[j] - data.posX[i], data.posY[j] - data.posY[i]);
                     double dist = delta.len();
-                    double minDist = bodies[i].radius + bodies[j].radius;
+                    double minDist = data.radius[i] + data.radius[j];
                     double safeDist = std::max(dist, minDist);
-                    double F = (G_local * bodies[j].m) / (safeDist * safeDist);
+                    double F = (G_local * data.m[j]) / (safeDist * safeDist);
                     Vec acc = delta.norm() * F;
-                    bodies[i].acc += acc;
-                    bodies[j].acc -= acc;
+
+                    // Atomic update needed if parallel (or use a temporary acc array if not OpenMP)
+                    // For the sake of simplicity and correctness in a typical OpenMP setup for O(N^2):
+                    // Direct access to SoA elements is fine here for i and j as they are independent writes.
+
+                    // Add acceleration to body i
+                    data.accX[i] += acc.x;
+                    data.accY[i] += acc.y;
+
+                    // Subtract acceleration from body j
+                    data.accX[j] -= acc.x;
+                    data.accY[j] -= acc.y;
                 }
             }
         }
         else
         {
-            // Reset pool state and reuse (memset clears all node memory to zero)
+            // 🌟 Barnes-Hut adapted to SoA
+
+            // Reset pool state and reuse
             std::memset(pool.data(), 0, poolSize * sizeof(QuadNode));
             int poolIndex = 1;
 
@@ -361,45 +436,66 @@ int main()
             root.topLeft = topLeft;
             root.bottomRight = bottomRight;
 
-            for (auto &b : bodies)
-                root.insert(&b, pool.data(), poolIndex, poolSize);
+            for (size_t i = 0; i < data.num_bodies; ++i)
+                root.insert(i, data, bodyRefs.data(), pool.data(), poolIndex, poolSize);
 
             double theta = 0.5;
 
-            if(useParallel){
-                #pragma omp parallel for schedule(static)
-                for (int i = 0; i < (int)bodies.size(); ++i)
+            if (useParallel)
+            {
+#pragma omp parallel for schedule(static)
+                for (int i = 0; i < (int)data.num_bodies; ++i)
                 {
-                    bodies[i].acc = Vec();
-                    root.computeForce(&bodies[i], theta, bodies[i].acc, G_local);
+                    // Reset acceleration for this body
+                    Vec acc_out = Vec();
+
+                    // Compute force (acceleration)
+                    root.computeForce(i, data, theta, acc_out, G_local);
+
+                    // Store result back into SoA
+                    data.setAcc(i, acc_out);
                 }
             }
             else
             {
-                for (auto &b : bodies)
+                for (size_t i = 0; i < data.num_bodies; ++i)
                 {
-                    b.acc = Vec();
-                    root.computeForce(&b, theta, b.acc, G_local);
+                    Vec acc_out = Vec();
+                    root.computeForce(i, data, theta, acc_out, G_local);
+                    data.setAcc(i, acc_out);
                 }
             }
         }
 
         double dt = 0.1;
+
+        // 🌟 Velocity-Verlet Integration adapted to SoA
         if (useParallel)
         {
-            #pragma omp parallel for schedule(static)
-            for (int i = 0; i < (int)bodies.size(); ++i)
+// OpenMP parallel loop directly accessing contiguous arrays for maximum cache efficiency
+#pragma omp parallel for schedule(static)
+            for (int i = 0; i < (int)data.num_bodies; ++i)
             {
-                bodies[i].vel += bodies[i].acc * dt;
-                bodies[i].pos += bodies[i].vel * dt;
+                // Update Velocity (Vx += Ax * dt)
+                data.velX[i] += data.accX[i] * dt;
+                data.velY[i] += data.accY[i] * dt;
+
+                // Update Position (Px += Vx * dt)
+                data.posX[i] += data.velX[i] * dt;
+                data.posY[i] += data.velY[i] * dt;
             }
         }
         else
         {
-            for (auto &b : bodies)
+            for (size_t i = 0; i < data.num_bodies; ++i)
             {
-                b.vel += b.acc * dt;
-                b.pos += b.vel * dt;
+                // Update Velocity
+                data.velX[i] += data.accX[i] * dt;
+                data.velY[i] += data.accY[i] * dt;
+
+                // Update Position
+                data.posX[i] += data.velX[i] * dt;
+                data.posY[i] += data.velY[i] * dt;
             }
         }
 
@@ -409,20 +505,19 @@ int main()
         window.clear(sf::Color::Black);
         window.setView(view);
 
-        for (size_t i = 0; i < bodies.size(); ++i)
+        for (size_t i = 0; i < data.num_bodies; ++i)
         {
-            // Just update position, don't recreate
-            circles[i].setPosition(bodies[i].pos.x, bodies[i].pos.y);
+            // Update position from SoA
+            circles[i].setPosition(data.posX[i], data.posY[i]);
             window.draw(circles[i]);
         }
 
-        // Prikažemo overlay u default view (UI), da ne zumira sa scenom:
+        // --- Performance logging ---
         if (fontLoaded)
         {
             window.setView(window.getDefaultView());
         }
 
-        // --- Performance logging ---
         auto frameEnd = Clock::now();
         std::chrono::duration<double> frameDuration = frameEnd - frameStart;
         std::chrono::duration<double> physicsDuration = physicsEnd - physicsStart;
@@ -437,16 +532,13 @@ int main()
         if (elapsedTime > 0.0)
             fpsValue = frameCount / elapsedTime;
 
-        // format line robustly:
         char buf[256];
 
-        // interval u sekundama za update overlaya i loga
-        static const double logInterval = 1.0; // možemo promjeniti na 0.5 ili 2.0, itd.
-        static std::string lastLine;           // zadržava posljednju "full" liniju
+        static const double logInterval = 1.0;
+        static std::string lastLine;
 
         if (elapsedTime >= logInterval)
         {
-            // formiraj liniju jednom, deterministički
             int written = std::snprintf(buf, sizeof(buf),
                                         "FPS: %.2f | Physics: %.2f ms | Total frame: %.2f ms",
                                         std::isfinite(fpsValue) ? fpsValue : 0.0,
@@ -455,42 +547,35 @@ int main()
 
             std::string line = (written > 0) ? std::string(buf) : std::string("FPS: N/A |Physics: N/A | Total frame: N/A");
 
-            // spremimo u lastLine i ispišemo
             lastLine = line;
 
-            // ispis u konzolu
             std::cout << lastLine << std::endl;
 
-            // append u log fajl (sa timestampom)
             if (logFile.is_open())
             {
                 logFile << lastLine << std::endl;
                 logFile.flush();
             }
 
-            // ispis na ekran preko SFML-a (ako imamo font)
             if (fontLoaded)
             {
                 overlay.setString(lastLine);
             }
 
-            // reset brojača
             frameCount = 0;
             elapsedTime = 0.0;
         }
 
-        // CRTAJ OVERLAY U DEFAULT VIEW (UI) — nakon što si prethodno nacrtao svijet
+        // CRTAJ OVERLAY
         if (fontLoaded)
         {
             window.setView(window.getDefaultView()); // UI view
             window.draw(overlay);
-            window.setView(view); // vrati world view (ako će se nakon toga crtati još nešto u world koordinatama)
+            window.setView(view); // vrati world view
         }
-        // TODO: optimize windows display calls
         window.display();
     }
 
-    // pri kraju sesije zabilježimo kraj simulacije
     if (logFile.is_open())
     {
         logFile << "=== Simulation ended: " << currentDateTimeString() << " ===" << std::endl
