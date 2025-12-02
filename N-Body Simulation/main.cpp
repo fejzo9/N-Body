@@ -218,10 +218,10 @@ int main()
 
         double v = std::sqrt(G_local * mass * n / (r + 50.0));
         Vec vel(-pos.y, pos.x);
-        vel = vel.norm() * v * 0.5;
+        vel = vel.norm() * v * 0.3;
 
-        vel.x += (dist01(rng) - 0.5) * v * 0.1;
-        vel.y += (dist01(rng) - 0.5) * v * 0.1;
+        vel.x += (dist01(rng) - 0.5) * v * 0.05;
+        vel.y += (dist01(rng) - 0.5) * v * 0.05;
 
         bodies.push_back({mass, pos, vel, Vec(), 8.0});
 
@@ -364,10 +364,10 @@ int main()
             for (auto &b : bodies)
                 root.insert(&b, pool.data(), poolIndex, poolSize);
 
-            double theta = 0.5;
+            double theta = 1.0;
 
             if(useParallel){
-                #pragma omp parallel for schedule(static)
+                #pragma omp parallel for schedule(guided)
                 for (int i = 0; i < (int)bodies.size(); ++i)
                 {
                     bodies[i].acc = Vec();
@@ -384,10 +384,10 @@ int main()
             }
         }
 
-        double dt = 0.1;
+        double dt = 0.05;
         if (useParallel)
         {
-            #pragma omp parallel for schedule(static)
+            #pragma omp parallel for schedule(guided)
             for (int i = 0; i < (int)bodies.size(); ++i)
             {
                 bodies[i].vel += bodies[i].acc * dt;
