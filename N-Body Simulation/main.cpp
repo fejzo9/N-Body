@@ -97,7 +97,7 @@ struct QuadNode
     Vec topLeft, bottomRight;
     BodyReference *bodyRef = nullptr;
 
-    QuadNode *children[4] = {nullptr, nullptr, nullptr, nullptr}; // contiguous children
+    int childIndices[4] = {-1, -1, -1, -1}; // Use indices instead of pointers for better cache locality
 
     QuadNode() {}
     QuadNode(const Vec &tl, const Vec &br) : topLeft(tl), bottomRight(br) {}
@@ -108,7 +108,7 @@ struct QuadNode
                p.y >= topLeft.y && p.y <= bottomRight.y;
     }
 
-    bool isLeaf() const { return children[0] == nullptr; }
+    bool isLeaf() const { return childIndices[0] == -1; }
 
     void subdivide(QuadNode *pool, int &poolIndex, int poolSize)
     {
@@ -116,21 +116,29 @@ struct QuadNode
         if (poolIndex + 4 >= poolSize)
             return;
         Vec mid((topLeft.x + bottomRight.x) / 2, (topLeft.y + bottomRight.y) / 2);
-        children[0] = &pool[poolIndex++];
-        children[0]->topLeft = topLeft;
-        children[0]->bottomRight = mid; // TL
-        children[1] = &pool[poolIndex++];
-        children[1]->topLeft = Vec(mid.x, topLeft.y);
-        children[1]->bottomRight = Vec(bottomRight.x, mid.y); // TR
-        children[2] = &pool[poolIndex++];
-        children[2]->topLeft = Vec(topLeft.x, mid.y);
-        children[2]->bottomRight = Vec(mid.x, bottomRight.y); // BL
-        children[3] = &pool[poolIndex++];
-        children[3]->topLeft = mid;
-        children[3]->bottomRight = bottomRight; // BR
+        
+        childIndices[0] = poolIndex;
+        pool[poolIndex].topLeft = topLeft;
+        pool[poolIndex].bottomRight = mid; // TL
+        poolIndex++;
+        
+        childIndices[1] = poolIndex;
+        pool[poolIndex].topLeft = Vec(mid.x, topLeft.y);
+        pool[poolIndex].bottomRight = Vec(bottomRight.x, mid.y); // TR
+        poolIndex++;
+        
+        childIndices[2] = poolIndex;
+        pool[poolIndex].topLeft = Vec(topLeft.x, mid.y);
+        pool[poolIndex].bottomRight = Vec(mid.x, bottomRight.y); // BL
+        poolIndex++;
+        
+        childIndices[3] = poolIndex;
+        pool[poolIndex].topLeft = mid;
+        pool[poolIndex].bottomRight = bottomRight; // BR
+        poolIndex++;
     }
 
-    // Updated insert function to use SoA data
+    // Updated insert function to use SoA data and pool indices
     void insert(size_t bodyIndex, const BodyDataSoA &data, BodyReference *bodyRefs, QuadNode *pool, int &poolIndex, int poolSize)
     {
         Vec b_pos = data.getPos(bodyIndex);
@@ -151,31 +159,53 @@ struct QuadNode
             subdivide(pool, poolIndex, poolSize);
             if (bodyRef)
             {
-                // Re-insert existing body
-                size_t existingIndex = bodyRef->index;
-                bodyRef = nullptr; // Clear this node's reference
-                for (int i = 0; i < 4; ++i)
-                    children[i]->insert(existingIndex, data, bodyRefs, pool, poolIndex, poolSize);
+                // Re-insert existing body only if subdivision succeeded
+                if (childIndices[0] >= 0)
+                {
+                    size_t existingIndex = bodyRef->index;
+                    bodyRef = nullptr; // Clear this node's reference
+                    for (int i = 0; i < 4; ++i)
+                        if (childIndices[i] >= 0)
+                            pool[childIndices[i]].insert(existingIndex, data, bodyRefs, pool, poolIndex, poolSize);
+                }
+                else
+                {
+                    // Subdivision failed, keep body in this node
+                    return;
+                }
             }
         }
 
-        for (int i = 0; i < 4; ++i)
-            children[i]->insert(bodyIndex, data, bodyRefs, pool, poolIndex, poolSize);
+        // Only insert into children if they exist
+        if (childIndices[0] >= 0)
+        {
+            for (int i = 0; i < 4; ++i)
+                if (childIndices[i] >= 0)
+                    pool[childIndices[i]].insert(bodyIndex, data, bodyRefs, pool, poolIndex, poolSize);
+        }
+        else
+        {
+            // No children and already have a body, shouldn't happen but handle gracefully
+            return;
+        }
 
-        // Update center of mass
+        // Update center of mass only from valid children
         mass = 0;
         centerOfMass = Vec(0, 0);
         for (int i = 0; i < 4; ++i)
         {
-            mass += children[i]->mass;
-            centerOfMass += children[i]->centerOfMass * children[i]->mass;
+            if (childIndices[i] >= 0)
+            {
+                mass += pool[childIndices[i]].mass;
+                centerOfMass += pool[childIndices[i]].centerOfMass * pool[childIndices[i]].mass;
+            }
         }
         if (mass > 0)
             centerOfMass = centerOfMass / mass;
     }
 
-    // Updated computeForce function to use SoA data
-    void computeForce(size_t b_index, const BodyDataSoA &data, double theta, Vec &acc_out, double G_local)
+    // Updated computeForce function to use SoA data and pool indices
+    void computeForce(size_t b_index, const BodyDataSoA &data, double theta, Vec &acc_out, double G_local, QuadNode *pool)
     {
         if (bodyRef && bodyRef->index == b_index || mass == 0)
             return;
@@ -202,8 +232,8 @@ struct QuadNode
         else
         {
             for (int i = 0; i < 4; ++i)
-                if (children[i])
-                    children[i]->computeForce(b_index, data, theta, acc_out, G_local);
+                if (childIndices[i] >= 0)
+                    pool[childIndices[i]].computeForce(b_index, data, theta, acc_out, G_local, pool);
         }
     }
 };
@@ -273,10 +303,10 @@ int main()
 
         double v = std::sqrt(G_local * mass * n / (r + 50.0));
         Vec vel(-pos.y, pos.x);
-        vel = vel.norm() * v * 0.5;
+        vel = vel.norm() * v * 0.3;
 
-        vel.x += (dist01(rng) - 0.5) * v * 0.1;
-        vel.y += (dist01(rng) - 0.5) * v * 0.1;
+        vel.x += (dist01(rng) - 0.5) * v * 0.05;
+        vel.y += (dist01(rng) - 0.5) * v * 0.05;
 
         // 🌟 Populate SoA instead of AoS
         data.m[i] = mass;
@@ -356,7 +386,7 @@ int main()
     }
 
     // --- Pre-allocate pool ONCE (before loop) ---
-    int poolSize = n * 8;
+    int poolSize = n * 16;  // Increased from n*8 for safety with larger body counts
     std::vector<QuadNode> pool(poolSize);
 
     using Clock = std::chrono::high_resolution_clock;
@@ -426,8 +456,18 @@ int main()
         {
             // 🌟 Barnes-Hut adapted to SoA
 
-            // Reset pool state and reuse
-            std::memset(pool.data(), 0, poolSize * sizeof(QuadNode));
+            // Track how many nodes were used last iteration
+            static int lastPoolIndex = 1;
+            
+            // Reset pool state - clear only the used nodes from previous iteration
+            for (int i = 0; i < lastPoolIndex; ++i)
+            {
+                pool[i].mass = 0;
+                pool[i].centerOfMass = Vec(0, 0);
+                pool[i].bodyRef = nullptr;
+                for (int j = 0; j < 4; ++j)
+                    pool[i].childIndices[j] = -1;
+            }
             int poolIndex = 1;
 
             Vec topLeft(-spread, -spread);
@@ -438,19 +478,21 @@ int main()
 
             for (size_t i = 0; i < data.num_bodies; ++i)
                 root.insert(i, data, bodyRefs.data(), pool.data(), poolIndex, poolSize);
+            
+            lastPoolIndex = poolIndex;
 
-            double theta = 0.5;
+            double theta = 1.0;
 
             if (useParallel)
             {
-#pragma omp parallel for schedule(static)
+                #pragma omp parallel for schedule(guided)
                 for (int i = 0; i < (int)data.num_bodies; ++i)
                 {
                     // Reset acceleration for this body
                     Vec acc_out = Vec();
 
                     // Compute force (acceleration)
-                    root.computeForce(i, data, theta, acc_out, G_local);
+                    root.computeForce(i, data, theta, acc_out, G_local, pool.data());
 
                     // Store result back into SoA
                     data.setAcc(i, acc_out);
@@ -461,19 +503,19 @@ int main()
                 for (size_t i = 0; i < data.num_bodies; ++i)
                 {
                     Vec acc_out = Vec();
-                    root.computeForce(i, data, theta, acc_out, G_local);
+                    root.computeForce(i, data, theta, acc_out, G_local, pool.data());
                     data.setAcc(i, acc_out);
                 }
             }
         }
 
-        double dt = 0.1;
+        double dt = 0.05;
 
-        // 🌟 Velocity-Verlet Integration adapted to SoA
+        // Velocity-Verlet Integration adapted to SoA
         if (useParallel)
         {
 // OpenMP parallel loop directly accessing contiguous arrays for maximum cache efficiency
-#pragma omp parallel for schedule(static)
+#pragma omp parallel for schedule(guided)
             for (int i = 0; i < (int)data.num_bodies; ++i)
             {
                 // Update Velocity (Vx += Ax * dt)
