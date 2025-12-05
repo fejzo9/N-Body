@@ -11,6 +11,7 @@
 #include <filesystem>
 #include <cstring>
 #include <omp.h>
+#include <immintrin.h>
 
 const double G = 6.67430e-3;
 const int WINDOW_SIZE = 1000;
@@ -232,12 +233,11 @@ int main()
 {
     // --- Otvaranje prozora ---
     sf::RenderWindow window(sf::VideoMode(WINDOW_SIZE, WINDOW_SIZE), "Chaotic N-Body Simulation");
-    window.setFramerateLimit(60);
 
     bool useBarnesHut = true;
     bool useParallel = true;
 
-    // 🌟 USE SoA DATA STRUCTURE
+    // USE SoA DATA STRUCTURE
     BodyDataSoA data;
     double G_local = 1.0;
     int n = 10000;
@@ -302,64 +302,6 @@ int main()
     sf::View view(sf::Vector2f(0, 0), sf::Vector2f(WINDOW_SIZE, WINDOW_SIZE));
     double zoomLevel = 1.0;
 
-    // --- SFML tekst (overlay) ---
-    const std::vector<std::string> candidates = {
-        "/home/fejzullah/Desktop/ETF-master-SA/3_PRS/kod/N-Body Simulation/dejavu-sans/DejaVuSans-Bold.ttf",
-        "dejavu-sans/DejaVuSans.ttf",
-        "./DejaVuSans.ttf",
-        "DejaVuSans.ttf",
-        "arial/ARIALBD.TTF",
-        "arial/arialbd.ttf",
-        "arial.ttf",
-        "./arial.ttf"};
-
-    sf::Font font;
-    bool fontLoaded = false;
-    for (auto &p : candidates)
-    {
-        std::cout << "Trying: " << p;
-        std::ifstream fchk(p, std::ios::binary);
-        if (!fchk.is_open())
-        {
-            std::cout << " -> EXISTS but cannot open (permission?)" << std::endl;
-            continue;
-        }
-        fchk.close();
-
-        // pokuša učitati SFML font
-        if (font.loadFromFile(p))
-        {
-            std::cout << " -> LOADED OK" << std::endl;
-            fontLoaded = true;
-            break;
-        }
-        else
-        {
-            std::cout << " -> loadFromFile FAILED (SFML couldn't create font face)" << std::endl;
-        }
-    }
-
-    if (!fontLoaded)
-    {
-        std::cerr << "Font nije učitan. Pokušaj koristeći apsolutnu putanju ili provjeri perms i tip fajla." << std::endl;
-    }
-
-    sf::Text overlay;
-    if (fontLoaded)
-    {
-        overlay.setFont(font);
-        overlay.setCharacterSize(18); // malo veće slovo
-        overlay.setFillColor(sf::Color::Green);
-        overlay.setStyle(sf::Text::Bold);
-        overlay.setOutlineColor(sf::Color::Black);
-        overlay.setOutlineThickness(1.f); // deblja slova izgledaju bolje na crnoj pozadini
-        overlay.setPosition(8.f, 8.f);
-    }
-    else
-    {
-        std::cerr << "Font nije učitan. Stavi DejaVuSans.ttf ili arial.ttf pored exe-a ili u resources/." << std::endl;
-    }
-
     // --- Pre-allocate pool ONCE (before loop) ---
     int poolSize = n * 16;  // Increased from n*8 for safety with larger body counts
     std::vector<QuadNode> pool(poolSize);
@@ -400,8 +342,8 @@ int main()
                 data.accY[i] = 0.0;
             }
 
-// Calculate pairwise forces
-#pragma omp parallel for schedule(dynamic)
+            // Calculate pairwise forces
+            #pragma omp parallel for schedule(dynamic)
             for (int i = 0; i < n; ++i)
             {
                 for (int j = i + 1; j < n; ++j)
@@ -486,18 +428,51 @@ int main()
 
         double dt = 0.05;
 
-        // Velocity-Verlet Integration adapted to SoA
+        // Velocity-Verlet Integration adapted to SoA - Manual AVX vectorization
         if (useParallel)
         {
-// OpenMP parallel loop directly accessing contiguous arrays for maximum cache efficiency
-#pragma omp parallel for schedule(static)
-            for (int i = 0; i < (int)data.num_bodies; ++i)
+            // Manual AVX2 vectorization: Process 8 bodies at a time (8 floats in 256-bit register)
+            __m256 dt_vec = _mm256_set1_ps(dt);
+            int i = 0;
+            int vector_width = 8;
+            int num_bodies = (int)data.num_bodies;
+            
+            // Vectorized loop: Process 8 bodies per iteration
+            #pragma omp parallel for schedule(static)
+            for (i = 0; i < num_bodies - (vector_width - 1); i += vector_width)
             {
-                // Update Velocity (Vx += Ax * dt)
+                // Load 8 values from each array
+                __m256 velX = _mm256_loadu_ps(&data.velX[i]);
+                __m256 velY = _mm256_loadu_ps(&data.velY[i]);
+                __m256 accX = _mm256_loadu_ps(&data.accX[i]);
+                __m256 accY = _mm256_loadu_ps(&data.accY[i]);
+                __m256 posX = _mm256_loadu_ps(&data.posX[i]);
+                __m256 posY = _mm256_loadu_ps(&data.posY[i]);
+                
+                // Update Velocity: V += A * dt
+                __m256 accX_scaled = _mm256_mul_ps(accX, dt_vec);
+                __m256 accY_scaled = _mm256_mul_ps(accY, dt_vec);
+                velX = _mm256_add_ps(velX, accX_scaled);
+                velY = _mm256_add_ps(velY, accY_scaled);
+                
+                // Update Position: P += V * dt
+                __m256 velX_scaled = _mm256_mul_ps(velX, dt_vec);
+                __m256 velY_scaled = _mm256_mul_ps(velY, dt_vec);
+                posX = _mm256_add_ps(posX, velX_scaled);
+                posY = _mm256_add_ps(posY, velY_scaled);
+                
+                // Store results back
+                _mm256_storeu_ps(&data.velX[i], velX);
+                _mm256_storeu_ps(&data.velY[i], velY);
+                _mm256_storeu_ps(&data.posX[i], posX);
+                _mm256_storeu_ps(&data.posY[i], posY);
+            }
+            
+            // Handle remaining bodies (scalar fallback)
+            for (; i < num_bodies; ++i)
+            {
                 data.velX[i] += data.accX[i] * dt;
                 data.velY[i] += data.accY[i] * dt;
-
-                // Update Position (Px += Vx * dt)
                 data.posX[i] += data.velX[i] * dt;
                 data.posY[i] += data.velY[i] * dt;
             }
@@ -530,10 +505,6 @@ int main()
         }
 
         // --- Performance logging ---
-        if (fontLoaded)
-        {
-            window.setView(window.getDefaultView());
-        }
 
         auto frameEnd = Clock::now();
         std::chrono::duration<double> frameDuration = frameEnd - frameStart;
@@ -574,22 +545,10 @@ int main()
                 logFile.flush();
             }
 
-            if (fontLoaded)
-            {
-                overlay.setString(lastLine);
-            }
-
             frameCount = 0;
             elapsedTime = 0.0;
         }
 
-        // CRTAJ OVERLAY
-        if (fontLoaded)
-        {
-            window.setView(window.getDefaultView()); // UI view
-            window.draw(overlay);
-            window.setView(view); // vrati world view
-        }
         window.display();
     }
 
