@@ -231,18 +231,82 @@ std::string currentDateTimeString()
 
 int main()
 {
-    // --- Otvaranje prozora ---
-    sf::RenderWindow window(sf::VideoMode(WINDOW_SIZE, WINDOW_SIZE), "Chaotic N-Body Simulation");
-
+    // --- Load configuration from JSON (manual parsing) ---
     bool useBarnesHut = true;
     bool useParallel = true;
+    int n = 10000;
+    double spread = 400.0;
+    double mass = 1000.0;
+    double theta = 1.0;
+    double dt = 0.05;
+    int windowSize = 1000;
+    std::string windowTitle = "Chaotic N-Body Simulation";
+
+    std::ifstream configFile("config.json");
+    if (configFile.is_open())
+    {
+        std::string line;
+        std::string content;
+        while (std::getline(configFile, line))
+            content += line;
+
+        // Simple key-value parser for JSON
+        auto getValue = [&content](const std::string& key) -> std::string {
+            size_t pos = content.find("\"" + key + "\"");
+            if (pos == std::string::npos) return "";
+            pos = content.find(":", pos);
+            if (pos == std::string::npos) return "";
+            pos = content.find_first_not_of(" \t\n\r", pos + 1);
+            
+            if (content[pos] == '"') {
+                // String value
+                pos++;
+                size_t endPos = content.find("\"", pos);
+                return content.substr(pos, endPos - pos);
+            } else {
+                // Number value
+                size_t endPos = content.find_first_of(",}", pos);
+                return content.substr(pos, endPos - pos);
+            }
+        };
+
+        // Parse values
+        std::string barnesHutStr = getValue("useBarnesHut");
+        std::string parallelStr = getValue("useParallel");
+        std::string numBodiesStr = getValue("numBodies");
+        std::string spreadStr = getValue("spread");
+        std::string massStr = getValue("mass");
+        std::string thetaStr = getValue("theta");
+        std::string dtStr = getValue("dt");
+        std::string windowSizeStr = getValue("windowSize");
+        std::string windowTitleStr = getValue("windowTitle");
+
+        if (!barnesHutStr.empty()) useBarnesHut = (barnesHutStr == "true");
+        if (!parallelStr.empty()) useParallel = (parallelStr == "true");
+        if (!numBodiesStr.empty()) n = std::stoi(numBodiesStr);
+        if (!spreadStr.empty()) spread = std::stod(spreadStr);
+        if (!massStr.empty()) mass = std::stod(massStr);
+        if (!thetaStr.empty()) theta = std::stod(thetaStr);
+        if (!dtStr.empty()) dt = std::stod(dtStr);
+        if (!windowSizeStr.empty()) windowSize = std::stoi(windowSizeStr);
+        if (!windowTitleStr.empty()) windowTitle = windowTitleStr;
+
+        std::cout << "Config loaded: useBarnesHut=" << useBarnesHut 
+                  << ", useParallel=" << useParallel 
+                  << ", numBodies=" << n << std::endl;
+        configFile.close();
+    }
+    else
+    {
+        std::cerr << "config.json not found. Using defaults." << std::endl;
+    }
+
+    // --- Otvaranje prozora ---
+    sf::RenderWindow window(sf::VideoMode(windowSize, windowSize), windowTitle);
 
     // USE SoA DATA STRUCTURE
     BodyDataSoA data;
     double G_local = 1.0;
-    int n = 10000;
-    double spread = 400.0;
-    double mass = 1000.0;
     data.resize(n); // Resize all vectors immediately
 
     // Vector of references needed for QuadTree
@@ -425,8 +489,6 @@ int main()
                 }
             }
         }
-
-        double dt = 0.05;
 
         // Velocity-Verlet Integration adapted to SoA - Manual AVX vectorization
         if (useParallel)
