@@ -1,0 +1,17 @@
+Main:
+
+g++ -O3 -g -march=native -ffast-math -DNDEBUG -mavx2 -c main.cpp -I"C:\SFML 2.6.1\SFML-2.6.1\include" -fopenmp
+g++ main.o -o sfml-app-json -L"C:\SFML 2.6.1\SFML-2.6.1\lib" -lsfml-graphics -lsfml-window -lsfml-system -fopenmp
+
+Benchmark (VTune-compatible):
+
+g++ -O3 -g -march=native -ffast-math -mavx2 -fopenmp -fno-omit-frame-pointer benchmark.cpp -o benchmark-app -lpthread
+
+Benchmark (original two-step):
+
+g++ -O3 -g -march=native -ffast-math -DNDEBUG -mavx2 -c benchmark.cpp -fopenmp
+g++ benchmark.o -o benchmark-app -fopenmp -lpthread
+
+OMP_WAIT_POLICY=ACTIVE
+OMP_PROC_BIND=TRUE
+GOMP_SPINCOUNT=300000

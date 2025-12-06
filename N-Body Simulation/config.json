@@ -2,7 +2,7 @@
   "simulation": {
     "useBarnesHut": true,
     "useParallel": true,
-    "numBodies": 10000,
+    "numBodies": 50000,
     "spread": 400.0,
     "mass": 1000.0,
     "theta": 1.0,
