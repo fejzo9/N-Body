@@ -2331,3 +2331,162 @@ FPS: 16913.93 | Physics: 0.06 ms | Total frame: 0.06 ms
 FPS: 16699.11 | Physics: 0.06 ms | Total frame: 0.06 ms
 FPS: 15386.76 | Physics: 0.07 ms | Total frame: 0.07 ms
 FPS: 13329.98 | Physics: 0.08 ms | Total frame: 0.08 ms
+=== Simulation started: 2025-12-06 18:57:13 ===
+=== Number of bodies: 10000 ===
+=== Using parallelizations: Yes ===
+=== Data Structure: Struct of Arrays (SoA) + AVX ===
+FPS: 119.79 | Physics: 3.59 ms | Total frame: 7.08 ms | N=10000
+FPS: 153.23 | Physics: 2.74 ms | Total frame: 6.26 ms | N=10000
+FPS: 104.81 | Physics: 2.68 ms | Total frame: 427.57 ms | N=10000
+FPS: 161.60 | Physics: 2.07 ms | Total frame: 6.64 ms | N=10000
+FPS: 164.54 | Physics: 2.05 ms | Total frame: 5.57 ms | N=10000
+=== Simulation ended: 2025-12-06 18:57:19 ===
+
+=== Simulation started: 2025-12-06 18:57:54 ===
+=== Number of bodies: 50000 ===
+=== Using parallelizations: Yes ===
+=== Data Structure: Struct of Arrays (SoA) + AVX ===
+FPS: 20.86 | Physics: 15.71 ms | Total frame: 33.05 ms | N=50000
+FPS: 32.07 | Physics: 11.34 ms | Total frame: 31.95 ms | N=50000
+FPS: 32.42 | Physics: 12.09 ms | Total frame: 30.38 ms | N=50000
+FPS: 35.48 | Physics: 10.55 ms | Total frame: 28.72 ms | N=50000
+FPS: 33.43 | Physics: 8.17 ms | Total frame: 27.39 ms | N=50000
+FPS: 23.53 | Physics: 7.26 ms | Total frame: 26.09 ms | N=50000
+FPS: 37.30 | Physics: 7.18 ms | Total frame: 26.14 ms | N=50000
+FPS: 38.20 | Physics: 6.36 ms | Total frame: 24.06 ms | N=50000
+FPS: 40.48 | Physics: 5.81 ms | Total frame: 23.44 ms | N=50000
+FPS: 41.45 | Physics: 5.61 ms | Total frame: 23.40 ms | N=50000
+FPS: 40.96 | Physics: 4.98 ms | Total frame: 22.77 ms | N=50000
+FPS: 42.34 | Physics: 4.69 ms | Total frame: 23.06 ms | N=50000
+FPS: 43.08 | Physics: 4.32 ms | Total frame: 21.80 ms | N=50000
+FPS: 43.62 | Physics: 3.88 ms | Total frame: 22.04 ms | N=50000
+FPS: 45.57 | Physics: 3.59 ms | Total frame: 21.34 ms | N=50000
+FPS: 45.85 | Physics: 3.32 ms | Total frame: 22.20 ms | N=50000
+FPS: 45.00 | Physics: 3.18 ms | Total frame: 20.70 ms | N=50000
+FPS: 46.89 | Physics: 3.01 ms | Total frame: 20.93 ms | N=50000
+FPS: 45.34 | Physics: 2.66 ms | Total frame: 28.84 ms | N=50000
+FPS: 33.85 | Physics: 2.52 ms | Total frame: 20.59 ms | N=50000
+FPS: 45.79 | Physics: 2.65 ms | Total frame: 21.29 ms | N=50000
+FPS: 35.89 | Physics: 2.71 ms | Total frame: 20.38 ms | N=50000
+FPS: 38.46 | Physics: 2.32 ms | Total frame: 119.96 ms | N=50000
+=== Simulation ended: 2025-12-06 18:58:21 ===
+
+=== Simulation started: 2025-12-06 18:58:48 ===
+=== Number of bodies: 50000 ===
+=== Using parallelizations: Yes ===
+=== Data Structure: Struct of Arrays (SoA) + AVX ===
+FPS: 22.43 | Physics: 14.52 ms | Total frame: 32.47 ms | N=50000
+FPS: 34.80 | Physics: 9.51 ms | Total frame: 27.05 ms | N=50000
+FPS: 33.48 | Physics: 9.59 ms | Total frame: 27.64 ms | N=50000
+FPS: 36.73 | Physics: 9.29 ms | Total frame: 31.59 ms | N=50000
+FPS: 37.41 | Physics: 7.70 ms | Total frame: 25.42 ms | N=50000
+FPS: 38.80 | Physics: 7.55 ms | Total frame: 25.59 ms | N=50000
+FPS: 35.96 | Physics: 6.45 ms | Total frame: 25.00 ms | N=50000
+FPS: 35.51 | Physics: 6.12 ms | Total frame: 24.89 ms | N=50000
+FPS: 35.33 | Physics: 7.60 ms | Total frame: 29.83 ms | N=50000
+FPS: 37.06 | Physics: 5.90 ms | Total frame: 35.18 ms | N=50000
+FPS: 35.65 | Physics: 5.13 ms | Total frame: 25.06 ms | N=50000
+FPS: 37.74 | Physics: 6.10 ms | Total frame: 26.53 ms | N=50000
+FPS: 39.13 | Physics: 4.61 ms | Total frame: 26.11 ms | N=50000
+FPS: 37.82 | Physics: 3.97 ms | Total frame: 25.55 ms | N=50000
+FPS: 38.78 | Physics: 4.15 ms | Total frame: 24.58 ms | N=50000
+FPS: 39.28 | Physics: 3.52 ms | Total frame: 24.29 ms | N=50000
+FPS: 39.89 | Physics: 3.49 ms | Total frame: 25.01 ms | N=50000
+FPS: 39.19 | Physics: 3.58 ms | Total frame: 24.99 ms | N=50000
+FPS: 39.54 | Physics: 3.09 ms | Total frame: 24.79 ms | N=50000
+FPS: 39.30 | Physics: 2.90 ms | Total frame: 24.56 ms | N=50000
+FPS: 37.98 | Physics: 2.93 ms | Total frame: 26.34 ms | N=50000
+FPS: 39.17 | Physics: 2.73 ms | Total frame: 24.56 ms | N=50000
+FPS: 38.66 | Physics: 2.60 ms | Total frame: 24.62 ms | N=50000
+FPS: 38.92 | Physics: 2.60 ms | Total frame: 32.24 ms | N=50000
+FPS: 38.84 | Physics: 2.41 ms | Total frame: 26.43 ms | N=50000
+FPS: 39.11 | Physics: 2.27 ms | Total frame: 24.60 ms | N=50000
+FPS: 38.74 | Physics: 2.38 ms | Total frame: 25.08 ms | N=50000
+FPS: 39.02 | Physics: 2.34 ms | Total frame: 26.13 ms | N=50000
+FPS: 39.84 | Physics: 2.28 ms | Total frame: 24.54 ms | N=50000
+FPS: 39.59 | Physics: 2.06 ms | Total frame: 24.93 ms | N=50000
+FPS: 39.43 | Physics: 2.13 ms | Total frame: 25.26 ms | N=50000
+FPS: 38.53 | Physics: 2.46 ms | Total frame: 24.92 ms | N=50000
+FPS: 39.91 | Physics: 2.22 ms | Total frame: 25.80 ms | N=50000
+FPS: 39.49 | Physics: 1.88 ms | Total frame: 24.34 ms | N=50000
+FPS: 39.34 | Physics: 2.08 ms | Total frame: 24.29 ms | N=50000
+FPS: 38.95 | Physics: 1.90 ms | Total frame: 24.97 ms | N=50000
+FPS: 39.27 | Physics: 1.93 ms | Total frame: 24.44 ms | N=50000
+FPS: 39.54 | Physics: 1.86 ms | Total frame: 24.29 ms | N=50000
+FPS: 40.11 | Physics: 1.90 ms | Total frame: 25.05 ms | N=50000
+FPS: 39.15 | Physics: 1.75 ms | Total frame: 29.02 ms | N=50000
+FPS: 39.92 | Physics: 1.92 ms | Total frame: 26.32 ms | N=50000
+FPS: 39.17 | Physics: 2.00 ms | Total frame: 26.25 ms | N=50000
+FPS: 39.34 | Physics: 1.85 ms | Total frame: 26.31 ms | N=50000
+FPS: 39.06 | Physics: 1.97 ms | Total frame: 27.58 ms | N=50000
+FPS: 38.89 | Physics: 1.76 ms | Total frame: 24.65 ms | N=50000
+FPS: 39.28 | Physics: 1.73 ms | Total frame: 25.55 ms | N=50000
+FPS: 38.88 | Physics: 1.85 ms | Total frame: 36.00 ms | N=50000
+FPS: 39.45 | Physics: 1.64 ms | Total frame: 25.58 ms | N=50000
+FPS: 39.30 | Physics: 1.74 ms | Total frame: 24.77 ms | N=50000
+FPS: 39.57 | Physics: 1.85 ms | Total frame: 24.37 ms | N=50000
+FPS: 30.36 | Physics: 1.63 ms | Total frame: 333.07 ms | N=50000
+FPS: 40.18 | Physics: 1.70 ms | Total frame: 25.45 ms | N=50000
+=== Simulation ended: 2025-12-06 18:59:59 ===
+
+=== Simulation started: 2025-12-06 19:06:46 ===
+=== Number of bodies: 50000 ===
+=== Using parallelizations: Yes ===
+=== Data Structure: Struct of Arrays (SoA) + AVX ===
+FPS: 21.36 | Physics: 14.00 ms | Total frame: 31.72 ms | N=50000
+FPS: 33.81 | Physics: 9.21 ms | Total frame: 41.11 ms | N=50000
+FPS: 33.28 | Physics: 13.18 ms | Total frame: 46.07 ms | N=50000
+FPS: 33.53 | Physics: 8.76 ms | Total frame: 26.05 ms | N=50000
+FPS: 23.06 | Physics: 7.88 ms | Total frame: 343.59 ms | N=50000
+FPS: 37.09 | Physics: 7.37 ms | Total frame: 25.10 ms | N=50000
+FPS: 34.96 | Physics: 7.17 ms | Total frame: 39.73 ms | N=50000
+FPS: 36.89 | Physics: 7.16 ms | Total frame: 33.42 ms | N=50000
+FPS: 27.34 | Physics: 5.45 ms | Total frame: 328.52 ms | N=50000
+FPS: 37.91 | Physics: 5.36 ms | Total frame: 23.31 ms | N=50000
+FPS: 40.29 | Physics: 5.25 ms | Total frame: 26.38 ms | N=50000
+FPS: 36.26 | Physics: 4.45 ms | Total frame: 22.27 ms | N=50000
+FPS: 38.21 | Physics: 4.12 ms | Total frame: 30.56 ms | N=50000
+FPS: 40.68 | Physics: 3.91 ms | Total frame: 22.26 ms | N=50000
+FPS: 41.64 | Physics: 3.48 ms | Total frame: 22.02 ms | N=50000
+=== Simulation ended: 2025-12-06 19:07:04 ===
+
+=== Simulation started: 2025-12-06 19:08:23 ===
+=== Number of bodies: 1000000 ===
+=== Using parallelizations: Yes ===
+=== Data Structure: Struct of Arrays (SoA) + AVX ===
+FPS: 0.65 | Physics: 880.74 ms | Total frame: 1547.10 ms | N=1000000
+FPS: 0.68 | Physics: 785.64 ms | Total frame: 1467.02 ms | N=1000000
+FPS: 0.70 | Physics: 679.08 ms | Total frame: 1422.13 ms | N=1000000
+FPS: 0.73 | Physics: 615.87 ms | Total frame: 1370.89 ms | N=1000000
+FPS: 1.21 | Physics: 151.29 ms | Total frame: 779.22 ms | N=1000000
+FPS: 1.39 | Physics: 75.65 ms | Total frame: 708.56 ms | N=1000000
+FPS: 1.44 | Physics: 50.80 ms | Total frame: 698.25 ms | N=1000000
+FPS: 1.47 | Physics: 34.04 ms | Total frame: 673.59 ms | N=1000000
+FPS: 1.51 | Physics: 25.19 ms | Total frame: 664.08 ms | N=1000000
+FPS: 1.50 | Physics: 19.88 ms | Total frame: 655.80 ms | N=1000000
+FPS: 1.49 | Physics: 19.51 ms | Total frame: 675.35 ms | N=1000000
+FPS: 1.51 | Physics: 15.74 ms | Total frame: 665.58 ms | N=1000000
+FPS: 1.53 | Physics: 14.46 ms | Total frame: 656.73 ms | N=1000000
+FPS: 1.48 | Physics: 13.79 ms | Total frame: 675.36 ms | N=1000000
+FPS: 1.53 | Physics: 13.14 ms | Total frame: 661.77 ms | N=1000000
+FPS: 1.50 | Physics: 12.60 ms | Total frame: 685.21 ms | N=1000000
+FPS: 1.50 | Physics: 12.82 ms | Total frame: 653.76 ms | N=1000000
+FPS: 1.46 | Physics: 12.20 ms | Total frame: 684.29 ms | N=1000000
+FPS: 1.44 | Physics: 11.98 ms | Total frame: 661.56 ms | N=1000000
+FPS: 1.30 | Physics: 11.86 ms | Total frame: 810.09 ms | N=1000000
+FPS: 1.44 | Physics: 11.89 ms | Total frame: 686.69 ms | N=1000000
+FPS: 1.47 | Physics: 11.84 ms | Total frame: 686.30 ms | N=1000000
+FPS: 1.46 | Physics: 11.84 ms | Total frame: 661.98 ms | N=1000000
+FPS: 1.45 | Physics: 11.72 ms | Total frame: 712.63 ms | N=1000000
+FPS: 1.27 | Physics: 12.37 ms | Total frame: 721.76 ms | N=1000000
+FPS: 1.46 | Physics: 11.27 ms | Total frame: 643.44 ms | N=1000000
+FPS: 1.48 | Physics: 11.04 ms | Total frame: 683.18 ms | N=1000000
+FPS: 1.51 | Physics: 11.36 ms | Total frame: 649.15 ms | N=1000000
+FPS: 1.45 | Physics: 11.16 ms | Total frame: 708.83 ms | N=1000000
+FPS: 1.46 | Physics: 11.26 ms | Total frame: 695.62 ms | N=1000000
+FPS: 1.48 | Physics: 11.46 ms | Total frame: 681.84 ms | N=1000000
+FPS: 1.47 | Physics: 11.40 ms | Total frame: 681.28 ms | N=1000000
+FPS: 1.36 | Physics: 12.22 ms | Total frame: 656.77 ms | N=1000000
+FPS: 1.53 | Physics: 11.26 ms | Total frame: 656.54 ms | N=1000000
+=== Simulation ended: 2025-12-06 19:09:14 ===
+

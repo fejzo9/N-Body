@@ -12,6 +12,14 @@ Benchmark (original two-step):
 g++ -O3 -g -march=native -ffast-math -DNDEBUG -mavx2 -c benchmark.cpp -fopenmp
 g++ benchmark.o -o benchmark-app -fopenmp -lpthread
 
+CMake:
+
+mkdir build
+cd build
+cmake -G "MinGW Makefiles" -DSFML_ROOT="C:/SFML 2.6.1/SFML-2.6.1" -DCMAKE_BUILD_TYPE=Release ..
+cmake --build . --config Release
+
+
 OMP_WAIT_POLICY=ACTIVE
 OMP_PROC_BIND=TRUE
 GOMP_SPINCOUNT=300000
