@@ -47,7 +47,9 @@ cmake -G "MinGW Makefiles" -DSFML_ROOT="ABSOLUTE_PATH/SFML-2.6.1" -DCMAKE_BUILD_
 # 4. Build
 cmake --build . --config Release
 
-# 5. Run main app or benchmark
+# 5. Copy .dll SFML files to the exact folder with n-body-simulation.exe from SFML-2.6.1\bin
+
+# 6. Run main app or benchmark
 # Main app with graphics:
 .\bin\n-body-simulation.exe
 
