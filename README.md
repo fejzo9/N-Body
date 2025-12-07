@@ -22,7 +22,8 @@ A high-performance chaotic N-Body gravitational simulation with real-time visual
 ### Windows with MinGW Setup
 ```bash
 # If you don't have MinGW installed
-# Download from: https://www.mingw-w64.org/
+# It needs to match the exact version mingw 13.1.0. Can be downloaded from the same page as SFML 2.6.1
+# Download from: https://www.sfml-dev.org/download/sfml/2.6.1/
 
 # SFML 2.6.1 (for the main app)
 # Download from: https://www.sfml-dev.org/download/sfml/2.6.1/
@@ -34,14 +35,14 @@ A high-performance chaotic N-Body gravitational simulation with real-time visual
 
 ```powershell
 # 1. Navigate to project directory
-cd "F:\ETF PROJECTS\N-Body"
+cd "ABSOLUTE_PATH\N-Body"
 
 # 2. Create build directory
 mkdir build
 cd build
 
 # 3. Configure with CMake (first time only)
-cmake -G "MinGW Makefiles" -DSFML_ROOT="C:/SFML 2.6.1/SFML-2.6.1" -DCMAKE_BUILD_TYPE=Release ..
+cmake -G "MinGW Makefiles" -DSFML_ROOT="ABSOLUTE_PATH/SFML-2.6.1" -DCMAKE_BUILD_TYPE=Release ..
 
 # 4. Build
 cmake --build . --config Release
@@ -194,7 +195,7 @@ Edit `N-Body Simulation/config.json` to customize physics parameters:
 ### CMake can't find SFML
 ```powershell
 # Specify exact SFML path:
-cmake -G "MinGW Makefiles" -DSFML_ROOT="C:/SFML 2.6.1/SFML-2.6.1" ..
+cmake -G "MinGW Makefiles" -DSFML_ROOT="ABSOLUTE_PATH/SFML-2.6.1" ..
 ```
 
 ### Compiler not found
