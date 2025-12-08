@@ -226,3 +226,143 @@ FPS: 66.58 | Physics: 11.27 ms | Total frame: 15.33 ms
 FPS: 66.69 | Physics: 11.24 ms | Total frame: 14.80 ms
 === Simulation ended: 2025-11-11 22:21:15 ===
 
+=== Simulation started: 2025-12-09 00:32:41 ===
+=== Number of bodies: 1000 ===
+FPS: 166.96 | Physics: 3.80 ms | Total frame: 4.60 ms
+=== Simulation ended: 2025-12-09 00:32:45 ===
+
+=== Simulation started (Console): 2025-12-09 00:35:19 ===
+=== Number of bodies: 1000 | Steps: 1000 ===
+[Step 585/1000] FPS: 584.60 | Physics Avg: 0.00 ms | Total Avg: 0.00 ms | Total Sim Time: 1.00 s
+[Step 1000/1000] FPS: 637.17 | Physics Avg: 0.00 ms | Total Avg: 0.00 ms | Total Sim Time: 1.65 s
+=== Simulation ended (Console): 2025-12-09 00:35:21 ===
+
+=== Simulation started (Console): 2025-12-09 00:36:07 ===
+=== Number of bodies: 50000 | Steps: 1000 ===
+[Step 6/1000] FPS: 5.18 | Physics Avg: 35.30 ms | Total Avg: 35.30 ms | Total Sim Time: 1.16 s
+[Step 11/1000] FPS: 4.67 | Physics Avg: 42.21 ms | Total Avg: 42.21 ms | Total Sim Time: 2.23 s
+[Step 16/1000] FPS: 4.80 | Physics Avg: 41.07 ms | Total Avg: 41.07 ms | Total Sim Time: 3.27 s
+[Step 22/1000] FPS: 5.04 | Physics Avg: 32.39 ms | Total Avg: 32.39 ms | Total Sim Time: 4.46 s
+[Step 28/1000] FPS: 5.16 | Physics Avg: 32.44 ms | Total Avg: 32.44 ms | Total Sim Time: 5.62 s
+[Step 34/1000] FPS: 5.33 | Physics Avg: 30.94 ms | Total Avg: 30.94 ms | Total Sim Time: 6.75 s
+[Step 40/1000] FPS: 5.35 | Physics Avg: 31.19 ms | Total Avg: 31.19 ms | Total Sim Time: 7.87 s
+[Step 46/1000] FPS: 5.40 | Physics Avg: 30.75 ms | Total Avg: 30.75 ms | Total Sim Time: 8.98 s
+[Step 52/1000] FPS: 5.44 | Physics Avg: 30.45 ms | Total Avg: 30.45 ms | Total Sim Time: 10.09 s
+[Step 58/1000] FPS: 5.51 | Physics Avg: 30.06 ms | Total Avg: 30.06 ms | Total Sim Time: 11.17 s
+[Step 64/1000] FPS: 5.57 | Physics Avg: 29.84 ms | Total Avg: 29.84 ms | Total Sim Time: 12.25 s
+[Step 70/1000] FPS: 5.61 | Physics Avg: 29.23 ms | Total Avg: 29.23 ms | Total Sim Time: 13.32 s
+[Step 76/1000] FPS: 5.70 | Physics Avg: 29.03 ms | Total Avg: 29.03 ms | Total Sim Time: 14.37 s
+[Step 82/1000] FPS: 5.79 | Physics Avg: 28.68 ms | Total Avg: 28.68 ms | Total Sim Time: 15.41 s
+[Step 88/1000] FPS: 5.76 | Physics Avg: 28.46 ms | Total Avg: 28.46 ms | Total Sim Time: 16.45 s
+[Step 94/1000] FPS: 5.88 | Physics Avg: 28.13 ms | Total Avg: 28.13 ms | Total Sim Time: 17.47 s
+[Step 100/1000] FPS: 5.88 | Physics Avg: 28.10 ms | Total Avg: 28.10 ms | Total Sim Time: 18.49 s
+[Step 106/1000] FPS: 5.86 | Physics Avg: 27.95 ms | Total Avg: 27.95 ms | Total Sim Time: 19.52 s
+[Step 112/1000] FPS: 6.00 | Physics Avg: 27.63 ms | Total Avg: 27.63 ms | Total Sim Time: 20.52 s
+[Step 119/1000] FPS: 6.02 | Physics Avg: 23.56 ms | Total Avg: 23.56 ms | Total Sim Time: 21.68 s
+[Step 125/1000] FPS: 5.98 | Physics Avg: 27.56 ms | Total Avg: 27.56 ms | Total Sim Time: 22.68 s
+[Step 132/1000] FPS: 6.03 | Physics Avg: 23.40 ms | Total Avg: 23.40 ms | Total Sim Time: 23.85 s
+[Step 139/1000] FPS: 6.06 | Physics Avg: 23.66 ms | Total Avg: 23.66 ms | Total Sim Time: 25.00 s
+[Step 146/1000] FPS: 5.96 | Physics Avg: 24.98 ms | Total Avg: 24.98 ms | Total Sim Time: 26.18 s
+[Step 152/1000] FPS: 5.89 | Physics Avg: 28.42 ms | Total Avg: 28.42 ms | Total Sim Time: 27.19 s
+[Step 158/1000] FPS: 5.79 | Physics Avg: 28.51 ms | Total Avg: 28.51 ms | Total Sim Time: 28.23 s
+[Step 164/1000] FPS: 5.95 | Physics Avg: 28.57 ms | Total Avg: 28.57 ms | Total Sim Time: 29.24 s
+[Step 170/1000] FPS: 5.92 | Physics Avg: 28.53 ms | Total Avg: 28.53 ms | Total Sim Time: 30.25 s
+[Step 176/1000] FPS: 5.86 | Physics Avg: 28.11 ms | Total Avg: 28.11 ms | Total Sim Time: 31.28 s
+[Step 182/1000] FPS: 5.75 | Physics Avg: 28.33 ms | Total Avg: 28.33 ms | Total Sim Time: 32.32 s
+[Step 188/1000] FPS: 5.93 | Physics Avg: 29.28 ms | Total Avg: 29.28 ms | Total Sim Time: 33.33 s
+=== Simulation started (Console): 2025-12-09 00:36:52 ===
+=== Number of bodies: 1000 | Steps: 1000 ===
+[Step 566/1000] FPS: 565.75 | Physics Avg: 0.00 ms | Total Avg: 0.00 ms | Total Sim Time: 1.00 s
+[Step 1000/1000] FPS: 640.35 | Physics Avg: 0.00 ms | Total Avg: 0.00 ms | Total Sim Time: 1.68 s
+=== Simulation ended (Console): 2025-12-09 00:36:54 ===
+
+=== Simulation started (Console): 2025-12-09 00:37:30 ===
+=== Number of bodies: 10000 | Steps: 1000 ===
+[Step 34/1000] FPS: 33.52 | Physics Avg: 0.88 ms | Total Avg: 0.88 ms | Total Sim Time: 1.01 s
+[Step 67/1000] FPS: 32.32 | Physics Avg: 0.93 ms | Total Avg: 0.93 ms | Total Sim Time: 2.04 s
+[Step 101/1000] FPS: 33.75 | Physics Avg: 0.84 ms | Total Avg: 0.84 ms | Total Sim Time: 3.04 s
+[Step 137/1000] FPS: 35.05 | Physics Avg: 0.80 ms | Total Avg: 0.80 ms | Total Sim Time: 4.07 s
+[Step 173/1000] FPS: 35.64 | Physics Avg: 0.78 ms | Total Avg: 0.78 ms | Total Sim Time: 5.08 s
+[Step 209/1000] FPS: 35.89 | Physics Avg: 0.76 ms | Total Avg: 0.76 ms | Total Sim Time: 6.08 s
+[Step 246/1000] FPS: 36.50 | Physics Avg: 0.73 ms | Total Avg: 0.73 ms | Total Sim Time: 7.10 s
+[Step 284/1000] FPS: 37.05 | Physics Avg: 0.71 ms | Total Avg: 0.71 ms | Total Sim Time: 8.12 s
+[Step 322/1000] FPS: 37.11 | Physics Avg: 0.71 ms | Total Avg: 0.71 ms | Total Sim Time: 9.15 s
+[Step 360/1000] FPS: 37.53 | Physics Avg: 0.70 ms | Total Avg: 0.70 ms | Total Sim Time: 10.16 s
+[Step 398/1000] FPS: 37.91 | Physics Avg: 0.68 ms | Total Avg: 0.68 ms | Total Sim Time: 11.16 s
+[Step 437/1000] FPS: 38.68 | Physics Avg: 0.66 ms | Total Avg: 0.66 ms | Total Sim Time: 12.17 s
+[Step 477/1000] FPS: 39.13 | Physics Avg: 0.63 ms | Total Avg: 0.63 ms | Total Sim Time: 13.19 s
+[Step 517/1000] FPS: 39.51 | Physics Avg: 0.62 ms | Total Avg: 0.62 ms | Total Sim Time: 14.20 s
+[Step 557/1000] FPS: 39.74 | Physics Avg: 0.62 ms | Total Avg: 0.62 ms | Total Sim Time: 15.21 s
+[Step 597/1000] FPS: 39.85 | Physics Avg: 0.62 ms | Total Avg: 0.62 ms | Total Sim Time: 16.21 s
+=== Simulation started (Console): 2025-12-09 00:38:11 ===
+=== Number of bodies: 1000 | Steps: 10000 ===
+[Step 574/10000] FPS: 573.61 | Physics Avg: 0.00 ms | Total Avg: 0.00 ms | Total Sim Time: 1.00 s
+[Step 1232/10000] FPS: 657.84 | Physics Avg: 0.00 ms | Total Avg: 0.00 ms | Total Sim Time: 2.00 s
+[Step 1963/10000] FPS: 730.97 | Physics Avg: 0.00 ms | Total Avg: 0.00 ms | Total Sim Time: 3.00 s
+[Step 2768/10000] FPS: 804.77 | Physics Avg: 0.00 ms | Total Avg: 0.00 ms | Total Sim Time: 4.00 s
+[Step 3713/10000] FPS: 944.83 | Physics Avg: 0.00 ms | Total Avg: 0.00 ms | Total Sim Time: 5.00 s
+[Step 4840/10000] FPS: 1126.22 | Physics Avg: 0.00 ms | Total Avg: 0.00 ms | Total Sim Time: 6.00 s
+[Step 6160/10000] FPS: 1319.41 | Physics Avg: 0.00 ms | Total Avg: 0.00 ms | Total Sim Time: 7.00 s
+[Step 7770/10000] FPS: 1609.55 | Physics Avg: 0.00 ms | Total Avg: 0.00 ms | Total Sim Time: 8.00 s
+[Step 9856/10000] FPS: 2085.45 | Physics Avg: 0.00 ms | Total Avg: 0.00 ms | Total Sim Time: 9.00 s
+[Step 10000/10000] FPS: 2561.60 | Physics Avg: 0.00 ms | Total Avg: 0.00 ms | Total Sim Time: 9.06 s
+=== Simulation ended (Console): 2025-12-09 00:38:20 ===
+
+=== Simulation started: 2025-12-09 00:39:38 ===
+=== Number of bodies: 1000 ===
+FPS: 161.27 | Physics: 5.87 ms | Total frame: 7.29 ms
+FPS: 176.97 | Physics: 2.58 ms | Total frame: 3.21 ms
+FPS: 180.59 | Physics: 5.05 ms | Total frame: 6.56 ms
+=== Simulation ended: 2025-12-09 00:39:48 ===
+
+=== Simulation started: 2025-12-09 00:40:58 ===
+=== Number of bodies: 1000 ===
+FPS: 656.71 | Physics: 1.24 ms | Total frame: 1.24 ms
+FPS: 835.40 | Physics: 1.17 ms | Total frame: 1.17 ms
+FPS: 1026.56 | Physics: 0.86 ms | Total frame: 0.86 ms
+FPS: 1305.77 | Physics: 0.68 ms | Total frame: 0.68 ms
+FPS: 1759.69 | Physics: 0.48 ms | Total frame: 0.48 ms
+FPS: 2568.41 | Physics: 0.31 ms | Total frame: 0.31 ms
+FPS: 4037.49 | Physics: 0.18 ms | Total frame: 0.18 ms
+FPS: 13829.95 | Physics: 0.03 ms | Total frame: 0.03 ms
+FPS: 45500.68 | Physics: 0.02 ms | Total frame: 0.02 ms
+FPS: 55971.79 | Physics: 0.02 ms | Total frame: 0.02 ms
+FPS: 56295.70 | Physics: 0.02 ms | Total frame: 0.02 ms
+FPS: 56139.05 | Physics: 0.02 ms | Total frame: 0.02 ms
+FPS: 56121.03 | Physics: 0.02 ms | Total frame: 0.02 ms
+FPS: 56118.38 | Physics: 0.02 ms | Total frame: 0.02 ms
+=== Simulation started: 2025-12-09 00:41:22 ===
+=== Number of bodies: 1000 ===
+FPS: 693.61 | Physics: 1.23 ms | Total frame: 1.23 ms
+=== Simulation started: 2025-12-09 00:41:36 ===
+=== Number of bodies: 1000 ===
+FPS: 667.53 | Physics: 1.26 ms | Total frame: 1.26 ms
+FPS: 876.75 | Physics: 1.00 ms | Total frame: 1.00 ms
+FPS: 1083.20 | Physics: 0.87 ms | Total frame: 0.87 ms
+FPS: 1394.96 | Physics: 0.61 ms | Total frame: 0.61 ms
+FPS: 1778.22 | Physics: 0.57 ms | Total frame: 0.57 ms
+FPS: 2697.99 | Physics: 0.26 ms | Total frame: 0.26 ms
+FPS: 5147.58 | Physics: 0.11 ms | Total frame: 0.11 ms
+FPS: 30195.68 | Physics: 0.02 ms | Total frame: 0.02 ms
+FPS: 51052.62 | Physics: 0.02 ms | Total frame: 0.02 ms
+FPS: 56820.96 | Physics: 0.02 ms | Total frame: 0.02 ms
+FPS: 56765.97 | Physics: 0.02 ms | Total frame: 0.02 ms
+FPS: 56803.43 | Physics: 0.02 ms | Total frame: 0.02 ms
+FPS: 56766.85 | Physics: 0.02 ms | Total frame: 0.02 ms
+FPS: 56761.09 | Physics: 0.02 ms | Total frame: 0.02 ms
+FPS: 56880.38 | Physics: 0.02 ms | Total frame: 0.02 ms
+FPS: 56884.53 | Physics: 0.02 ms | Total frame: 0.02 ms
+FPS: 56696.64 | Physics: 0.02 ms | Total frame: 0.02 ms
+FPS: 56780.76 | Physics: 0.02 ms | Total frame: 0.02 ms
+FPS: 56781.30 | Physics: 0.02 ms | Total frame: 0.02 ms
+FPS: 56823.65 | Physics: 0.02 ms | Total frame: 0.02 ms
+FPS: 56865.37 | Physics: 0.02 ms | Total frame: 0.02 ms
+FPS: 56700.11 | Physics: 0.02 ms | Total frame: 0.02 ms
+FPS: 56706.08 | Physics: 0.02 ms | Total frame: 0.02 ms
+FPS: 56776.78 | Physics: 0.02 ms | Total frame: 0.02 ms
+FPS: 55421.90 | Physics: 0.02 ms | Total frame: 0.02 ms
+FPS: 56645.18 | Physics: 0.02 ms | Total frame: 0.02 ms
+FPS: 56763.05 | Physics: 0.02 ms | Total frame: 0.02 ms
+FPS: 56711.75 | Physics: 0.02 ms | Total frame: 0.02 ms
+FPS: 56667.74 | Physics: 0.02 ms | Total frame: 0.02 ms
+FPS: 56676.64 | Physics: 0.02 ms | Total frame: 0.02 ms
