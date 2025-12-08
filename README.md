@@ -71,7 +71,8 @@ brew install cmake sfml open-mp
 cd /path/to/N-Body
 mkdir build && cd build
 cmake -DCMAKE_BUILD_TYPE=Release ..
-make
+make -j$(nproc)
+chmod +x bin/n-body-simulation bin/benchmark
 
 # 3. Run
 ./bin/n-body-simulation     # Main app
