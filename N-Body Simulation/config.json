@@ -6,7 +6,7 @@
     "spread": 400.0,
     "mass": 1000.0,
     "theta": 1.0,
-    "dt": 0.05
+    "dt": 0.03
   },
   "display": {
     "windowSize": 1000,
