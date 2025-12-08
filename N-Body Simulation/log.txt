@@ -2490,3 +2490,772 @@ FPS: 1.36 | Physics: 12.22 ms | Total frame: 656.77 ms | N=1000000
 FPS: 1.53 | Physics: 11.26 ms | Total frame: 656.54 ms | N=1000000
 === Simulation ended: 2025-12-06 19:09:14 ===
 
+FPS: 256.56 | Physics: 4.84 ms | Total frame: 4.84 ms
+FPS: 261.82 | Physics: 4.77 ms | Total frame: 4.77 ms
+FPS: 280.21 | Physics: 3.79 ms | Total frame: 3.79 ms
+FPS: 304.41 | Physics: 2.67 ms | Total frame: 2.67 ms
+FPS: 55.27 | Physics: 3.46 ms | Total frame: 16.74 ms
+FPS: 58.23 | Physics: 4.16 ms | Total frame: 16.76 ms
+FPS: 59.64 | Physics: 4.08 ms | Total frame: 16.68 ms
+FPS: 58.85 | Physics: 6.69 ms | Total frame: 23.80 ms
+FPS: 58.68 | Physics: 6.29 ms | Total frame: 18.74 ms
+FPS: 59.03 | Physics: 3.55 ms | Total frame: 16.79 ms
+FPS: 59.27 | Physics: 3.77 ms | Total frame: 16.77 ms
+FPS: 58.90 | Physics: 3.73 ms | Total frame: 16.68 ms
+FPS: 59.03 | Physics: 3.84 ms | Total frame: 16.71 ms
+FPS: 58.93 | Physics: 3.99 ms | Total frame: 16.71 ms
+FPS: 57.64 | Physics: 3.46 ms | Total frame: 16.72 ms
+FPS: 58.49 | Physics: 3.12 ms | Total frame: 16.74 ms
+FPS: 59.15 | Physics: 3.45 ms | Total frame: 16.70 ms
+FPS: 58.96 | Physics: 3.77 ms | Total frame: 16.68 ms
+=== Benchmark ended: 2025-12-08 22:25:00 ===
+
+=== Simulation started (HEADLESS): 2025-12-08 22:31:53 ===
+=== Number of bodies: 50000 ===
+=== Using parallelizations: Yes ===
+=== Data Structure: Struct of Arrays (SoA) + AVX ===
+SPS (Steps/Sec): 82.75 | Step Time: 9.84 ms | N=50000
+SPS (Steps/Sec): 129.54 | Step Time: 5.46 ms | N=50000
+SPS (Steps/Sec): 235.98 | Step Time: 3.01 ms | N=50000
+SPS (Steps/Sec): 506.50 | Step Time: 1.33 ms | N=50000
+SPS (Steps/Sec): 1063.73 | Step Time: 0.81 ms | N=50000
+SPS (Steps/Sec): 1275.56 | Step Time: 0.65 ms | N=50000
+SPS (Steps/Sec): 1475.16 | Step Time: 1.43 ms | N=50000
+SPS (Steps/Sec): 1555.44 | Step Time: 0.76 ms | N=50000
+SPS (Steps/Sec): 1711.59 | Step Time: 0.55 ms | N=50000
+SPS (Steps/Sec): 1974.56 | Step Time: 0.44 ms | N=50000
+SPS (Steps/Sec): 1566.60 | Step Time: 0.74 ms | N=50000
+SPS (Steps/Sec): 1529.62 | Step Time: 0.41 ms | N=50000
+SPS (Steps/Sec): 1920.31 | Step Time: 0.50 ms | N=50000
+SPS (Steps/Sec): 1919.18 | Step Time: 0.53 ms | N=50000
+SPS (Steps/Sec): 1625.30 | Step Time: 1.15 ms | N=50000
+SPS (Steps/Sec): 2023.35 | Step Time: 0.61 ms | N=50000
+SPS (Steps/Sec): 1894.69 | Step Time: 0.86 ms | N=50000
+SPS (Steps/Sec): 2241.79 | Step Time: 0.40 ms | N=50000
+SPS (Steps/Sec): 2363.11 | Step Time: 0.42 ms | N=50000
+SPS (Steps/Sec): 2171.68 | Step Time: 0.40 ms | N=50000
+SPS (Steps/Sec): 2190.30 | Step Time: 0.40 ms | N=50000
+SPS (Steps/Sec): 2337.47 | Step Time: 0.40 ms | N=50000
+SPS (Steps/Sec): 2385.05 | Step Time: 0.41 ms | N=50000
+SPS (Steps/Sec): 2345.65 | Step Time: 0.40 ms | N=50000
+SPS (Steps/Sec): 2379.24 | Step Time: 0.39 ms | N=50000
+SPS (Steps/Sec): 2355.92 | Step Time: 0.41 ms | N=50000
+SPS (Steps/Sec): 2385.68 | Step Time: 0.40 ms | N=50000
+SPS (Steps/Sec): 2349.13 | Step Time: 0.46 ms | N=50000
+SPS (Steps/Sec): 1994.75 | Step Time: 0.50 ms | N=50000
+SPS (Steps/Sec): 2257.93 | Step Time: 0.41 ms | N=50000
+=== Simulation started: 2025-12-08 22:35:51 ===
+=== Number of bodies: 50000 ===
+=== Using parallelizations: No ===
+=== Data Structure: Struct of Arrays (SoA) + AVX ===
+FPS: 26.76 | Physics: 14.05 ms | Total frame: 33.95 ms | N=50000
+FPS: 31.77 | Physics: 4.79 ms | Total frame: 27.61 ms | N=50000
+FPS: 46.48 | Physics: 0.52 ms | Total frame: 19.70 ms | N=50000
+FPS: 48.37 | Physics: 0.56 ms | Total frame: 20.50 ms | N=50000
+FPS: 48.07 | Physics: 0.62 ms | Total frame: 21.08 ms | N=50000
+FPS: 47.80 | Physics: 0.50 ms | Total frame: 20.20 ms | N=50000
+FPS: 48.60 | Physics: 0.52 ms | Total frame: 20.55 ms | N=50000
+FPS: 48.20 | Physics: 0.45 ms | Total frame: 20.07 ms | N=50000
+FPS: 48.82 | Physics: 0.54 ms | Total frame: 20.08 ms | N=50000
+FPS: 48.68 | Physics: 0.59 ms | Total frame: 20.60 ms | N=50000
+FPS: 48.19 | Physics: 0.52 ms | Total frame: 20.64 ms | N=50000
+FPS: 49.51 | Physics: 0.50 ms | Total frame: 19.91 ms | N=50000
+FPS: 49.34 | Physics: 0.53 ms | Total frame: 20.45 ms | N=50000
+=== Simulation ended: 2025-12-08 22:36:05 ===
+
+=== Simulation started: 2025-12-08 22:36:25 ===
+=== Number of bodies: 50000 ===
+=== Using parallelizations: Yes ===
+=== Data Structure: Struct of Arrays (SoA) + AVX ===
+FPS: 23.79 | Physics: 11.13 ms | Total frame: 30.31 ms | N=50000
+FPS: 32.23 | Physics: 7.93 ms | Total frame: 28.09 ms | N=50000
+FPS: 33.52 | Physics: 10.58 ms | Total frame: 30.82 ms | N=50000
+FPS: 34.71 | Physics: 9.93 ms | Total frame: 34.88 ms | N=50000
+FPS: 35.68 | Physics: 9.98 ms | Total frame: 36.25 ms | N=50000
+FPS: 36.70 | Physics: 6.08 ms | Total frame: 25.95 ms | N=50000
+FPS: 35.50 | Physics: 5.21 ms | Total frame: 30.61 ms | N=50000
+FPS: 38.61 | Physics: 5.17 ms | Total frame: 24.51 ms | N=50000
+FPS: 39.64 | Physics: 4.55 ms | Total frame: 25.12 ms | N=50000
+FPS: 41.53 | Physics: 4.21 ms | Total frame: 23.65 ms | N=50000
+FPS: 39.72 | Physics: 3.90 ms | Total frame: 26.87 ms | N=50000
+FPS: 40.29 | Physics: 3.54 ms | Total frame: 24.31 ms | N=50000
+FPS: 43.02 | Physics: 3.09 ms | Total frame: 23.01 ms | N=50000
+FPS: 43.26 | Physics: 2.95 ms | Total frame: 21.82 ms | N=50000
+FPS: 44.30 | Physics: 2.60 ms | Total frame: 23.09 ms | N=50000
+FPS: 43.23 | Physics: 2.48 ms | Total frame: 22.03 ms | N=50000
+=== Simulation ended: 2025-12-08 22:36:42 ===
+
+FPS: 59.24 | Physics: 4.76 ms | Total frame: 16.76 ms | N=10000 | Mode: BarnesHut
+FPS: 58.90 | Physics: 3.29 ms | Total frame: 16.76 ms | N=10000 | Mode: BarnesHut
+FPS: 59.68 | Physics: 2.21 ms | Total frame: 16.73 ms | N=10000 | Mode: BarnesHut
+FPS: 59.73 | Physics: 2.51 ms | Total frame: 16.76 ms | N=10000 | Mode: BarnesHut
+FPS: 59.60 | Physics: 2.24 ms | Total frame: 16.75 ms | N=10000 | Mode: BarnesHut
+FPS: 59.62 | Physics: 2.81 ms | Total frame: 16.72 ms | N=10000 | Mode: BarnesHut
+FPS: 59.71 | Physics: 2.30 ms | Total frame: 16.73 ms | N=10000 | Mode: BarnesHut
+=== Benchmark ended: 2025-12-08 22:42:18 ===
+
+FPS: 25.45 | Physics: 18.58 ms | Total frame: 37.84 ms | N=50000 | Mode: BarnesHut
+FPS: 28.62 | Physics: 9.90 ms | Total frame: 33.40 ms | N=50000 | Mode: BarnesHut
+FPS: 38.12 | Physics: 5.96 ms | Total frame: 28.81 ms | N=50000 | Mode: BarnesHut
+FPS: 41.06 | Physics: 4.05 ms | Total frame: 23.59 ms | N=50000 | Mode: BarnesHut
+FPS: 41.68 | Physics: 3.64 ms | Total frame: 25.80 ms | N=50000 | Mode: BarnesHut
+FPS: 42.78 | Physics: 3.24 ms | Total frame: 28.04 ms | N=50000 | Mode: BarnesHut
+FPS: 44.22 | Physics: 2.81 ms | Total frame: 21.50 ms | N=50000 | Mode: BarnesHut
+=== Benchmark ended: 2025-12-08 22:42:57 ===
+
+FPS: 23.75 | Physics: 22.95 ms | Total frame: 43.14 ms | N=50000 | Mode: BarnesHut
+FPS: 27.60 | Physics: 9.45 ms | Total frame: 28.61 ms | N=50000 | Mode: BarnesHut
+FPS: 37.38 | Physics: 6.44 ms | Total frame: 31.21 ms | N=50000 | Mode: BarnesHut
+FPS: 40.81 | Physics: 3.86 ms | Total frame: 22.23 ms | N=50000 | Mode: BarnesHut
+FPS: 42.39 | Physics: 3.45 ms | Total frame: 22.33 ms | N=50000 | Mode: BarnesHut
+FPS: 43.60 | Physics: 3.04 ms | Total frame: 23.97 ms | N=50000 | Mode: BarnesHut
+FPS: 44.13 | Physics: 2.70 ms | Total frame: 23.01 ms | N=50000 | Mode: BarnesHut
+FPS: 44.83 | Physics: 3.16 ms | Total frame: 22.46 ms | N=50000 | Mode: BarnesHut
+FPS: 45.05 | Physics: 2.05 ms | Total frame: 21.01 ms | N=50000 | Mode: BarnesHut
+FPS: 45.59 | Physics: 2.20 ms | Total frame: 21.11 ms | N=50000 | Mode: BarnesHut
+FPS: 46.14 | Physics: 1.71 ms | Total frame: 21.31 ms | N=50000 | Mode: BarnesHut
+FPS: 45.44 | Physics: 1.63 ms | Total frame: 22.84 ms | N=50000 | Mode: BarnesHut
+FPS: 46.99 | Physics: 1.63 ms | Total frame: 23.24 ms | N=50000 | Mode: BarnesHut
+FPS: 46.83 | Physics: 1.39 ms | Total frame: 20.42 ms | N=50000 | Mode: BarnesHut
+FPS: 45.74 | Physics: 1.29 ms | Total frame: 20.56 ms | N=50000 | Mode: BarnesHut
+FPS: 47.74 | Physics: 1.25 ms | Total frame: 20.72 ms | N=50000 | Mode: BarnesHut
+=== Benchmark ended: 2025-12-08 22:44:44 ===
+
+FPS: 22.81 | Physics: 19.13 ms | Total frame: 37.89 ms | N=50000 | Mode: BarnesHut
+FPS: 27.42 | Physics: 11.80 ms | Total frame: 31.68 ms | N=50000 | Mode: BarnesHut
+FPS: 37.28 | Physics: 4.88 ms | Total frame: 28.17 ms | N=50000 | Mode: BarnesHut
+FPS: 40.62 | Physics: 3.79 ms | Total frame: 23.23 ms | N=50000 | Mode: BarnesHut
+FPS: 42.36 | Physics: 3.34 ms | Total frame: 22.90 ms | N=50000 | Mode: BarnesHut
+FPS: 42.11 | Physics: 2.88 ms | Total frame: 22.47 ms | N=50000 | Mode: BarnesHut
+FPS: 43.36 | Physics: 2.91 ms | Total frame: 23.43 ms | N=50000 | Mode: BarnesHut
+FPS: 42.80 | Physics: 2.45 ms | Total frame: 26.25 ms | N=50000 | Mode: BarnesHut
+FPS: 44.56 | Physics: 2.17 ms | Total frame: 22.10 ms | N=50000 | Mode: BarnesHut
+FPS: 44.98 | Physics: 1.92 ms | Total frame: 22.89 ms | N=50000 | Mode: BarnesHut
+FPS: 45.76 | Physics: 2.08 ms | Total frame: 20.89 ms | N=50000 | Mode: BarnesHut
+=== Benchmark ended: 2025-12-08 22:45:39 ===
+
+FPS: 948.75 | Physics: 0.16 ms | Total frame: 1.06 ms | N=500 | Mode: BarnesHut
+FPS: 1006.05 | Physics: 0.15 ms | Total frame: 2.41 ms | N=500 | Mode: BarnesHut
+FPS: 998.60 | Physics: 0.12 ms | Total frame: 0.81 ms | N=500 | Mode: BarnesHut
+FPS: 996.63 | Physics: 0.12 ms | Total frame: 0.72 ms | N=500 | Mode: BarnesHut
+FPS: 985.50 | Physics: 0.10 ms | Total frame: 0.68 ms | N=500 | Mode: BarnesHut
+=== Benchmark ended: 2025-12-08 22:46:03 ===
+
+FPS: 846.90 | Physics: 0.37 ms | Total frame: 0.93 ms | N=500 | Mode: BarnesHut
+FPS: 946.95 | Physics: 0.22 ms | Total frame: 0.76 ms | N=500 | Mode: BarnesHut
+FPS: 876.75 | Physics: 0.52 ms | Total frame: 1.45 ms | N=500 | Mode: BarnesHut
+FPS: 903.54 | Physics: 0.62 ms | Total frame: 1.11 ms | N=500 | Mode: BarnesHut
+FPS: 948.52 | Physics: 0.33 ms | Total frame: 0.97 ms | N=500 | Mode: BarnesHut
+FPS: 941.60 | Physics: 0.31 ms | Total frame: 0.77 ms | N=500 | Mode: BarnesHut
+FPS: 938.48 | Physics: 0.24 ms | Total frame: 1.02 ms | N=500 | Mode: BarnesHut
+FPS: 932.79 | Physics: 0.22 ms | Total frame: 0.77 ms | N=500 | Mode: BarnesHut
+FPS: 903.62 | Physics: 0.34 ms | Total frame: 0.83 ms | N=500 | Mode: BarnesHut
+FPS: 887.55 | Physics: 0.15 ms | Total frame: 0.75 ms | N=500 | Mode: BarnesHut
+FPS: 937.57 | Physics: 0.32 ms | Total frame: 1.75 ms | N=500 | Mode: BarnesHut
+FPS: 946.58 | Physics: 0.18 ms | Total frame: 0.99 ms | N=500 | Mode: BarnesHut
+=== Benchmark ended: 2025-12-08 22:47:30 ===
+
+FPS: 21.56 | Physics: 27.78 ms | Total frame: 48.68 ms | N=50000 | Mode: BarnesHut
+FPS: 23.49 | Physics: 19.56 ms | Total frame: 42.13 ms | N=50000 | Mode: BarnesHut
+FPS: 22.44 | Physics: 19.07 ms | Total frame: 40.46 ms | N=50000 | Mode: BarnesHut
+=== Benchmark ended: 2025-12-08 22:48:06 ===
+
+FPS: 23.24 | Physics: 33.31 ms | Total frame: 53.94 ms | N=50000 | Mode: BarnesHut
+FPS: 25.54 | Physics: 19.59 ms | Total frame: 38.78 ms | N=50000 | Mode: BarnesHut
+FPS: 24.35 | Physics: 31.43 ms | Total frame: 49.99 ms | N=50000 | Mode: BarnesHut
+FPS: 24.25 | Physics: 26.35 ms | Total frame: 48.62 ms | N=50000 | Mode: BarnesHut
+FPS: 23.92 | Physics: 20.70 ms | Total frame: 40.16 ms | N=50000 | Mode: BarnesHut
+=== Benchmark ended: 2025-12-08 22:48:45 ===
+
+FPS: 24.98 | Physics: 19.26 ms | Total frame: 39.68 ms | N=50000 | Mode: BarnesHut
+FPS: 25.12 | Physics: 23.66 ms | Total frame: 43.96 ms | N=50000 | Mode: BarnesHut
+FPS: 24.20 | Physics: 21.36 ms | Total frame: 39.93 ms | N=50000 | Mode: BarnesHut
+FPS: 22.87 | Physics: 34.97 ms | Total frame: 55.39 ms | N=50000 | Mode: BarnesHut
+=== Benchmark ended: 2025-12-08 22:48:59 ===
+
+FPS: 24.58 | Physics: 27.99 ms | Total frame: 48.20 ms | N=50000 | Mode: BarnesHut
+FPS: 25.60 | Physics: 9.46 ms | Total frame: 27.76 ms | N=50000 | Mode: BarnesHut
+FPS: 37.45 | Physics: 4.93 ms | Total frame: 24.25 ms | N=50000 | Mode: BarnesHut
+FPS: 40.48 | Physics: 7.64 ms | Total frame: 33.33 ms | N=50000 | Mode: BarnesHut
+FPS: 41.24 | Physics: 3.60 ms | Total frame: 24.43 ms | N=50000 | Mode: BarnesHut
+=== Benchmark ended: 2025-12-08 22:49:18 ===
+
+FPS: 24.46 | Physics: 19.44 ms | Total frame: 37.41 ms | N=50000 | Mode: BarnesHut
+FPS: 24.92 | Physics: 19.14 ms | Total frame: 37.75 ms | N=50000 | Mode: BarnesHut
+FPS: 25.24 | Physics: 28.08 ms | Total frame: 48.33 ms | N=50000 | Mode: BarnesHut
+FPS: 24.98 | Physics: 19.53 ms | Total frame: 41.61 ms | N=50000 | Mode: BarnesHut
+FPS: 24.46 | Physics: 19.33 ms | Total frame: 37.82 ms | N=50000 | Mode: BarnesHut
+FPS: 25.75 | Physics: 18.35 ms | Total frame: 36.84 ms | N=50000 | Mode: BarnesHut
+FPS: 26.63 | Physics: 16.41 ms | Total frame: 35.27 ms | N=50000 | Mode: BarnesHut
+FPS: 27.82 | Physics: 14.42 ms | Total frame: 33.85 ms | N=50000 | Mode: BarnesHut
+FPS: 29.41 | Physics: 13.56 ms | Total frame: 33.06 ms | N=50000 | Mode: BarnesHut
+FPS: 28.90 | Physics: 13.19 ms | Total frame: 34.36 ms | N=50000 | Mode: BarnesHut
+FPS: 28.90 | Physics: 13.05 ms | Total frame: 32.37 ms | N=50000 | Mode: BarnesHut
+FPS: 29.63 | Physics: 13.17 ms | Total frame: 32.49 ms | N=50000 | Mode: BarnesHut
+FPS: 28.56 | Physics: 13.56 ms | Total frame: 34.09 ms | N=50000 | Mode: BarnesHut
+FPS: 28.44 | Physics: 15.04 ms | Total frame: 36.76 ms | N=50000 | Mode: BarnesHut
+=== Benchmark ended: 2025-12-08 22:49:46 ===
+
+FPS: 21.02 | Physics: 28.32 ms | Total frame: 51.57 ms | N=50000 | Mode: BarnesHut
+FPS: 21.68 | Physics: 23.99 ms | Total frame: 46.76 ms | N=50000 | Mode: BarnesHut
+FPS: 20.87 | Physics: 37.32 ms | Total frame: 63.87 ms | N=50000 | Mode: BarnesHut
+FPS: 20.81 | Physics: 22.63 ms | Total frame: 44.23 ms | N=50000 | Mode: BarnesHut
+=== Benchmark ended: 2025-12-08 22:51:19 ===
+
+FPS: 944.97 | Physics: 0.20 ms | Total frame: 0.58 ms | N=500 | Mode: BarnesHut
+FPS: 1328.78 | Physics: 0.18 ms | Total frame: 0.50 ms | N=500 | Mode: BarnesHut
+FPS: 1352.51 | Physics: 0.13 ms | Total frame: 0.42 ms | N=500 | Mode: BarnesHut
+FPS: 1264.21 | Physics: 0.11 ms | Total frame: 0.80 ms | N=500 | Mode: BarnesHut
+FPS: 1212.90 | Physics: 0.24 ms | Total frame: 1.17 ms | N=500 | Mode: BarnesHut
+FPS: 1227.65 | Physics: 0.14 ms | Total frame: 0.64 ms | N=500 | Mode: BarnesHut
+FPS: 1322.58 | Physics: 0.13 ms | Total frame: 0.55 ms | N=500 | Mode: BarnesHut
+FPS: 1178.05 | Physics: 0.06 ms | Total frame: 1.04 ms | N=500 | Mode: BarnesHut
+FPS: 1255.77 | Physics: 0.17 ms | Total frame: 0.82 ms | N=500 | Mode: BarnesHut
+=== Benchmark ended: 2025-12-08 22:51:41 ===
+
+FPS: 1243.60 | Physics: 0.22 ms | Total frame: 0.47 ms | N=500 | Mode: BarnesHut
+FPS: 1317.59 | Physics: 0.22 ms | Total frame: 2.00 ms | N=500 | Mode: BarnesHut
+FPS: 1060.09 | Physics: 0.51 ms | Total frame: 1.40 ms | N=500 | Mode: BarnesHut
+FPS: 1136.78 | Physics: 0.36 ms | Total frame: 1.97 ms | N=500 | Mode: BarnesHut
+FPS: 1246.92 | Physics: 0.16 ms | Total frame: 0.52 ms | N=500 | Mode: BarnesHut
+FPS: 1242.69 | Physics: 0.65 ms | Total frame: 2.20 ms | N=500 | Mode: BarnesHut
+=== Benchmark ended: 2025-12-08 22:53:59 ===
+
+FPS: 15.97 | Physics: 38.03 ms | Total frame: 58.78 ms | N=50000 | Mode: BarnesHut
+FPS: 16.30 | Physics: 32.15 ms | Total frame: 53.19 ms | N=50000 | Mode: BarnesHut
+FPS: 16.85 | Physics: 49.71 ms | Total frame: 72.56 ms | N=50000 | Mode: BarnesHut
+FPS: 16.65 | Physics: 31.83 ms | Total frame: 53.82 ms | N=50000 | Mode: BarnesHut
+FPS: 16.24 | Physics: 45.94 ms | Total frame: 68.14 ms | N=50000 | Mode: BarnesHut
+FPS: 16.21 | Physics: 31.83 ms | Total frame: 54.46 ms | N=50000 | Mode: BarnesHut
+FPS: 17.45 | Physics: 32.10 ms | Total frame: 53.93 ms | N=50000 | Mode: BarnesHut
+=== Benchmark ended: 2025-12-08 22:54:18 ===
+
+FPS: 20.80 | Physics: 20.75 ms | Total frame: 44.13 ms | N=50000 | Mode: BarnesHut
+FPS: 21.74 | Physics: 23.00 ms | Total frame: 43.80 ms | N=50000 | Mode: BarnesHut
+FPS: 22.67 | Physics: 21.46 ms | Total frame: 43.84 ms | N=50000 | Mode: BarnesHut
+FPS: 22.99 | Physics: 23.69 ms | Total frame: 45.03 ms | N=50000 | Mode: BarnesHut
+FPS: 22.22 | Physics: 21.52 ms | Total frame: 63.69 ms | N=50000 | Mode: BarnesHut
+FPS: 21.66 | Physics: 21.39 ms | Total frame: 41.68 ms | N=50000 | Mode: BarnesHut
+FPS: 22.91 | Physics: 19.93 ms | Total frame: 42.17 ms | N=50000 | Mode: BarnesHut
+FPS: 22.82 | Physics: 16.97 ms | Total frame: 37.59 ms | N=50000 | Mode: BarnesHut
+FPS: 24.17 | Physics: 15.96 ms | Total frame: 37.58 ms | N=50000 | Mode: BarnesHut
+FPS: 25.96 | Physics: 16.40 ms | Total frame: 42.05 ms | N=50000 | Mode: BarnesHut
+FPS: 26.82 | Physics: 22.16 ms | Total frame: 48.13 ms | N=50000 | Mode: BarnesHut
+FPS: 25.85 | Physics: 13.95 ms | Total frame: 34.95 ms | N=50000 | Mode: BarnesHut
+FPS: 26.58 | Physics: 14.15 ms | Total frame: 34.43 ms | N=50000 | Mode: BarnesHut
+FPS: 27.26 | Physics: 14.29 ms | Total frame: 34.25 ms | N=50000 | Mode: BarnesHut
+FPS: 27.40 | Physics: 18.57 ms | Total frame: 39.57 ms | N=50000 | Mode: BarnesHut
+FPS: 27.12 | Physics: 14.10 ms | Total frame: 35.04 ms | N=50000 | Mode: BarnesHut
+FPS: 27.21 | Physics: 14.08 ms | Total frame: 36.25 ms | N=50000 | Mode: BarnesHut
+FPS: 25.08 | Physics: 25.43 ms | Total frame: 50.72 ms | N=50000 | Mode: BarnesHut
+FPS: 25.20 | Physics: 24.70 ms | Total frame: 53.81 ms | N=50000 | Mode: BarnesHut
+FPS: 26.90 | Physics: 19.77 ms | Total frame: 41.94 ms | N=50000 | Mode: BarnesHut
+FPS: 26.17 | Physics: 16.96 ms | Total frame: 38.70 ms | N=50000 | Mode: BarnesHut
+FPS: 25.58 | Physics: 14.62 ms | Total frame: 36.33 ms | N=50000 | Mode: BarnesHut
+FPS: 19.18 | Physics: 24.62 ms | Total frame: 61.72 ms | N=50000 | Mode: BarnesHut
+FPS: 16.85 | Physics: 21.52 ms | Total frame: 53.38 ms | N=50000 | Mode: BarnesHut
+FPS: 18.45 | Physics: 21.61 ms | Total frame: 51.60 ms | N=50000 | Mode: BarnesHut
+FPS: 17.60 | Physics: 22.15 ms | Total frame: 54.44 ms | N=50000 | Mode: BarnesHut
+FPS: 18.40 | Physics: 21.38 ms | Total frame: 52.54 ms | N=50000 | Mode: BarnesHut
+FPS: 18.32 | Physics: 28.00 ms | Total frame: 70.94 ms | N=50000 | Mode: BarnesHut
+FPS: 17.51 | Physics: 26.08 ms | Total frame: 60.15 ms | N=50000 | Mode: BarnesHut
+FPS: 17.75 | Physics: 20.01 ms | Total frame: 52.13 ms | N=50000 | Mode: BarnesHut
+FPS: 18.92 | Physics: 25.36 ms | Total frame: 59.36 ms | N=50000 | Mode: BarnesHut
+FPS: 19.70 | Physics: 21.00 ms | Total frame: 58.47 ms | N=50000 | Mode: BarnesHut
+FPS: 18.42 | Physics: 18.39 ms | Total frame: 49.71 ms | N=50000 | Mode: BarnesHut
+FPS: 18.88 | Physics: 17.86 ms | Total frame: 50.20 ms | N=50000 | Mode: BarnesHut
+FPS: 20.70 | Physics: 17.46 ms | Total frame: 47.52 ms | N=50000 | Mode: BarnesHut
+=== Benchmark ended: 2025-12-08 22:55:20 ===
+
+FPS: 108.74 | Physics: 3.27 ms | Total frame: 8.00 ms | N=10000 | Mode: BarnesHut
+FPS: 133.39 | Physics: 1.80 ms | Total frame: 7.57 ms | N=10000 | Mode: BarnesHut
+FPS: 137.60 | Physics: 1.61 ms | Total frame: 6.36 ms | N=10000 | Mode: BarnesHut
+FPS: 127.36 | Physics: 2.04 ms | Total frame: 6.22 ms | N=10000 | Mode: BarnesHut
+FPS: 137.07 | Physics: 1.35 ms | Total frame: 7.44 ms | N=10000 | Mode: BarnesHut
+FPS: 112.00 | Physics: 2.46 ms | Total frame: 12.54 ms | N=10000 | Mode: BarnesHut
+FPS: 80.44 | Physics: 2.54 ms | Total frame: 11.11 ms | N=10000 | Mode: BarnesHut
+FPS: 103.99 | Physics: 1.48 ms | Total frame: 9.78 ms | N=10000 | Mode: BarnesHut
+FPS: 117.67 | Physics: 1.42 ms | Total frame: 8.35 ms | N=10000 | Mode: BarnesHut
+FPS: 119.81 | Physics: 1.35 ms | Total frame: 9.60 ms | N=10000 | Mode: BarnesHut
+FPS: 124.78 | Physics: 1.09 ms | Total frame: 8.13 ms | N=10000 | Mode: BarnesHut
+FPS: 114.92 | Physics: 1.05 ms | Total frame: 10.02 ms | N=10000 | Mode: BarnesHut
+FPS: 123.44 | Physics: 1.77 ms | Total frame: 9.02 ms | N=10000 | Mode: BarnesHut
+FPS: 117.39 | Physics: 0.88 ms | Total frame: 7.72 ms | N=10000 | Mode: BarnesHut
+FPS: 115.43 | Physics: 0.94 ms | Total frame: 9.16 ms | N=10000 | Mode: BarnesHut
+FPS: 121.36 | Physics: 0.72 ms | Total frame: 7.56 ms | N=10000 | Mode: BarnesHut
+=== Benchmark ended: 2025-12-08 22:55:54 ===
+
+FPS: 115.69 | Physics: 2.94 ms | Total frame: 7.10 ms | N=10000 | Mode: BarnesHut
+FPS: 126.52 | Physics: 2.86 ms | Total frame: 8.69 ms | N=10000 | Mode: BarnesHut
+FPS: 132.11 | Physics: 1.80 ms | Total frame: 6.87 ms | N=10000 | Mode: BarnesHut
+FPS: 140.17 | Physics: 1.94 ms | Total frame: 7.58 ms | N=10000 | Mode: BarnesHut
+FPS: 136.80 | Physics: 1.43 ms | Total frame: 6.53 ms | N=10000 | Mode: BarnesHut
+FPS: 146.26 | Physics: 1.89 ms | Total frame: 18.88 ms | N=10000 | Mode: BarnesHut
+FPS: 151.61 | Physics: 1.18 ms | Total frame: 5.65 ms | N=10000 | Mode: BarnesHut
+FPS: 122.77 | Physics: 2.27 ms | Total frame: 11.78 ms | N=10000 | Mode: BarnesHut
+FPS: 107.61 | Physics: 1.33 ms | Total frame: 7.96 ms | N=10000 | Mode: BarnesHut
+FPS: 114.18 | Physics: 1.80 ms | Total frame: 9.06 ms | N=10000 | Mode: BarnesHut
+FPS: 116.27 | Physics: 1.25 ms | Total frame: 8.64 ms | N=10000 | Mode: BarnesHut
+FPS: 115.41 | Physics: 1.36 ms | Total frame: 10.01 ms | N=10000 | Mode: BarnesHut
+FPS: 109.26 | Physics: 1.02 ms | Total frame: 9.90 ms | N=10000 | Mode: BarnesHut
+FPS: 122.96 | Physics: 1.71 ms | Total frame: 9.66 ms | N=10000 | Mode: BarnesHut
+FPS: 125.24 | Physics: 1.47 ms | Total frame: 8.04 ms | N=10000 | Mode: BarnesHut
+=== Benchmark ended: 2025-12-08 22:56:30 ===
+
+FPS: 108.64 | Physics: 3.94 ms | Total frame: 10.07 ms | N=10000 | Mode: BarnesHut
+FPS: 128.97 | Physics: 2.22 ms | Total frame: 7.07 ms | N=10000 | Mode: BarnesHut
+FPS: 129.37 | Physics: 1.88 ms | Total frame: 7.63 ms | N=10000 | Mode: BarnesHut
+FPS: 129.57 | Physics: 1.67 ms | Total frame: 6.96 ms | N=10000 | Mode: BarnesHut
+FPS: 148.52 | Physics: 1.41 ms | Total frame: 6.10 ms | N=10000 | Mode: BarnesHut
+=== Benchmark ended: 2025-12-08 22:59:13 ===
+
+FPS: 91.78 | Physics: 3.41 ms | Total frame: 7.57 ms | N=10000 | Mode: BarnesHut
+FPS: 119.51 | Physics: 1.97 ms | Total frame: 5.85 ms | N=10000 | Mode: BarnesHut
+FPS: 119.19 | Physics: 1.72 ms | Total frame: 7.12 ms | N=10000 | Mode: BarnesHut
+FPS: 124.63 | Physics: 1.79 ms | Total frame: 6.63 ms | N=10000 | Mode: BarnesHut
+FPS: 126.61 | Physics: 1.62 ms | Total frame: 5.84 ms | N=10000 | Mode: BarnesHut
+FPS: 143.29 | Physics: 1.38 ms | Total frame: 5.52 ms | N=10000 | Mode: BarnesHut
+=== Benchmark ended: 2025-12-08 22:59:26 ===
+
+FPS: 111.71 | Physics: 3.04 ms | Total frame: 8.27 ms | N=10000 | Mode: BarnesHut
+FPS: 120.58 | Physics: 2.06 ms | Total frame: 8.55 ms | N=10000 | Mode: BarnesHut
+FPS: 139.60 | Physics: 2.15 ms | Total frame: 19.91 ms | N=10000 | Mode: BarnesHut
+FPS: 136.80 | Physics: 1.78 ms | Total frame: 8.09 ms | N=10000 | Mode: BarnesHut
+=== Benchmark ended: 2025-12-08 22:59:43 ===
+
+FPS: 21.10 | Physics: 25.82 ms | Total frame: 49.56 ms | N=50000 | Mode: BarnesHut
+FPS: 22.81 | Physics: 20.00 ms | Total frame: 40.31 ms | N=50000 | Mode: BarnesHut
+FPS: 23.83 | Physics: 26.58 ms | Total frame: 51.61 ms | N=50000 | Mode: BarnesHut
+FPS: 28.43 | Physics: 15.66 ms | Total frame: 40.00 ms | N=50000 | Mode: BarnesHut
+FPS: 28.72 | Physics: 10.72 ms | Total frame: 33.20 ms | N=50000 | Mode: BarnesHut
+FPS: 30.47 | Physics: 9.52 ms | Total frame: 32.88 ms | N=50000 | Mode: BarnesHut
+FPS: 31.25 | Physics: 12.90 ms | Total frame: 59.99 ms | N=50000 | Mode: BarnesHut
+FPS: 30.11 | Physics: 13.75 ms | Total frame: 38.70 ms | N=50000 | Mode: BarnesHut
+FPS: 31.81 | Physics: 9.95 ms | Total frame: 33.33 ms | N=50000 | Mode: BarnesHut
+=== Benchmark ended: 2025-12-08 23:00:43 ===
+
+FPS: 23.64 | Physics: 19.98 ms | Total frame: 40.17 ms | N=50000 | Mode: BarnesHut
+FPS: 28.16 | Physics: 10.26 ms | Total frame: 35.17 ms | N=50000 | Mode: BarnesHut
+FPS: 30.23 | Physics: 10.87 ms | Total frame: 32.61 ms | N=50000 | Mode: BarnesHut
+FPS: 33.30 | Physics: 7.78 ms | Total frame: 28.96 ms | N=50000 | Mode: BarnesHut
+FPS: 33.91 | Physics: 7.46 ms | Total frame: 28.89 ms | N=50000 | Mode: BarnesHut
+FPS: 35.82 | Physics: 5.96 ms | Total frame: 25.82 ms | N=50000 | Mode: BarnesHut
+FPS: 37.20 | Physics: 5.84 ms | Total frame: 26.66 ms | N=50000 | Mode: BarnesHut
+FPS: 37.24 | Physics: 4.34 ms | Total frame: 25.33 ms | N=50000 | Mode: BarnesHut
+=== Benchmark ended: 2025-12-08 23:01:05 ===
+
+FPS: 22.13 | Physics: 21.76 ms | Total frame: 44.76 ms | N=50000 | Mode: BarnesHut
+FPS: 28.18 | Physics: 9.60 ms | Total frame: 29.69 ms | N=50000 | Mode: BarnesHut
+FPS: 33.57 | Physics: 8.61 ms | Total frame: 28.43 ms | N=50000 | Mode: BarnesHut
+FPS: 35.75 | Physics: 8.59 ms | Total frame: 30.99 ms | N=50000 | Mode: BarnesHut
+FPS: 35.33 | Physics: 9.41 ms | Total frame: 32.39 ms | N=50000 | Mode: BarnesHut
+FPS: 34.61 | Physics: 7.60 ms | Total frame: 28.91 ms | N=50000 | Mode: BarnesHut
+FPS: 34.70 | Physics: 5.16 ms | Total frame: 31.36 ms | N=50000 | Mode: BarnesHut
+FPS: 37.33 | Physics: 4.21 ms | Total frame: 24.43 ms | N=50000 | Mode: BarnesHut
+FPS: 38.67 | Physics: 4.24 ms | Total frame: 27.17 ms | N=50000 | Mode: BarnesHut
+FPS: 39.40 | Physics: 3.16 ms | Total frame: 25.58 ms | N=50000 | Mode: BarnesHut
+FPS: 39.07 | Physics: 4.19 ms | Total frame: 27.12 ms | N=50000 | Mode: BarnesHut
+FPS: 38.46 | Physics: 2.55 ms | Total frame: 22.43 ms | N=50000 | Mode: BarnesHut
+FPS: 41.21 | Physics: 2.30 ms | Total frame: 23.99 ms | N=50000 | Mode: BarnesHut
+FPS: 41.06 | Physics: 2.06 ms | Total frame: 23.81 ms | N=50000 | Mode: BarnesHut
+=== Benchmark ended: 2025-12-08 23:09:48 ===
+
+=== Simulation started: 2025-12-08 23:10:07 ===
+=== Number of bodies: 50000 ===
+=== Using parallelizations: Yes ===
+=== Data Structure: Struct of Arrays (SoA) + AVX ===
+FPS: 22.60 | Physics: 12.97 ms | Total frame: 35.49 ms | N=50000
+FPS: 26.19 | Physics: 9.93 ms | Total frame: 32.39 ms | N=50000
+FPS: 28.20 | Physics: 15.63 ms | Total frame: 44.29 ms | N=50000
+FPS: 30.17 | Physics: 14.98 ms | Total frame: 41.56 ms | N=50000
+FPS: 32.25 | Physics: 8.98 ms | Total frame: 30.72 ms | N=50000
+FPS: 32.33 | Physics: 6.75 ms | Total frame: 33.68 ms | N=50000
+FPS: 33.03 | Physics: 7.71 ms | Total frame: 31.80 ms | N=50000
+FPS: 34.20 | Physics: 5.88 ms | Total frame: 27.84 ms | N=50000
+FPS: 34.80 | Physics: 4.82 ms | Total frame: 29.14 ms | N=50000
+FPS: 33.73 | Physics: 6.84 ms | Total frame: 31.44 ms | N=50000
+FPS: 35.58 | Physics: 4.76 ms | Total frame: 31.26 ms | N=50000
+=== Simulation ended: 2025-12-08 23:10:19 ===
+
+FPS: 21.99 | Physics: 30.07 ms | Total frame: 53.18 ms | N=50000 | Mode: BarnesHut
+FPS: 27.46 | Physics: 10.38 ms | Total frame: 29.75 ms | N=50000 | Mode: BarnesHut
+FPS: 29.71 | Physics: 8.72 ms | Total frame: 28.34 ms | N=50000 | Mode: BarnesHut
+=== Benchmark ended: 2025-12-08 23:12:18 ===
+
+FPS: 21.70 | Physics: 20.76 ms | Total frame: 42.36 ms | N=50000 | Mode: BarnesHut
+FPS: 24.37 | Physics: 11.69 ms | Total frame: 32.00 ms | N=50000 | Mode: BarnesHut
+FPS: 29.18 | Physics: 10.23 ms | Total frame: 33.29 ms | N=50000 | Mode: BarnesHut
+FPS: 29.57 | Physics: 10.16 ms | Total frame: 32.44 ms | N=50000 | Mode: BarnesHut
+FPS: 30.53 | Physics: 10.20 ms | Total frame: 35.39 ms | N=50000 | Mode: BarnesHut
+FPS: 29.99 | Physics: 10.00 ms | Total frame: 33.10 ms | N=50000 | Mode: BarnesHut
+FPS: 30.87 | Physics: 7.62 ms | Total frame: 31.92 ms | N=50000 | Mode: BarnesHut
+FPS: 34.76 | Physics: 7.09 ms | Total frame: 28.64 ms | N=50000 | Mode: BarnesHut
+FPS: 34.74 | Physics: 5.86 ms | Total frame: 27.49 ms | N=50000 | Mode: BarnesHut
+FPS: 35.95 | Physics: 5.72 ms | Total frame: 28.64 ms | N=50000 | Mode: BarnesHut
+=== Benchmark ended: 2025-12-08 23:15:28 ===
+
+FPS: 19.84 | Physics: 33.30 ms | Total frame: 56.16 ms | N=50000 | Mode: BarnesHut
+FPS: 24.44 | Physics: 13.12 ms | Total frame: 35.27 ms | N=50000 | Mode: BarnesHut
+FPS: 32.30 | Physics: 9.64 ms | Total frame: 30.45 ms | N=50000 | Mode: BarnesHut
+FPS: 33.90 | Physics: 10.39 ms | Total frame: 32.72 ms | N=50000 | Mode: BarnesHut
+FPS: 33.94 | Physics: 8.85 ms | Total frame: 29.04 ms | N=50000 | Mode: BarnesHut
+FPS: 31.32 | Physics: 7.68 ms | Total frame: 29.46 ms | N=50000 | Mode: BarnesHut
+FPS: 32.07 | Physics: 6.90 ms | Total frame: 30.34 ms | N=50000 | Mode: BarnesHut
+FPS: 33.11 | Physics: 6.32 ms | Total frame: 27.13 ms | N=50000 | Mode: BarnesHut
+FPS: 35.46 | Physics: 5.88 ms | Total frame: 28.38 ms | N=50000 | Mode: BarnesHut
+FPS: 35.69 | Physics: 5.10 ms | Total frame: 27.02 ms | N=50000 | Mode: BarnesHut
+FPS: 37.25 | Physics: 3.98 ms | Total frame: 26.69 ms | N=50000 | Mode: BarnesHut
+FPS: 39.35 | Physics: 3.52 ms | Total frame: 25.63 ms | N=50000 | Mode: BarnesHut
+FPS: 38.61 | Physics: 3.20 ms | Total frame: 25.15 ms | N=50000 | Mode: BarnesHut
+FPS: 39.40 | Physics: 3.11 ms | Total frame: 26.20 ms | N=50000 | Mode: BarnesHut
+FPS: 38.21 | Physics: 2.53 ms | Total frame: 24.13 ms | N=50000 | Mode: BarnesHut
+FPS: 39.15 | Physics: 2.44 ms | Total frame: 24.83 ms | N=50000 | Mode: BarnesHut
+FPS: 39.75 | Physics: 2.19 ms | Total frame: 23.49 ms | N=50000 | Mode: BarnesHut
+FPS: 41.77 | Physics: 1.94 ms | Total frame: 23.12 ms | N=50000 | Mode: BarnesHut
+=== Benchmark ended: 2025-12-08 23:16:10 ===
+
+FPS: 1000.62 | Physics: 0.35 ms | Total frame: 0.84 ms | N=1000 | Mode: BarnesHut
+FPS: 1077.12 | Physics: 0.59 ms | Total frame: 1.44 ms | N=1000 | Mode: BarnesHut
+FPS: 1102.21 | Physics: 0.16 ms | Total frame: 2.66 ms | N=1000 | Mode: BarnesHut
+FPS: 1126.53 | Physics: 0.13 ms | Total frame: 0.66 ms | N=1000 | Mode: BarnesHut
+FPS: 1151.48 | Physics: 0.08 ms | Total frame: 0.63 ms | N=1000 | Mode: BarnesHut
+FPS: 1134.20 | Physics: 0.16 ms | Total frame: 0.79 ms | N=1000 | Mode: BarnesHut
+=== Benchmark ended: 2025-12-08 23:16:41 ===
+
+FPS: 883.47 | Physics: 0.29 ms | Total frame: 0.76 ms | N=1000 | Mode: BarnesHut
+FPS: 908.62 | Physics: 0.28 ms | Total frame: 0.73 ms | N=1000 | Mode: BarnesHut
+FPS: 1041.32 | Physics: 0.28 ms | Total frame: 0.79 ms | N=1000 | Mode: BarnesHut
+FPS: 777.96 | Physics: 0.40 ms | Total frame: 1.26 ms | N=1000 | Mode: BarnesHut
+FPS: 639.61 | Physics: 0.40 ms | Total frame: 1.50 ms | N=1000 | Mode: BarnesHut
+FPS: 631.59 | Physics: 0.33 ms | Total frame: 1.07 ms | N=1000 | Mode: BarnesHut
+FPS: 690.09 | Physics: 0.31 ms | Total frame: 1.42 ms | N=1000 | Mode: BarnesHut
+FPS: 707.38 | Physics: 0.45 ms | Total frame: 1.18 ms | N=1000 | Mode: BarnesHut
+FPS: 628.72 | Physics: 0.70 ms | Total frame: 2.66 ms | N=1000 | Mode: BarnesHut
+=== Benchmark ended: 2025-12-08 23:17:01 ===
+
+FPS: 2018.84 | Physics: 0.28 ms | Total frame: 0.28 ms
+FPS: 3467.02 | Physics: 0.29 ms | Total frame: 0.29 ms
+FPS: 3467.52 | Physics: 0.28 ms | Total frame: 0.28 ms
+FPS: 3480.04 | Physics: 0.28 ms | Total frame: 0.28 ms
+FPS: 3468.21 | Physics: 0.28 ms | Total frame: 0.28 ms
+FPS: 3479.48 | Physics: 0.29 ms | Total frame: 0.29 ms
+FPS: 3479.93 | Physics: 0.29 ms | Total frame: 0.29 ms
+FPS: 3470.55 | Physics: 0.29 ms | Total frame: 0.29 ms
+FPS: 3478.90 | Physics: 0.29 ms | Total frame: 0.29 ms
+FPS: 3476.67 | Physics: 0.28 ms | Total frame: 0.28 ms
+FPS: 3481.17 | Physics: 0.29 ms | Total frame: 0.29 ms
+FPS: 3461.74 | Physics: 0.29 ms | Total frame: 0.29 ms
+FPS: 3476.68 | Physics: 0.28 ms | Total frame: 0.28 ms
+FPS: 3474.46 | Physics: 0.28 ms | Total frame: 0.28 ms
+FPS: 3480.34 | Physics: 0.28 ms | Total frame: 0.28 ms
+FPS: 3477.79 | Physics: 0.29 ms | Total frame: 0.29 ms
+FPS: 3477.40 | Physics: 0.28 ms | Total frame: 0.28 ms
+FPS: 3480.96 | Physics: 0.29 ms | Total frame: 0.29 ms
+FPS: 3478.49 | Physics: 0.28 ms | Total frame: 0.28 ms
+FPS: 3469.87 | Physics: 0.29 ms | Total frame: 0.29 ms
+FPS: 3474.90 | Physics: 0.28 ms | Total frame: 0.28 ms
+FPS: 3468.83 | Physics: 0.29 ms | Total frame: 0.29 ms
+FPS: 3444.06 | Physics: 0.28 ms | Total frame: 0.28 ms
+FPS: 3481.34 | Physics: 0.29 ms | Total frame: 0.29 ms
+FPS: 3483.24 | Physics: 0.28 ms | Total frame: 0.28 ms
+FPS: 3356.61 | Physics: 0.28 ms | Total frame: 0.28 ms
+FPS: 3393.61 | Physics: 0.29 ms | Total frame: 0.29 ms
+FPS: 3479.91 | Physics: 0.29 ms | Total frame: 0.29 ms
+FPS: 2902.22 | Physics: 0.36 ms | Total frame: 0.36 ms
+FPS: 2477.62 | Physics: 0.38 ms | Total frame: 0.38 ms
+FPS: 1296.83 | Physics: 0.24 ms | Total frame: 0.65 ms | N=1000 | Mode: BarnesHut
+FPS: 1440.33 | Physics: 0.22 ms | Total frame: 0.62 ms | N=1000 | Mode: BarnesHut
+FPS: 1515.78 | Physics: 0.23 ms | Total frame: 0.74 ms | N=1000 | Mode: BarnesHut
+FPS: 1568.83 | Physics: 0.16 ms | Total frame: 0.78 ms | N=1000 | Mode: BarnesHut
+FPS: 1554.67 | Physics: 0.09 ms | Total frame: 0.59 ms | N=1000 | Mode: BarnesHut
+FPS: 1533.21 | Physics: 0.83 ms | Total frame: 1.34 ms | N=1000 | Mode: BarnesHut
+=== Benchmark ended: 2025-12-08 23:21:31 ===
+
+FPS: 25.73 | Physics: 19.31 ms | Total frame: 37.59 ms | N=50000 | Mode: BarnesHut
+FPS: 26.80 | Physics: 16.04 ms | Total frame: 34.41 ms | N=50000 | Mode: BarnesHut
+FPS: 31.05 | Physics: 12.45 ms | Total frame: 32.34 ms | N=50000 | Mode: BarnesHut
+FPS: 34.30 | Physics: 9.91 ms | Total frame: 28.35 ms | N=50000 | Mode: BarnesHut
+FPS: 35.80 | Physics: 8.81 ms | Total frame: 27.50 ms | N=50000 | Mode: BarnesHut
+FPS: 36.07 | Physics: 9.09 ms | Total frame: 27.37 ms | N=50000 | Mode: BarnesHut
+FPS: 35.29 | Physics: 9.86 ms | Total frame: 28.17 ms | N=50000 | Mode: BarnesHut
+FPS: 35.22 | Physics: 10.52 ms | Total frame: 29.84 ms | N=50000 | Mode: BarnesHut
+FPS: 35.49 | Physics: 8.83 ms | Total frame: 27.38 ms | N=50000 | Mode: BarnesHut
+FPS: 36.14 | Physics: 8.51 ms | Total frame: 27.63 ms | N=50000 | Mode: BarnesHut
+FPS: 36.80 | Physics: 7.93 ms | Total frame: 26.08 ms | N=50000 | Mode: BarnesHut
+FPS: 37.42 | Physics: 7.70 ms | Total frame: 26.00 ms | N=50000 | Mode: BarnesHut
+FPS: 37.89 | Physics: 7.28 ms | Total frame: 25.94 ms | N=50000 | Mode: BarnesHut
+FPS: 37.40 | Physics: 6.92 ms | Total frame: 25.18 ms | N=50000 | Mode: BarnesHut
+FPS: 38.89 | Physics: 11.53 ms | Total frame: 35.63 ms | N=50000 | Mode: BarnesHut
+FPS: 38.76 | Physics: 6.46 ms | Total frame: 24.73 ms | N=50000 | Mode: BarnesHut
+FPS: 40.49 | Physics: 5.99 ms | Total frame: 24.23 ms | N=50000 | Mode: BarnesHut
+FPS: 40.91 | Physics: 5.70 ms | Total frame: 23.99 ms | N=50000 | Mode: BarnesHut
+FPS: 40.94 | Physics: 5.87 ms | Total frame: 24.35 ms | N=50000 | Mode: BarnesHut
+FPS: 41.94 | Physics: 5.24 ms | Total frame: 23.66 ms | N=50000 | Mode: BarnesHut
+FPS: 41.62 | Physics: 5.68 ms | Total frame: 24.09 ms | N=50000 | Mode: BarnesHut
+FPS: 41.24 | Physics: 4.66 ms | Total frame: 22.97 ms | N=50000 | Mode: BarnesHut
+FPS: 42.39 | Physics: 4.68 ms | Total frame: 23.34 ms | N=50000 | Mode: BarnesHut
+FPS: 42.77 | Physics: 4.25 ms | Total frame: 22.94 ms | N=50000 | Mode: BarnesHut
+FPS: 42.34 | Physics: 4.33 ms | Total frame: 22.59 ms | N=50000 | Mode: BarnesHut
+FPS: 44.03 | Physics: 4.17 ms | Total frame: 22.68 ms | N=50000 | Mode: BarnesHut
+FPS: 44.09 | Physics: 4.34 ms | Total frame: 23.43 ms | N=50000 | Mode: BarnesHut
+FPS: 44.20 | Physics: 3.86 ms | Total frame: 21.94 ms | N=50000 | Mode: BarnesHut
+FPS: 45.01 | Physics: 3.68 ms | Total frame: 22.15 ms | N=50000 | Mode: BarnesHut
+FPS: 43.33 | Physics: 3.25 ms | Total frame: 21.58 ms | N=50000 | Mode: BarnesHut
+FPS: 24.40 | Physics: 7.18 ms | Total frame: 28.11 ms | N=50000 | Mode: BarnesHut
+FPS: 46.04 | Physics: 0.54 ms | Total frame: 24.49 ms | N=50000 | Mode: BarnesHut
+=== Benchmark ended: 2025-12-08 23:33:28 ===
+
+FPS: 28.75 | Physics: 4.20 ms | Total frame: 23.09 ms | N=50000 | Mode: BarnesHut
+FPS: 46.43 | Physics: 0.45 ms | Total frame: 20.57 ms | N=50000 | Mode: BarnesHut
+=== Benchmark ended: 2025-12-08 23:37:51 ===
+
+FPS: 23.67 | Physics: 19.46 ms | Total frame: 38.27 ms | N=50000 | Mode: BarnesHut
+FPS: 23.89 | Physics: 25.42 ms | Total frame: 46.78 ms | N=50000 | Mode: BarnesHut
+FPS: 29.33 | Physics: 14.00 ms | Total frame: 34.67 ms | N=50000 | Mode: BarnesHut
+FPS: 32.67 | Physics: 11.13 ms | Total frame: 30.47 ms | N=50000 | Mode: BarnesHut
+FPS: 31.49 | Physics: 10.06 ms | Total frame: 30.02 ms | N=50000 | Mode: BarnesHut
+FPS: 32.18 | Physics: 9.82 ms | Total frame: 30.94 ms | N=50000 | Mode: BarnesHut
+=== Benchmark ended: 2025-12-08 23:39:20 ===
+
+FPS: 21.45 | Physics: 24.06 ms | Total frame: 43.73 ms | N=50000 | Mode: BarnesHut
+FPS: 21.71 | Physics: 26.41 ms | Total frame: 47.91 ms | N=50000 | Mode: BarnesHut
+FPS: 24.18 | Physics: 15.90 ms | Total frame: 35.48 ms | N=50000 | Mode: BarnesHut
+FPS: 29.38 | Physics: 12.76 ms | Total frame: 36.08 ms | N=50000 | Mode: BarnesHut
+FPS: 30.27 | Physics: 11.52 ms | Total frame: 31.16 ms | N=50000 | Mode: BarnesHut
+=== Benchmark ended: 2025-12-08 23:42:12 ===
+
+FPS: 23.36 | Physics: 22.55 ms | Total frame: 41.17 ms | N=50000 | Mode: BarnesHut
+FPS: 24.46 | Physics: 20.84 ms | Total frame: 39.46 ms | N=50000 | Mode: BarnesHut
+FPS: 28.37 | Physics: 13.59 ms | Total frame: 32.41 ms | N=50000 | Mode: BarnesHut
+FPS: 31.33 | Physics: 12.41 ms | Total frame: 30.59 ms | N=50000 | Mode: BarnesHut
+FPS: 32.07 | Physics: 11.34 ms | Total frame: 30.24 ms | N=50000 | Mode: BarnesHut
+FPS: 32.92 | Physics: 15.29 ms | Total frame: 34.60 ms | N=50000 | Mode: BarnesHut
+FPS: 32.56 | Physics: 11.88 ms | Total frame: 30.77 ms | N=50000 | Mode: BarnesHut
+FPS: 31.94 | Physics: 14.39 ms | Total frame: 32.98 ms | N=50000 | Mode: BarnesHut
+FPS: 33.37 | Physics: 11.18 ms | Total frame: 29.76 ms | N=50000 | Mode: BarnesHut
+FPS: 33.53 | Physics: 10.24 ms | Total frame: 31.67 ms | N=50000 | Mode: BarnesHut
+FPS: 33.55 | Physics: 9.84 ms | Total frame: 28.84 ms | N=50000 | Mode: BarnesHut
+FPS: 34.71 | Physics: 9.58 ms | Total frame: 27.88 ms | N=50000 | Mode: BarnesHut
+FPS: 35.63 | Physics: 9.41 ms | Total frame: 27.73 ms | N=50000 | Mode: BarnesHut
+FPS: 36.20 | Physics: 8.97 ms | Total frame: 26.94 ms | N=50000 | Mode: BarnesHut
+FPS: 36.97 | Physics: 8.45 ms | Total frame: 26.45 ms | N=50000 | Mode: BarnesHut
+FPS: 35.85 | Physics: 7.88 ms | Total frame: 26.05 ms | N=50000 | Mode: BarnesHut
+FPS: 36.85 | Physics: 7.70 ms | Total frame: 26.00 ms | N=50000 | Mode: BarnesHut
+FPS: 37.50 | Physics: 7.35 ms | Total frame: 25.53 ms | N=50000 | Mode: BarnesHut
+FPS: 38.98 | Physics: 7.04 ms | Total frame: 25.45 ms | N=50000 | Mode: BarnesHut
+FPS: 38.97 | Physics: 7.65 ms | Total frame: 27.30 ms | N=50000 | Mode: BarnesHut
+FPS: 39.14 | Physics: 7.58 ms | Total frame: 26.97 ms | N=50000 | Mode: BarnesHut
+FPS: 40.48 | Physics: 6.37 ms | Total frame: 24.61 ms | N=50000 | Mode: BarnesHut
+FPS: 40.39 | Physics: 6.13 ms | Total frame: 24.70 ms | N=50000 | Mode: BarnesHut
+FPS: 40.59 | Physics: 5.62 ms | Total frame: 23.62 ms | N=50000 | Mode: BarnesHut
+FPS: 41.60 | Physics: 6.10 ms | Total frame: 25.36 ms | N=50000 | Mode: BarnesHut
+FPS: 41.51 | Physics: 5.21 ms | Total frame: 23.33 ms | N=50000 | Mode: BarnesHut
+FPS: 42.06 | Physics: 4.75 ms | Total frame: 22.78 ms | N=50000 | Mode: BarnesHut
+FPS: 43.45 | Physics: 4.85 ms | Total frame: 23.14 ms | N=50000 | Mode: BarnesHut
+FPS: 42.68 | Physics: 4.25 ms | Total frame: 22.45 ms | N=50000 | Mode: BarnesHut
+FPS: 43.91 | Physics: 4.20 ms | Total frame: 22.81 ms | N=50000 | Mode: BarnesHut
+FPS: 43.40 | Physics: 21.55 ms | Total frame: 21.55 ms | N=50000 | Mode: BarnesHut
+FPS: 61.93 | Physics: 13.10 ms | Total frame: 13.10 ms | N=50000 | Mode: BarnesHut
+FPS: 76.27 | Physics: 12.56 ms | Total frame: 12.56 ms | N=50000 | Mode: BarnesHut
+FPS: 77.20 | Physics: 13.13 ms | Total frame: 13.13 ms | N=50000 | Mode: BarnesHut
+FPS: 83.46 | Physics: 10.66 ms | Total frame: 10.66 ms | N=50000 | Mode: BarnesHut
+FPS: 97.37 | Physics: 9.05 ms | Total frame: 9.05 ms | N=50000 | Mode: BarnesHut
+FPS: 109.86 | Physics: 8.13 ms | Total frame: 8.13 ms | N=50000 | Mode: BarnesHut
+FPS: 130.26 | Physics: 6.95 ms | Total frame: 6.95 ms | N=50000 | Mode: BarnesHut
+FPS: 155.96 | Physics: 5.66 ms | Total frame: 5.66 ms | N=50000 | Mode: BarnesHut
+FPS: 203.98 | Physics: 4.54 ms | Total frame: 4.54 ms | N=50000 | Mode: BarnesHut
+FPS: 305.00 | Physics: 3.23 ms | Total frame: 3.23 ms | N=50000 | Mode: BarnesHut
+FPS: 539.78 | Physics: 1.38 ms | Total frame: 1.38 ms | N=50000 | Mode: BarnesHut
+FPS: 902.74 | Physics: 1.62 ms | Total frame: 1.62 ms | N=50000 | Mode: BarnesHut
+FPS: 1150.25 | Physics: 0.72 ms | Total frame: 0.72 ms | N=50000 | Mode: BarnesHut
+FPS: 1435.21 | Physics: 0.64 ms | Total frame: 0.64 ms | N=50000 | Mode: BarnesHut
+FPS: 1534.73 | Physics: 0.60 ms | Total frame: 0.60 ms | N=50000 | Mode: BarnesHut
+FPS: 1610.90 | Physics: 0.60 ms | Total frame: 0.60 ms | N=50000 | Mode: BarnesHut
+FPS: 1767.94 | Physics: 0.57 ms | Total frame: 0.57 ms | N=50000 | Mode: BarnesHut
+FPS: 1717.84 | Physics: 0.55 ms | Total frame: 0.55 ms | N=50000 | Mode: BarnesHut
+FPS: 1684.23 | Physics: 0.51 ms | Total frame: 0.51 ms | N=50000 | Mode: BarnesHut
+FPS: 1597.98 | Physics: 0.92 ms | Total frame: 0.92 ms | N=50000 | Mode: BarnesHut
+FPS: 1811.89 | Physics: 0.56 ms | Total frame: 0.56 ms | N=50000 | Mode: BarnesHut
+FPS: 1714.18 | Physics: 0.52 ms | Total frame: 0.52 ms | N=50000 | Mode: BarnesHut
+FPS: 1842.70 | Physics: 0.94 ms | Total frame: 0.94 ms | N=50000 | Mode: BarnesHut
+FPS: 1746.93 | Physics: 0.52 ms | Total frame: 0.52 ms | N=50000 | Mode: BarnesHut
+FPS: 1775.33 | Physics: 0.81 ms | Total frame: 0.81 ms | N=50000 | Mode: BarnesHut
+FPS: 1558.27 | Physics: 0.53 ms | Total frame: 0.53 ms | N=50000 | Mode: BarnesHut
+FPS: 1441.37 | Physics: 0.62 ms | Total frame: 0.62 ms | N=50000 | Mode: BarnesHut
+FPS: 1337.44 | Physics: 1.21 ms | Total frame: 1.21 ms | N=50000 | Mode: BarnesHut
+FPS: 1246.54 | Physics: 0.52 ms | Total frame: 0.52 ms | N=50000 | Mode: BarnesHut
+FPS: 27.63 | Physics: 5.98 ms | Total frame: 24.94 ms | N=50000 | Mode: BarnesHut
+FPS: 48.73 | Physics: 0.53 ms | Total frame: 21.50 ms | N=50000 | Mode: BarnesHut
+=== Benchmark ended: 2025-12-08 23:47:38 ===
+
+FPS: 12434.17 | Physics: 0.09 ms | Total frame: 0.09 ms
+FPS: 13110.73 | Physics: 0.07 ms | Total frame: 0.07 ms
+FPS: 13877.31 | Physics: 0.75 ms | Total frame: 0.75 ms
+FPS: 13945.82 | Physics: 0.06 ms | Total frame: 0.06 ms
+FPS: 13922.51 | Physics: 0.06 ms | Total frame: 0.06 ms
+FPS: 16414.86 | Physics: 0.06 ms | Total frame: 0.06 ms
+FPS: 16702.57 | Physics: 0.06 ms | Total frame: 0.06 ms
+FPS: 16451.85 | Physics: 0.06 ms | Total frame: 0.06 ms
+FPS: 16119.61 | Physics: 0.06 ms | Total frame: 0.06 ms
+FPS: 16653.88 | Physics: 0.06 ms | Total frame: 0.06 ms
+FPS: 14180.33 | Physics: 0.06 ms | Total frame: 0.06 ms
+FPS: 14507.98 | Physics: 0.06 ms | Total frame: 0.06 ms
+FPS: 14905.89 | Physics: 0.06 ms | Total frame: 0.06 ms
+FPS: 15897.16 | Physics: 0.06 ms | Total frame: 0.06 ms
+FPS: 14475.43 | Physics: 0.06 ms | Total frame: 0.06 ms
+FPS: 13172.61 | Physics: 0.06 ms | Total frame: 0.06 ms
+FPS: 13676.73 | Physics: 0.11 ms | Total frame: 0.11 ms
+FPS: 14156.94 | Physics: 0.07 ms | Total frame: 0.07 ms
+FPS: 14195.88 | Physics: 0.06 ms | Total frame: 0.06 ms
+FPS: 13839.32 | Physics: 0.07 ms | Total frame: 0.07 ms
+FPS: 14297.33 | Physics: 0.31 ms | Total frame: 0.31 ms
+FPS: 13701.80 | Physics: 0.11 ms | Total frame: 0.11 ms
+FPS: 14150.91 | Physics: 0.20 ms | Total frame: 0.20 ms
+FPS: 14188.11 | Physics: 0.06 ms | Total frame: 0.06 ms
+FPS: 13085.88 | Physics: 0.75 ms | Total frame: 0.75 ms
+FPS: 12884.84 | Physics: 0.16 ms | Total frame: 0.16 ms
+FPS: 13942.12 | Physics: 0.75 ms | Total frame: 0.75 ms
+FPS: 13314.99 | Physics: 0.06 ms | Total frame: 0.06 ms
+FPS: 14556.32 | Physics: 0.06 ms | Total frame: 0.06 ms
+FPS: 15109.27 | Physics: 0.73 ms | Total frame: 0.73 ms
+FPS: 13797.91 | Physics: 0.07 ms | Total frame: 0.07 ms
+FPS: 11316.62 | Physics: 0.08 ms | Total frame: 0.08 ms
+FPS: 11502.42 | Physics: 0.07 ms | Total frame: 0.07 ms
+FPS: 12687.97 | Physics: 0.10 ms | Total frame: 0.10 ms
+FPS: 11432.54 | Physics: 0.08 ms | Total frame: 0.08 ms
+FPS: 11634.81 | Physics: 0.22 ms | Total frame: 0.22 ms
+FPS: 12700.76 | Physics: 0.11 ms | Total frame: 0.11 ms
+FPS: 10733.27 | Physics: 0.09 ms | Total frame: 0.09 ms
+FPS: 11173.24 | Physics: 0.08 ms | Total frame: 0.08 ms
+FPS: 11745.45 | Physics: 0.09 ms | Total frame: 0.09 ms
+FPS: 9634.75 | Physics: 0.10 ms | Total frame: 0.10 ms
+FPS: 10282.56 | Physics: 0.08 ms | Total frame: 0.08 ms
+FPS: 10724.06 | Physics: 0.09 ms | Total frame: 0.09 ms
+FPS: 11065.73 | Physics: 0.08 ms | Total frame: 0.08 ms
+FPS: 10912.44 | Physics: 0.19 ms | Total frame: 0.19 ms
+FPS: 11475.48 | Physics: 0.07 ms | Total frame: 0.07 ms
+FPS: 11452.71 | Physics: 0.07 ms | Total frame: 0.07 ms
+FPS: 12468.25 | Physics: 0.07 ms | Total frame: 0.07 ms
+FPS: 13151.43 | Physics: 0.08 ms | Total frame: 0.08 ms
+FPS: 12806.45 | Physics: 0.08 ms | Total frame: 0.08 ms
+FPS: 12475.38 | Physics: 0.07 ms | Total frame: 0.07 ms
+FPS: 13124.21 | Physics: 0.08 ms | Total frame: 0.08 ms
+FPS: 13116.96 | Physics: 0.08 ms | Total frame: 0.08 ms
+FPS: 11289.26 | Physics: 0.08 ms | Total frame: 0.08 ms
+FPS: 10503.28 | Physics: 0.07 ms | Total frame: 0.07 ms
+FPS: 11999.31 | Physics: 0.07 ms | Total frame: 0.07 ms
+FPS: 11640.29 | Physics: 0.08 ms | Total frame: 0.08 ms
+FPS: 13253.99 | Physics: 0.08 ms | Total frame: 0.08 ms
+FPS: 12042.65 | Physics: 0.74 ms | Total frame: 0.74 ms
+FPS: 9723.49 | Physics: 0.12 ms | Total frame: 0.12 ms
+FPS: 9596.60 | Physics: 0.10 ms | Total frame: 0.10 ms
+FPS: 15247.64 | Physics: 1.05 ms | Total frame: 1.05 ms
+FPS: 16827.57 | Physics: 0.05 ms | Total frame: 0.05 ms
+FPS: 16977.65 | Physics: 0.06 ms | Total frame: 0.06 ms
+FPS: 16964.57 | Physics: 0.06 ms | Total frame: 0.06 ms
+FPS: 16977.59 | Physics: 0.06 ms | Total frame: 0.06 ms
+FPS: 16970.70 | Physics: 0.06 ms | Total frame: 0.06 ms
+FPS: 16945.74 | Physics: 0.06 ms | Total frame: 0.06 ms
+FPS: 16880.04 | Physics: 0.06 ms | Total frame: 0.06 ms
+FPS: 16967.01 | Physics: 0.06 ms | Total frame: 0.06 ms
+FPS: 16848.99 | Physics: 0.06 ms | Total frame: 0.06 ms
+FPS: 16992.24 | Physics: 0.06 ms | Total frame: 0.06 ms
+FPS: 16859.64 | Physics: 0.07 ms | Total frame: 0.07 ms
+FPS: 17170.69 | Physics: 0.06 ms | Total frame: 0.06 ms
+FPS: 16886.45 | Physics: 0.06 ms | Total frame: 0.06 ms
+FPS: 17037.51 | Physics: 0.06 ms | Total frame: 0.06 ms
+FPS: 17044.48 | Physics: 0.06 ms | Total frame: 0.06 ms
+FPS: 16956.98 | Physics: 0.06 ms | Total frame: 0.06 ms
+FPS: 16954.65 | Physics: 0.06 ms | Total frame: 0.06 ms
+FPS: 16718.55 | Physics: 0.06 ms | Total frame: 0.06 ms
+FPS: 16912.26 | Physics: 0.06 ms | Total frame: 0.06 ms
+FPS: 16907.30 | Physics: 0.07 ms | Total frame: 0.07 ms
+FPS: 16844.91 | Physics: 0.06 ms | Total frame: 0.06 ms
+FPS: 16958.23 | Physics: 0.06 ms | Total frame: 0.06 ms
+FPS: 17036.03 | Physics: 0.06 ms | Total frame: 0.06 ms
+FPS: 15672.92 | Physics: 0.07 ms | Total frame: 0.07 ms
+FPS: 12845.69 | Physics: 0.07 ms | Total frame: 0.07 ms
+FPS: 13061.51 | Physics: 0.08 ms | Total frame: 0.08 ms
+FPS: 13280.44 | Physics: 0.08 ms | Total frame: 0.08 ms
+FPS: 13491.99 | Physics: 0.08 ms | Total frame: 0.08 ms
+FPS: 404.91 | Physics: 1.92 ms | Total frame: 1.92 ms
+FPS: 704.85 | Physics: 1.15 ms | Total frame: 1.15 ms
+FPS: 1425.21 | Physics: 0.74 ms | Total frame: 0.74 ms
+FPS: 5120.89 | Physics: 0.17 ms | Total frame: 0.17 ms
+FPS: 8709.94 | Physics: 0.11 ms | Total frame: 0.11 ms
+FPS: 9466.35 | Physics: 0.10 ms | Total frame: 0.10 ms
+FPS: 9216.89 | Physics: 0.28 ms | Total frame: 0.28 ms
+FPS: 8121.25 | Physics: 0.10 ms | Total frame: 0.10 ms
+FPS: 9218.74 | Physics: 0.11 ms | Total frame: 0.11 ms
+FPS: 9462.98 | Physics: 0.13 ms | Total frame: 0.13 ms
+FPS: 8551.96 | Physics: 0.58 ms | Total frame: 0.58 ms
+FPS: 9609.66 | Physics: 0.15 ms | Total frame: 0.15 ms
+FPS: 8815.51 | Physics: 0.10 ms | Total frame: 0.10 ms
+FPS: 9360.80 | Physics: 0.10 ms | Total frame: 0.10 ms
+FPS: 9795.67 | Physics: 0.09 ms | Total frame: 0.09 ms
+FPS: 9952.75 | Physics: 0.10 ms | Total frame: 0.10 ms
+FPS: 7633.94 | Physics: 0.18 ms | Total frame: 0.18 ms
+FPS: 9478.77 | Physics: 0.10 ms | Total frame: 0.10 ms
+FPS: 9887.15 | Physics: 0.12 ms | Total frame: 0.12 ms
+FPS: 9702.77 | Physics: 0.15 ms | Total frame: 0.15 ms
+FPS: 9580.11 | Physics: 0.13 ms | Total frame: 0.13 ms
+FPS: 9834.26 | Physics: 0.10 ms | Total frame: 0.10 ms
+FPS: 9301.98 | Physics: 0.10 ms | Total frame: 0.10 ms
+FPS: 9482.36 | Physics: 0.11 ms | Total frame: 0.11 ms
+FPS: 9594.28 | Physics: 0.10 ms | Total frame: 0.10 ms
+FPS: 9771.44 | Physics: 0.10 ms | Total frame: 0.10 ms
+FPS: 9073.71 | Physics: 0.38 ms | Total frame: 0.38 ms
+FPS: 7705.89 | Physics: 0.10 ms | Total frame: 0.10 ms
+FPS: 6239.51 | Physics: 0.14 ms | Total frame: 0.14 ms
+FPS: 4280.37 | Physics: 0.26 ms | Total frame: 0.26 ms
+FPS: 374.87 | Physics: 2.16 ms | Total frame: 2.16 ms
+FPS: 669.88 | Physics: 1.11 ms | Total frame: 1.11 ms
+FPS: 1311.88 | Physics: 0.44 ms | Total frame: 0.44 ms
+FPS: 4649.53 | Physics: 0.14 ms | Total frame: 0.14 ms
+FPS: 8868.23 | Physics: 0.10 ms | Total frame: 0.10 ms
+FPS: 9784.63 | Physics: 0.12 ms | Total frame: 0.12 ms
+FPS: 8352.92 | Physics: 0.10 ms | Total frame: 0.10 ms
+FPS: 8807.41 | Physics: 0.18 ms | Total frame: 0.18 ms
+FPS: 7692.90 | Physics: 0.10 ms | Total frame: 0.10 ms
+FPS: 7491.95 | Physics: 0.16 ms | Total frame: 0.16 ms
+FPS: 7792.98 | Physics: 0.14 ms | Total frame: 0.14 ms
+FPS: 7369.69 | Physics: 0.20 ms | Total frame: 0.20 ms
+FPS: 7059.98 | Physics: 0.10 ms | Total frame: 0.10 ms
+FPS: 8759.28 | Physics: 0.10 ms | Total frame: 0.10 ms
+FPS: 7828.93 | Physics: 0.15 ms | Total frame: 0.15 ms
+FPS: 9134.74 | Physics: 0.22 ms | Total frame: 0.22 ms
+FPS: 8757.07 | Physics: 0.13 ms | Total frame: 0.13 ms
+FPS: 8783.05 | Physics: 0.13 ms | Total frame: 0.13 ms
+FPS: 9438.73 | Physics: 0.13 ms | Total frame: 0.13 ms
+FPS: 8796.62 | Physics: 0.10 ms | Total frame: 0.10 ms
+FPS: 9369.59 | Physics: 0.10 ms | Total frame: 0.10 ms
+FPS: 8677.55 | Physics: 0.11 ms | Total frame: 0.11 ms
+FPS: 4292.74 | Physics: 0.33 ms | Total frame: 0.33 ms
+FPS: 7229.09 | Physics: 0.21 ms | Total frame: 0.21 ms
+FPS: 6532.49 | Physics: 0.10 ms | Total frame: 0.10 ms
+FPS: 8840.92 | Physics: 0.13 ms | Total frame: 0.13 ms
+FPS: 9109.98 | Physics: 0.13 ms | Total frame: 0.13 ms
+FPS: 8672.61 | Physics: 0.13 ms | Total frame: 0.13 ms
+FPS: 9221.78 | Physics: 0.14 ms | Total frame: 0.14 ms
+FPS: 8684.83 | Physics: 0.10 ms | Total frame: 0.10 ms
+FPS: 24.83 | Physics: 7.89 ms | Total frame: 26.47 ms | N=50000 | Mode: BarnesHut
+FPS: 44.99 | Physics: 0.51 ms | Total frame: 20.02 ms | N=50000 | Mode: BarnesHut
+FPS: 48.09 | Physics: 0.47 ms | Total frame: 19.59 ms | N=50000 | Mode: BarnesHut
+FPS: 48.62 | Physics: 0.48 ms | Total frame: 20.46 ms | N=50000 | Mode: BarnesHut
+FPS: 47.25 | Physics: 0.43 ms | Total frame: 20.18 ms | N=50000 | Mode: BarnesHut
+=== Benchmark ended: 2025-12-09 00:08:42 ===
+
+FPS: 21.96 | Physics: 24.06 ms | Total frame: 44.65 ms | N=50000 | Mode: BarnesHut
+FPS: 20.69 | Physics: 30.01 ms | Total frame: 51.72 ms | N=50000 | Mode: BarnesHut
+FPS: 22.79 | Physics: 16.00 ms | Total frame: 36.70 ms | N=50000 | Mode: BarnesHut
+FPS: 28.36 | Physics: 13.43 ms | Total frame: 33.76 ms | N=50000 | Mode: BarnesHut
+FPS: 30.17 | Physics: 11.43 ms | Total frame: 32.11 ms | N=50000 | Mode: BarnesHut
+FPS: 30.37 | Physics: 10.69 ms | Total frame: 30.45 ms | N=50000 | Mode: BarnesHut
+FPS: 30.89 | Physics: 11.25 ms | Total frame: 36.57 ms | N=50000 | Mode: BarnesHut
+FPS: 30.61 | Physics: 11.56 ms | Total frame: 32.48 ms | N=50000 | Mode: BarnesHut
+FPS: 30.51 | Physics: 11.99 ms | Total frame: 32.28 ms | N=50000 | Mode: BarnesHut
+FPS: 30.62 | Physics: 11.44 ms | Total frame: 32.82 ms | N=50000 | Mode: BarnesHut
+FPS: 31.62 | Physics: 10.76 ms | Total frame: 29.84 ms | N=50000 | Mode: BarnesHut
+FPS: 32.20 | Physics: 10.15 ms | Total frame: 29.52 ms | N=50000 | Mode: BarnesHut
+=== Benchmark ended: 2025-12-09 00:13:04 ===
+

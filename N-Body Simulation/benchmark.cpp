@@ -31,6 +31,8 @@ struct BodyDataSoA
     std::vector<float> velX;
     std::vector<float> velY;
     std::vector<float> radius;
+    std::vector<float> accX; 
+    std::vector<float> accY;
     
     void resize(size_t n)
     {
@@ -41,6 +43,8 @@ struct BodyDataSoA
         velX.resize(n);
         velY.resize(n);
         radius.resize(n); 
+        accX.resize(n, 0.0f); // Inicijalizacija nula
+        accY.resize(n, 0.0f); // Inicijalizacija nula
     }
 };
 
@@ -151,6 +155,7 @@ public:
 
     void build(const BodyDataSoA &data, float spread)
     {
+        #pragma omp parallel for schedule(dynamic)
         for (int i = 0; i < lastPoolIndex; ++i)
         {
             pool[i].mass = 0.0f;
@@ -214,11 +219,10 @@ public:
         __m256 acc_y_contrib = _mm256_mul_ps(acc_normY_vec, F_vec);
 
         // 6. Apply Final Mask and Accumulate (NOT self_interaction)
-        __m256 final_mask = _mm256_andnot_ps(self_interaction_mask, _mm256_set1_ps(std::numeric_limits<float>::quiet_NaN()));
-        
-        *accX_out = _mm256_add_ps(*accX_out, _mm256_and_ps(acc_x_contrib, final_mask));
-        *accY_out = _mm256_add_ps(*accY_out, _mm256_and_ps(acc_y_contrib, final_mask));
-    }
+      const __m256 all_ones = _mm256_castsi256_ps(_mm256_set1_epi32(-1));
+      __m256 contribution_mask = _mm256_andnot_ps(self_interaction_mask, all_ones);
+    *accX_out = _mm256_add_ps(*accX_out, _mm256_and_ps(acc_x_contrib, contribution_mask));
+    *accY_out = _mm256_add_ps(*accY_out, _mm256_and_ps(acc_y_contrib, contribution_mask));}
     
     // --- SIMD Force Traversal (Iterative with Masking) ---
     void computeForce_vec(int start_index, const BodyDataSoA &data, 
