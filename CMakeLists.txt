@@ -22,9 +22,7 @@ message(STATUS "SFML_ROOT: ${SFML_ROOT}")
 find_package(SFML 2.6 COMPONENTS graphics window system REQUIRED HINTS ${SFML_ROOT})
 
 # --- Main SFML Application ---
-add_executable(n-body-simulation 
-    "N-Body Simulation/main.cpp"
-)
+add_executable(n-body-simulation "main.cpp")
 
 target_compile_options(n-body-simulation PRIVATE
     $<$<CXX_COMPILER_ID:GNU>:-O3 -march=native -ffast-math -mavx2 -fopenmp -DNDEBUG>
@@ -44,13 +42,10 @@ target_link_libraries(n-body-simulation PRIVATE
 
 target_include_directories(n-body-simulation PRIVATE 
     "${SFML_ROOT}/include"
-    "N-Body Simulation"
 )
 
 # --- Benchmark Application (Console-only, no SFML) ---
-add_executable(benchmark 
-    "N-Body Simulation/benchmark.cpp"
-)
+add_executable(benchmark "benchmark.cpp")
 
 target_compile_options(benchmark PRIVATE
     $<$<CXX_COMPILER_ID:GNU>:-O3 -march=native -ffast-math -mavx2 -fopenmp -DNDEBUG>
@@ -61,7 +56,7 @@ find_package(OpenMP REQUIRED)
 target_link_libraries(benchmark PRIVATE OpenMP::OpenMP_CXX pthread)
 
 target_include_directories(benchmark PRIVATE 
-    "N-Body Simulation"
+    . 
 )
 
 # --- Print Build Summary ---

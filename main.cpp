@@ -23,6 +23,38 @@ const float G_LOCAL = 1.0f; // Dodano za rendering
 // Vector size (8 for __m256)
 const int VEC_STRIDE = 8;
 
+namespace fs = std::filesystem;
+
+// Helper function to find the configuration file
+std::string findConfigFile(const std::string& filename) {
+    // 1. Get the current executable path
+    // Note: Getting the current executable path is OS-specific and complex.
+    // A simpler approach is to rely on relative paths from common run locations.
+
+    // Common search paths relative to the current working directory:
+    std::vector<fs::path> search_paths = {
+        // 1. Current directory (where the executable is run from)
+        fs::current_path() / filename,
+        // 2. One level up (e.g., when run from 'bin/')
+        fs::current_path().parent_path() / filename,
+        // 3. Two levels up (e.g., when run from 'build/bin/')
+        fs::current_path().parent_path().parent_path() / filename
+    };
+
+    std::cout << "Searching for " << filename << "..." << std::endl;
+
+    for (const auto& path : search_paths) {
+        if (fs::exists(path)) {
+            std::cout << "Found config file at: " << path.string() << std::endl;
+            return path.string();
+        }
+        // Optional: print paths being checked
+        // std::cout << "Checking: " << path.string() << " (Not found)" << std::endl;
+    }
+
+    return ""; // Return empty string if not found
+}
+
 // --- Data Structure (Struct of Arrays - SoA) ---
 struct BodyDataSoA
 {
@@ -312,7 +344,9 @@ int main()
     int windowSize = 1000;
     std::string windowTitle = "N-Body Simulation (BH + AVX/OpenMP)";
 
-    std::ifstream configFile("config.json");
+
+    std::string configPath = findConfigFile("config.json");
+    std::ifstream configFile(configPath);
     if (configFile.is_open())
     {
         std::string line;

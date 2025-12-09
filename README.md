@@ -98,14 +98,11 @@ N-Body/
 │   │   ├── n-body-simulation.exe  # Main app (with graphics)
 │   │   └── benchmark.exe          # Console benchmark
 │   └── ...
-├── N-Body Simulation/
-│   ├── main.cpp                   # Main SFML app
-│   ├── benchmark.cpp              # Console benchmark (no SFML)
-│   ├── config.json                # Physics configuration
-│   ├── Body.h
-│   ├── Simulation.h
-│   ├── Vec2.h
-│   └── ...
+|
+├── main.cpp                   # Main SFML app
+├── benchmark.cpp              # Console benchmark (no SFML)
+├── config.json                # Physics configuration
+└── ...
 └── .git/
 ```
 
