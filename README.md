@@ -285,10 +285,6 @@ vtune -collect hotspots -result-dir=vtune_results -- .\bin\benchmark.exe
 
 *Rendering adds ~8-16ms per frame independent of physics*
 
-## License
-
-[Add your license information here]
-
 ## Contributing
 
 1. Fork the repository
